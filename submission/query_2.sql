@@ -1,13 +1,13 @@
 -- Query that populates the actors table one year at a time
 INSERT INTO
-    actors
+    mariavyso.actors
 WITH
     -- CTE to hold data from the 'actors' table for specific year
     last_year AS (
         SELECT
             *
         FROM
-            actors
+            mariavyso.actors
         WHERE
             current_year = 1999
     ),
@@ -27,7 +27,7 @@ WITH
             END AS quality_class,
             year
         FROM
-            actor_films
+            bootcamp.actor_films
         WHERE
             year = 2000
             -- Grouping the results by actor, actor_id, and year for aggregation
