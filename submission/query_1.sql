@@ -2,7 +2,7 @@
 -- and 'quality_class' for storing categorical bucketing of the average rating 
 -- of the movies for this actor in their most recent year
 CREATE 
-OR REPLACE TABLE mariavyso.actors (
+OR REPLACE TABLE actors (
     actor VARCHAR NOT NULL,
     actor_id VARCHAR NOT NULL,
     -- Array for multiple films associated with each actor. Each row contains film details.
