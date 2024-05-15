@@ -1,6 +1,6 @@
 -- Type 2 Slowly Changing Dimension Table to track specified fields for each actor in the actors table
 CREATE 
-OR REPLACE TABLE mariavyso.actors_history_scd (
+OR REPLACE TABLE actors_history_scd (
     actor VARCHAR,
     quality_class VARCHAR,
     is_active BOOLEAN,
