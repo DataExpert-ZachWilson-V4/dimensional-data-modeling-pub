@@ -1,6 +1,6 @@
 -- "Backfill" query that can populate the entire actors_history_scd table in a single query
 INSERT INTO
-    mariavyso.actors_history_scd
+    actors_history_scd
 WITH
     -- CTE to determine changes in 'is_active' status and 'quality_class'
     lagged AS (
@@ -31,7 +31,7 @@ WITH
                     current_year
             ) as last_year_quality
         FROM
-            mariavyso.actors
+            actors
     ),
     -- CTE to track changes over time and identify distinct periods (streaks)
     streaked AS (
