@@ -2,14 +2,14 @@
 -- table by combining the previous year's SCD data with the new incoming data 
 -- from the actors table for this year
 INSERT INTO
-    actors_history_scd
+    mariiavyso.actors_history_scd
 WITH
     -- CTE to fetch the data from the 'actors_history_scd' for the specific year (the last,that we had in the table)
     last_year_scd AS (
         SELECT
             *
         FROM
-            actors_history_scd
+            mariiavyso.actors_history_scd
         WHERE
             current_year = 2020
     ),
@@ -18,7 +18,7 @@ WITH
         SELECT
             *
         FROM
-            actors
+            mariiavyso.actors
         WHERE
             current_year = 2021
     ),
