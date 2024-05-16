@@ -11,3 +11,4 @@ WITH (
     format = 'PARQUET',
     partitioning = ARRAY['current_year']
 )
+
