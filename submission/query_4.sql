@@ -48,3 +48,4 @@ GROUP BY actor
      , quality_class
      , is_active
      , status_changed
+     
