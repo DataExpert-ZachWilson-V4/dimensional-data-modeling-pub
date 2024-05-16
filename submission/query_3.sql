@@ -1,5 +1,4 @@
 --DDL statement to create an actors_history_scd table  for each actor in the actors table that tracks below fields
-
 create table vaishnaviaienampudi83291.actors_history_scd
 (
     actor_id varchar,

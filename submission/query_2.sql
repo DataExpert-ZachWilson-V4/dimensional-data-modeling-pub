@@ -1,5 +1,4 @@
 --query that populates the actors table one year at a time.
-
 insert into vaishnaviaienampudi83291.actors
 with last_year as( 
     select * from vaishnaviaienampudi83291.actors
