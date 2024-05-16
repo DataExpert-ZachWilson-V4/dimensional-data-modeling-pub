@@ -40,10 +40,10 @@ jobs:
           files_changed_pr="${{ steps.tj-actions-changed-files.outputs.all_changed_files }}"
           echo "Files changed in PR: $files_changed_pr"
 
-          files_changed_push="$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)"
-          echo "Files changed in commit: $files_changed_push"
+          files_changed_push="$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})"
+          echo "Files changed in push: $files_changed_push"
           
-          # Check if files from the commit are in the PR changes
+          # Check if files from the push are in the PR changes
           for file in $files_changed_push; do
             if [[ " $files_changed_pr " =~ " $file " ]]; then
               files_changed_push_filtered+=( "$file" )
