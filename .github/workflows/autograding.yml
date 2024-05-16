@@ -40,13 +40,7 @@ jobs:
           files_changed_pr="${{ steps.tj-actions-changed-files.outputs.all_changed_files }}"
           echo "Files changed in PR: $files_changed_pr"
 
-          if [[ "${{ github.event_name }}" == 'pull_request' ]]; then
-              # Get the SHA of the first commit in the push
-              first_commit_sha="$(git rev-list --max-parents=0 HEAD)"
-              files_changed_commit="$(git diff --name-only $first_commit_sha ${{ github.sha }} | xargs)"
-          else
-              files_changed_commit="$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)"
-          fi
+          files_changed_push="$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)"
           echo "Files changed in commit: $files_changed_push"
           
           # Check if files from the commit are in the PR changes
