@@ -29,15 +29,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.base.sha }}
           token: ${{ secrets.PAT_TOKEN }}
           fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
 
       - name: Get all changed files
         id: tj-actions-changed-files
         uses: tj-actions/changed-files@v44
-        # with:
-        #   since_last_remote_commit: false
       
       - name: Get submission file changes from the current commit
         id: filtered-changed-files
@@ -46,9 +44,9 @@ jobs:
           echo "Files changed in PR: $files_changed_pr"
 
           if ${{ github.event_name == 'pull_request' }}; then
-              echo "files_changed_commit=$(git diff --name-only -r HEAD^1 HEAD | xargs)" >> $GITHUB_OUTPUT
+              files_changed_commit="$(git diff --name-only -r HEAD^1 HEAD | xargs)"
           else
-              echo "files_changed_commit=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
+              files_changed_commit="$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)"
           fi
 
           echo "Files changed in commit: $files_changed_commit"
