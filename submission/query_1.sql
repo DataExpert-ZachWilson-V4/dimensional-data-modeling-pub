@@ -1,3 +1,4 @@
+%sql
 /*
 Actors Table DDL (query_1)
 
@@ -18,25 +19,23 @@ Write a DDL query to create an actors table with the following fields:
 * current_year: The year this row represents for the actor
 
 **/
-
-
-CREATE TABLE harathi.actors ( 
+CREATE TABLE harathi.actors (
   actor VARCHAR,
   actor_id VARCHAR,
   films ARRAY(
     ROW(
       film VARCHAR,
-      votes INTEGER,
-      rating DOUBLE,
       film_id VARCHAR,
-      year INTEGER
+      year INTEGER,
+      votes INTEGER,
+      rating DOUBLE
     )
   ),
-  quality_class VARCHAR,
+  quality_class varchar,
   is_active BOOLEAN,
   current_year INTEGER
 )
-WITH (
-  format = 'PARQUET',
-  partitioning = ARRAY['current_year']
-)
+WITH
+  (
+    FORMAT = 'PARQUET',
+    partitioning = ARRAY['current_year'])
