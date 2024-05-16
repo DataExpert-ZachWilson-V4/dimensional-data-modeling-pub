@@ -4,7 +4,7 @@ INSERT INTO actors
 -- select * from bootcamp.actor_films where year = 1914
 -- select max(current_year) from xeno.actors 
 
-with prev_year as (select * from xeno.actors where current_year = 1913), 
+with prev_year as (select * from actors where current_year = 1913),
 cur_year as (select * from bootcamp.actor_films where year = 1914)
 
 -- I handle when an actor/actress has multiple films in the same year by using group by
