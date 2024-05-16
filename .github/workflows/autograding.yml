@@ -53,7 +53,8 @@ jobs:
               fi
             fi
           done
-          echo "All files changed: '$all_changed_files'"
+          echo ''
+          echo "List of files to process: '$all_changed_files'"
 
           any_changed=$(if [ -n "$all_changed_files" ]; then echo 'true'; else echo 'false'; fi)
           
