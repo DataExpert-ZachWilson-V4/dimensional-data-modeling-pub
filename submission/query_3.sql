@@ -1,6 +1,6 @@
--- Create SCD table for erich.actors data tracking changes for the
+-- Create SCD table for actors data tracking changes for the
 -- quality_class and is_active columns.
-CREATE TABLE erich.actors_history_scd (
+CREATE TABLE actors_history_scd (
     actor_id VARCHAR,
     -- 'actor': Stores the actor's name. Part of the actor_films dataset.
     actor VARCHAR,

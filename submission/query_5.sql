@@ -1,12 +1,12 @@
 -- The following query inserts changes from 2010 into the actors_history_scd table which,
 -- at this point, has date only until 2009.
-INSERT INTO erich.actors_history_scd
+INSERT INTO actors_history_scd
 WITH last_year_scd AS (
-    SELECT * FROM erich.actors_history_scd
+    SELECT * FROM actors_history_scd
     WHERE current_year = 2009
 ),
 this_year_scd AS (
-    SELECT * FROM erich.actors
+    SELECT * FROM actors
     WHERE current_year = 2010
 ),
 combined AS (

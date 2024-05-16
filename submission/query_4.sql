@@ -1,5 +1,5 @@
 -- Initialize the actors_history_scd table with a backfill until 2009
-INSERT INTO erich.actors_history_scd
+INSERT INTO actors_history_scd
 WITH lagged AS (
     SELECT
         actor_id,
@@ -14,7 +14,7 @@ WITH lagged AS (
         ) AS is_active_last_year,
         current_year
     FROM
-        erich.actors
+        actors
     WHERE current_year <= 2009
 ),
 streaked AS (

@@ -3,10 +3,10 @@
 -- incrementally updates the table with data for 2001.
 
 -- 2000:2001
-INSERT INTO erich.actors
+INSERT INTO actors
 WITH last_year AS (
     SELECT *
-    FROM erich.actors
+    FROM actors
     WHERE current_year = 2000
 ),
 this_year AS (

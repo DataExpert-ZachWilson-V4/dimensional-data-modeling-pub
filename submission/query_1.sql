@@ -1,5 +1,5 @@
 -- Create cumulative table for the actor_films dataset.
-CREATE TABLE erich.actors (
+CREATE TABLE actors (
   -- 'actor': Stores the actor's name. Part of the actor_films dataset.
   actor VARCHAR,
   -- 'actor_id': Unique identifier for each actor, part of the primary key in actor_films dataset.
