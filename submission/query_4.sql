@@ -62,3 +62,4 @@ SELECT
 FROM streaked
 GROUP BY actor, actor_id, is_active_streak, quality_class_streak
 -- Group by actor and the identified streaks to segment the history accurately.
+
