@@ -29,7 +29,6 @@ this_year AS (
     WHERE year = 2001
     GROUP BY actor, actor_id, year
 )
-
 SELECT
     COALESCE(ly.actor, ty.actor) AS actor,
     COALESCE(ly.actor_id, ty.actor_id) AS actor_id,
