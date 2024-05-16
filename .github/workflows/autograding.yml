@@ -1,10 +1,7 @@
 name: Auto Grading
 
 on:
-  push:
-    paths:
-      - "submission/**"
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize]
     branches:
       - main
@@ -31,7 +28,7 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.sha }}
           token: ${{ secrets.PAT_TOKEN }}
-          fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
+          fetch-depth: 2
 
       - name: Get all changed files
         id: tj-actions-changed-files
@@ -43,12 +40,7 @@ jobs:
           files_changed_pr="${{ steps.tj-actions-changed-files.outputs.all_changed_files }}"
           echo "Files changed in PR: $files_changed_pr"
 
-          if ${{ github.event_name == 'pull_request' }}; then
-              files_changed_commit="$(git diff --name-only -r HEAD^1 HEAD | xargs)"
-          else
-              files_changed_commit="$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)"
-          fi
-
+          files_changed_commit="$(git diff --name-only -r HEAD^1 HEAD | xargs)"
           echo "Files changed in commit: $files_changed_commit"
           
           # Check if files from the commit are in the PR changes
