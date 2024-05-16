@@ -1,6 +1,5 @@
 --create actors table 
---testing without schema name
-create table actors(
+create table vaishnaviaienampudi83291.actors(
   actor_id VARCHAR,
   actor VARCHAR,
   films ARRAY( -- create films array  
