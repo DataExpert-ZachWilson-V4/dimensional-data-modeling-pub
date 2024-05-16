@@ -14,15 +14,15 @@ current_year AS (
     SELECT
         actor,
         actor_id,
-        ARRAY_AGG(ROW(film, votes, rating, film_id)) AS films,
-        CASE 
+        ARRAY_AGG(ROW(film, votes, rating, film_id)) AS films, -- Generating an array of all films attributes
+        CASE -- Categorical information for quality class
             WHEN AVG(rating) > 8 THEN 'star'
             WHEN AVG(rating) > 7 THEN 'good'
             WHEN AVG(rating) > 6 THEN 'average'
             ELSE 'bad'
         END AS quality_class,
         actor_id IS NOT NULL AS is_active,
-        year as current_year
+        year AS current_year
     FROM
         bootcamp.actor_films
     WHERE
@@ -50,4 +50,4 @@ SELECT
 FROM
     last_year ly 
 FULL OUTER JOIN current_year cy 
-ON (ly.actor = cy.actor)
+ON (ly.actor_id = cy.actor_id)
