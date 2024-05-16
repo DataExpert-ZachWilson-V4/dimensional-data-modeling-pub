@@ -74,3 +74,4 @@ select
 from last_year as ly
 -- Joins last year's and this year's data on actor_id.
 full outer join average_rating as ty on ly.actor_id = ty.actor_id
+
