@@ -1,6 +1,9 @@
 name: Auto Grading
 
 on:
+  push:
+    paths:
+      - "submission/**"
   pull_request:
     types: [opened, synchronize]
     branches:
@@ -33,8 +36,8 @@ jobs:
       - name: Get all changed files
         id: tj-actions-changed-files
         uses: tj-actions/changed-files@v44
-        with:
-          since_last_remote_commit: false
+        # with:
+        #   since_last_remote_commit: false
       
       - name: Get submission file changes from the current commit
         id: filtered-changed-files
