@@ -15,4 +15,4 @@ WITH
   (
     FORMAT = 'PARQUET',
     partitioning = ARRAY['current_year']  -- PARTITION BY CURRENT YEAR
-  ) -- adding comment so that aoutograding checks all my questions, last time it only checked q5
+  ) -- adding comment so that aoutograding checks all my questions, last time it only   checked q5  
