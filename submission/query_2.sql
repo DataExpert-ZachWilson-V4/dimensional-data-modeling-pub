@@ -1,3 +1,3 @@
-create or replace table actors_test (
+create or replace table actors_test_2 (
   actor_id integer
 )
