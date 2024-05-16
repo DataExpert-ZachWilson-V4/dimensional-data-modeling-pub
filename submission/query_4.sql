@@ -47,8 +47,8 @@ insert into
       actors_lagged
   )
 SELECT
-  actor,
   actor_id,
+  actor,
   MAX(quality_class) as quality_class,
   MAX(is_active) as is_active,
   MIN(current_year) as start_date,
@@ -57,6 +57,6 @@ SELECT
 FROM
   streaked
 GROUP BY
-  actor,
   actor_id,
+  actor,
   streak_identifier
