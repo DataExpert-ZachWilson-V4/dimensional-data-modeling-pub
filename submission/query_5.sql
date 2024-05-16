@@ -80,3 +80,4 @@ FROM
     CROSS JOIN UNNEST (ctc.change_array) AS t(quality_class, is_active, start_date, end_date) 
 
 --
+-- updating file
