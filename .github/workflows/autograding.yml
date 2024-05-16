@@ -46,11 +46,11 @@ jobs:
           # Check if files from the push are in the PR changes
           for file in $files_changed_push; do
             if [[ " $files_changed_pr " =~ " $file " ]]; then
-              echo "File changed: $file"
+              echo "changes in $file"
               files_changed_push_filtered+=( "$file" )
             fi
           done
-          echo "Files changed in push and PR: $(echo "$files_changed_push_filtered[@]" | xargs)"
+          echo "Files changed in push and PR: $(echo "${files_changed_push_filtered[@]}" | xargs)"
 
           all_changed_files=$(echo "${files_changed_push_filtered[@]}" | grep '^submission/' | xargs)
           eecho "Files changed in submission directory: $all_changed_files"
