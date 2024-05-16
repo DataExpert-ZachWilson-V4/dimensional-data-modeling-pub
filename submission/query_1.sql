@@ -7,4 +7,4 @@ CREATE TABLE actors
     is_active     BOOLEAN,
     current_year  INTEGER
 )
-    WITH ( format = 'PARQUET', partitioning = ARRAY['current_year']);
+    WITH ( format = 'PARQUET', partitioning = ARRAY['current_year'])

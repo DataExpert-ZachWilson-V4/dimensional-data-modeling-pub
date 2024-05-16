@@ -1,8 +1,3 @@
--- Check what min and max years are
--- min_year = 1914 and max_year = 2021
-SELECT MIN(year) AS min_year, MAX(year) AS max_year
-FROM bootcamp.actor_films;
-
 -- Repeat for all pairs between 1913 and 2021
 INSERT INTO actors
 WITH last_year AS (SELECT *
