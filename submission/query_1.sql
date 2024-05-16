@@ -1,4 +1,4 @@
-CREATE TABLE actors (
+CREATE TABLE OR REPLACE actors (
   actor VARCHAR,
   actor_id VARCHAR,
   films ARRAY(
