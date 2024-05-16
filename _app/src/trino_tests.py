@@ -10,7 +10,7 @@ trino_host, trino_port, trino_username, trino_password, trino_catalog, trino_sch
 
 
 assignment_schema = os.environ.get('ASSIGNMENT_SCHEMA')
-drop_sql = f"DROP SCHEMA {assignment_schema}"
+drop_sql = f"DROP SCHEMA {assignment_schema} CASCADE"
 create_sql = f"CREATE SCHEMA {assignment_schema}"
 use_sql = f"USE {assignment_schema}"
 
