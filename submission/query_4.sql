@@ -1,7 +1,5 @@
 -- "backfill" query that can populate the entire actors_history_scd table in a single query.
 
-DECLARE @current_year INT = 2021 -- Parameterize the current year
-
 INSERT INTO actors_history_scd
 WITH lagged AS ( -- CTE to hold previous years data
     SELECT
@@ -28,7 +26,7 @@ WITH lagged AS ( -- CTE to hold previous years data
     FROM
         actors
     WHERE
-        current_year <= @current_year
+        current_year <= 2021
 ),
 streaked AS ( -- CTE to hold change for current year
     SELECT
@@ -56,7 +54,7 @@ SELECT
     MAX(is_active) = 1 AS is_active,
     MIN(current_year) AS start_date,
     MAX(current_year) AS end_date,
-    @current_year AS current_year
+    2021 AS current_year
 FROM
     streaked
 GROUP BY
