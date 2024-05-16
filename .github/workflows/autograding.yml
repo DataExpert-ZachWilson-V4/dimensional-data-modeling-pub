@@ -52,9 +52,9 @@ jobs:
           done
           echo "Files changed in push and PR: '$(echo "${files_changed_push_filtered[@]}" | xargs)'"
 
-          all_changed_files=$(echo "${files_changed_push_filtered[@]}" | grep '^submission/' | xargs)
+          all_changed_files=$(echo "${files_changed_push_filtered[@]}" | grep '/submission/' | xargs)
           echo "Files changed in submission directory: '$all_changed_files'"
-          
+
           any_changed=$(if [ -n "$all_changed_files" ]; then echo 'true'; else echo 'false'; fi)
           
           echo "::set-output name=all_changed_files::$all_changed_files"
