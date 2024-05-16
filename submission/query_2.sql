@@ -23,7 +23,7 @@ SELECT actor,actor_id,
            WHEN avg(rating) <= 6 THEN 'bad'
  END as quality_class,
     max(year) as year
- FROM bootcamp.actor_films 
+ FROM actor_films 
 where year = 2020
 GROUP BY actor,actor_id
 )
