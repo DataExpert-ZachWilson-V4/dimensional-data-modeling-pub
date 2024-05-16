@@ -12,13 +12,14 @@ Note: the cumulative table DDL harathi.actors, created as part of query_1.sql sh
 4. Insert this dataset to the cumulative table harathi.actors
 */
 
+insert into harathi.actors
 with actors_last_yr as (
   select
     *
   from
     harathi.actors
   where
-    current_year = 1913
+    current_year = 1939
 ),
 actors_this_yr as (
   select
@@ -29,7 +30,7 @@ actors_this_yr as (
         film,
         film_id,
         votes,
-        rating,
+        rating,        
         year
       )
     ) AS films,
@@ -39,7 +40,7 @@ actors_this_yr as (
     bootcamp.actor_films
   WHERE
     rating is not null
-    and year = 1914
+    and year = 1940
   GROUP BY
     actor,
     actor_id,
@@ -55,7 +56,6 @@ select
     when aty.films is not null
     and aly.films is not null then aty.films || aly.films
   end as films,
-  avg_rating,
   CASE
     WHEN avg_rating > 8 THEN 'star'
     WHEN avg_rating > 7 THEN 'good'
