@@ -1,4 +1,5 @@
 --create actors table 
+
 create table vaishnaviaienampudi83291.actors(
   actor_id VARCHAR,
   actor VARCHAR,

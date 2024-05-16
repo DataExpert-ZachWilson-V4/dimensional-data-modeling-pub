@@ -1,4 +1,5 @@
 --Actors History SCD Table Incremental Backfill Query 
+
 Insert into vaishnaviaienampudi83291.actors_history_scd
 with last_year_scd as 
 (
