@@ -20,24 +20,15 @@ WITH lagged AS (
 streaked AS (
     SELECT
         *,
-        -- Rolling streak identifier for quality_class
+        -- Rolling streak identifier for quality_class and is_active changes
         SUM(
             CASE
-                WHEN quality_class <> quality_class_last_year THEN 1
+                WHEN quality_class <> quality_class_last_year OR is_active <> is_active_last_year THEN 1
                 ELSE 0
             END
         ) OVER (
             PARTITION BY actor_id ORDER BY current_year
-        ) AS quality_streak_identifier,
-        -- Rolling streak identifier for is_active
-        SUM(
-            CASE
-                WHEN is_active <> is_active_last_year THEN 1
-                ELSE 0
-            END
-        ) OVER (
-            PARTITION BY actor_id ORDER BY current_year
-        ) AS active_streak_identifier
+        ) AS streak_identifier
     FROM
         lagged
 )
@@ -54,7 +45,4 @@ FROM
 GROUP BY
     actor_id,
     actor,
-    active_streak_identifier,
-    quality_streak_identifier
-ORDER BY
-    actor_id, current_year, start_date
+    streak_identifier

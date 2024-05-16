@@ -14,7 +14,7 @@ combined AS (
         COALESCE(ly.actor_id, ty.actor_id) AS actor_id,
         COALESCE(ly.actor, ty.actor) AS actor,
         COALESCE(ly.start_date, ty.current_year) AS start_date,
-        COALESCE(ly.end_date, ly.current_year) AS end_date,
+        COALESCE(ly.end_date, ty.current_year) AS end_date,
         CASE
             WHEN ly.is_active <> ty.is_active THEN TRUE
             WHEN ly.is_active = ty.is_active THEN FALSE
