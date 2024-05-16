@@ -1,5 +1,5 @@
 -- query_1
-CREATE TABLE qhamzah.actors (
+CREATE TABLE actors (
   actor VARCHAR,
   actor_id VARCHAR,
   films ARRAY(
