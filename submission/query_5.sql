@@ -1,4 +1,8 @@
-INSERT INTO actors_history_scd
+-- query_5
+
+-- Insert data into the 'actors_history_scd' table to track changes in actor status and quality class over years
+INSERT INTO
+  actors_history_scd
 WITH
   -- Represents history till last year's SCD data
   last_year_scd AS (
@@ -31,7 +35,8 @@ WITH
       cy.current_year AS start_date_this_year,
       ly.end_date AS end_date_last_year,
       cy.current_year AS end_date_this_year,
-      CASE
+      -- Flag to indicate if there was a change
+	  CASE
         WHEN (ly.is_active <> cy.is_active_int) OR (cy.quality_class <> ly.quality_class) THEN 1
         ELSE 0
       END AS did_change,
@@ -90,6 +95,7 @@ WITH
             )
           )
         ]
+		-- Handle null changes
         WHEN did_change IS NULL THEN ARRAY[
           CAST(
             ROW(
@@ -118,5 +124,5 @@ SELECT
     current_year
 FROM
     changes
+	-- Unnest the array to get individual change records
     CROSS JOIN UNNEST (change_array) AS arr
- 
