@@ -1,18 +1,13 @@
-/*
-Actors History SCD Table Incremental Backfill Query (query_5)
-Write an "incremental" query that can populate a single year's worth of the actors_history_scd table by combining the previous year's SCD data with the new incoming data from the actors table for this year.
-*/
-  
 insert into harathi.actors_history_scd
 with last_year As
 (
   Select * from harathi.actors_history_scd
-  where current_year = 1960
+  where current_year = 2021
 ),
 this_year As
 (
   Select * from harathi.actors
-  where current_year = 1961
+  where current_year = 2022
 ),
 combined As
 (
@@ -30,7 +25,7 @@ Select
   ly.is_active As is_active_last_year,
   ty.quality_class As quality_class_this_year,
   ly.quality_class As quality_class_last_year,
-  1961 As current_year
+  2022 As current_year
 from last_year ly FULL OUTER JOIN this_year ty on ly.actor = ty.actor and ly.actor_id = ty.actor_id and
 ly.end_date + 1 = ty.current_year
 ),
