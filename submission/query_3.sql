@@ -3,6 +3,7 @@
 
 CREATE TABLE derekleung.actors_history_scd (
   actor_id VARCHAR(9),
+  actor VARCHAR(63),
   quality_class VARCHAR(7),
   is_active BOOLEAN,
   start_date INTEGER,
