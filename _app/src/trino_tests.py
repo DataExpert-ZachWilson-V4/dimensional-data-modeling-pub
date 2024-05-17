@@ -8,12 +8,10 @@ submission_dir = get_submission_dir()
 testing = get_runtime_env()
 trino_host, trino_port, trino_username, trino_password, trino_catalog, trino_schema = get_trino_creds()
 
-
 assignment_schema = os.environ.get('ASSIGNMENT_SCHEMA')
 drop_sql = f"DROP SCHEMA IF EXISTS {assignment_schema} CASCADE"
 create_sql = f"CREATE SCHEMA {assignment_schema}"
 use_sql = f"USE {assignment_schema}"
-
 
 def init_trino():
   try:
@@ -32,10 +30,9 @@ def init_trino():
     logger.info(f"Successfully executed queries: \n{drop_sql}\n{create_sql}\n{use_sql}\n")
     return True, 'Success'
   except Exception as e:
-    error_message = f"Failed to initalize Trino! Error message: {str(e)}. You may need to wait a couple minutes and then try again."
+    error_message = f"Failed to initialize Trino! Error message: {str(e)}. You may need to wait a couple minutes and then try again."
     logger.info(error_message)
     return False, error_message
-
 
 def execute_sql(query):
   try:
@@ -55,7 +52,6 @@ def execute_sql(query):
     error_message = f'{str(e.message)}'
     return False, error_message
 
-
 def run_tests(filename, submission):
   passed, results = execute_sql(submission)
   if not passed:
@@ -63,14 +59,13 @@ def run_tests(filename, submission):
     return passed, comment
   return passed, results
 
-
 def main(submissions: dict):
   if not submissions:
     logger.info('WARNING: No submissions found')
     return None
   
-  initalized, results = init_trino()
-  if not initalized:
+  initialized, results = init_trino()
+  if not initialized:
     return False, results
   
   valid_submissions = {}
@@ -87,7 +82,6 @@ def main(submissions: dict):
     return False, formatted_text
   else:
     return True, "All tests passed successfully"
-
 
 if __name__ == "__main__":
   submissions = get_submissions(submission_dir)
