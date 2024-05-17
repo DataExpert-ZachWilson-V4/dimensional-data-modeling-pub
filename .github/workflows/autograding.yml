@@ -67,7 +67,7 @@ jobs:
       - name: Run step only if any submission file(s) changed in PR
         if: steps.filtered-changed-files.outputs.any_submission_changes == 'true'
         env:
-          ALL_CHANGED_FILES: ${{ steps.filtered-changed-files.outputs.changed_submission_files_push }}
+          ALL_CHANGED_FILES: ${{ steps.filtered-changed-files.outputs.all_changed_submission_files }}
           PUSHED_CHANGED_FILES: ${{ steps.filtered-changed-files.outputs.changed_submission_files_push }}
         run: |
           echo "One or more files in the submission folder has changed."
