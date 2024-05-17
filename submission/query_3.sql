@@ -9,9 +9,7 @@ Write a DDL statement to create an actors_history_scd table that tracks the fo
 Note that this table should be appropriately modeled as a Type 2 Slowly Changing Dimension Table (start_date and end_date).
 */
 
-DROP TABLE IF EXISTS general_schema.actors_history_scd;
-
-CREATE TABLE general_schema.actors_history_scd (
+CREATE TABLE harathi.actors_history_scd (
   -- 'actor_id': Unique identifier for each actor.
   actor_id VARCHAR,
   -- 'actor': Stores the actor's name.
