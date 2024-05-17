@@ -84,6 +84,7 @@ Write a DDL query to create an `actors` table with the following fields:
   - `votes`: The number of votes the film received.
   - `rating`: The rating of the film.
   - `film_id`: A unique identifier for each film.
+  - `year`: The year of film release
 - `quality_class`: A categorical bucketing of the average rating of the movies for this actor in their most recent year:
   - `star`: Average rating > 8.
   - `good`: Average rating > 7 and ≤ 8.
