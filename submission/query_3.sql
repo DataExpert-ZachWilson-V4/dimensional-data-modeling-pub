@@ -1,4 +1,4 @@
--- Note this table contains 2 SCDs: quality_class & is_active, and the former doesn't change unless the latter changes
+-- Note this table contains 2 SCDs: quality_class & is_active
 -- note start/end/current date is actually year, following the naming conventions of hw readme
 
 CREATE TABLE derekleung.actors_history_scd (
