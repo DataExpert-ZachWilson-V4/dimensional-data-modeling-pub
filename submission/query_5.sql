@@ -1,3 +1,4 @@
+INSERT INTO actors_history_scd
 WITH
   -- Represents history till last year's SCD data
   last_year_scd AS (
@@ -83,6 +84,13 @@ WITH
     FROM combined
   )
  
-SELECT *
-  FROM combined
+SELECT
+    actor,
+    arr.quality_class,
+    arr.is_active,
+    arr.start_date,
+    arr.end_date
+FROM
+    changes
+    CROSS JOIN UNNEST (change_array) AS arr
 
