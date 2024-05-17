@@ -18,7 +18,7 @@ CREATE TABLE general_schema.actors_history_scd (
   actor VARCHAR,
   -- 'quality_class': Categorical rating based on average rating in the most recent year.
   quality_class VARCHAR,
-  -- 'is_active': Indicates if the actor is currently active, based on making films this year.
+  -- 'is_active': Indicates if the actor is active, based on making films this year.
   is_active BOOLEAN,
   -- 'start_date': Marks the beginning of a particular state (quality_class/is_active).
   start_date INTEGER,
