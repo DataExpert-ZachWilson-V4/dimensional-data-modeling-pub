@@ -112,3 +112,4 @@ from combined
   arr.end_date,
   current_year
   from changed CROSS JOIN UNNEST (change_array) arr
+
