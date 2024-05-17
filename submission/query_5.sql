@@ -85,3 +85,4 @@ WITH
  
 SELECT *
   FROM combined
+
