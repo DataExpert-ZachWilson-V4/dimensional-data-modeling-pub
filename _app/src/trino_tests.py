@@ -29,6 +29,7 @@ def init_trino():
     cur.execute(drop_sql)
     cur.execute(create_sql)
     cur.execute(use_sql)
+    logger.info(f"Successfully executed query: \n{drop_sql}\n{create_sql}\n{use_sql}")
     return True, 'Success'
   except Exception as e:
     error_message = f"Failed to initalize Trino! Error message: {str(e)}. You may need to wait a couple minutes and then try again."
@@ -49,6 +50,7 @@ def execute_sql(query):
     cur = conn.cursor()
     cur.execute(use_sql)
     cur.execute(query)
+    logger.info(f"Successfully executed query: \n{use_sql}\n{query}")
     return True, 'Success'
   except Exception as e:
     error_message = f'{str(e.message)}'
@@ -58,8 +60,8 @@ def execute_sql(query):
 def run_tests(filename, submission):
   passed, results = execute_sql(submission)
   if not passed:
-      comment = f'Failed to run `{filename}` ➡️ "{results}"'
-      return passed, comment
+    comment = f'Failed to run `{filename}` ➡️ "{results}"'
+    return passed, comment
   return passed, results
 
 
