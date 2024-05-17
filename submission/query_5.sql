@@ -1,4 +1,5 @@
 -- query_5
+
 -- Insert data into the 'actors_history_scd' table to track changes in actor status and quality class over years
 INSERT INTO
   actors_history_scd
@@ -10,7 +11,7 @@ WITH
     FROM
       actors_history_scd
     WHERE
-      current_year = 2000
+      current_year = (SELECT MAX(current_year) FROM actors_history_scd)
   ),
   -- Represents upcoming year's SCD data to be populated
   current_year_scd AS (
@@ -20,7 +21,7 @@ WITH
     FROM
       actors
     WHERE
-      current_year = 2001
+      current_year = (SELECT MAX(current_year) FROM actors)
   ),
   -- Combining records from last_year_scd and current_year_scd
   combined AS (
