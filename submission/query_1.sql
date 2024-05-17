@@ -1,4 +1,3 @@
-%sql
 /*
 Actors Table DDL (query_1)
 
