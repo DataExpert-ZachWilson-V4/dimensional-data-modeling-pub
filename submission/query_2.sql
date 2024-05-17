@@ -12,6 +12,7 @@ Note: the cumulative table DDL harathi.actors, created as part of query_1.sql sh
 4. Insert this dataset to the cumulative table harathi.actors
 */
 
+
 insert into harathi.actors
 with actors_last_yr as (
   select
