@@ -1,4 +1,5 @@
 -- query_1
+
 -- Create a table named 'actors' to store information about actors
 CREATE TABLE actors (
   actor VARCHAR,
@@ -9,7 +10,8 @@ CREATE TABLE actors (
       film VARCHAR,
       votes INTEGER,
       rating DOUBLE,
-      film_id VARCHAR
+      film_id VARCHAR,
+	  year INTEGER
     )
   ),
   quality_class VARCHAR,
