@@ -1,5 +1,4 @@
 -- query_5
-
 -- Insert data into the 'actors_history_scd' table to track changes in actor status and quality class over years
 INSERT INTO
   actors_history_scd
