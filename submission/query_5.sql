@@ -6,7 +6,7 @@ Write an "incremental" query that can populate a single year's worth of the acto
 
 */
 insert into harathi.actors_history_scd
-with last_year As
+with last_year As 
 (
   Select * from harathi.actors_history_scd
   where current_year = 2021
