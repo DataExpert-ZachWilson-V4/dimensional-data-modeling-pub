@@ -12,3 +12,5 @@ WITH
     partitioning = ARRAY['current_year']
   )
   
+
+
