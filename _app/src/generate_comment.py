@@ -84,10 +84,10 @@ def post_github_comment(git_token, repo, pr_number, comment, filename):
 
 def main(testing: bool, submissions: dict, files_to_process: list):    
   if not submissions:
-    logger.warning('No submissions found')
+    logger.warning('No submissions found.')
     return None
   if not files_to_process:
-    logger.warning('No comments generated because no changed submission files were detected in the current push. Please modify one or more of your submission files to receive LLM-generated feedback on those files.')
+    logger.warning('No file changes were detected in the current push so no comments were generated. Please modify one or more of your submission files to receive LLM-generated feedback.')
     return None
   s3_solutions_dir = f"academy/2/homework-keys/{assignment}"
   local_solutions_dir = os.path.join(os.getcwd(), 'solutions', assignment)
