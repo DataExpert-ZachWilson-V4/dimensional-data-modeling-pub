@@ -20,7 +20,7 @@ RETURN_VALUE=$(python src/trino_tests.py)
 last_line=$(echo "$RETURN_VALUE" | tail -n 1)
 
 if [[ "$last_line" == 'All tests passed successfully' ]]; then
-  echo "Tests passed! Great work! Generating feedback for changed files: $CHANGED_FILES..."
+  echo "Tests passed! Great work! Generating feedback for changed files: $CHANGED_FILES"
   python src/generate_comment.py
   echo "Done!"
 else
