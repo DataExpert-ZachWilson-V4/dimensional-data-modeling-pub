@@ -1,12 +1,12 @@
 
-INSERT INTO actors_history_scd 
+INSERT INTO richiesingh.actors_history_scd 
 -- get is active and quality class from previous year using LAG for a given actor
 with lagged as(
 select actor, CASE WHEN is_active THEN 1 ELSE 0 END as is_active,
       CASE WHEN  LAG(is_active) OVER(PARTITION BY actor ORDER BY current_year) THEN 1 ELSE 0 END as is_active_last_year,
 quality_class,
 LAG(quality_class) OVER(PARTITION BY actor ORDER BY current_year) as quality_class_last_year, current_year
-from actors 
+from richiesingh.actors 
 WHERE current_year <= 2020
 )
 --find the streak to see when the status changed
