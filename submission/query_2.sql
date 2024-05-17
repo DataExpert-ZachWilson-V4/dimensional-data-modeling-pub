@@ -1,9 +1,9 @@
-INSERT INTO actors
+INSERT INTO meetapandit89096646.actors
 -- Create CTE to read data from actors table for last year
 WITH
   last_year AS (
     SELECT *
-    FROM actors
+    FROM meetapandit89096646.actors
     WHERE
       current_year = 2018
   )

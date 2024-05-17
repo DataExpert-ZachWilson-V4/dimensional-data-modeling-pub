@@ -1,4 +1,4 @@
-INSERT INTO actors_history_scd
+INSERT INTO meetapandit89096646.actors_history_scd
 --Full load of actors_history_scd table by tracking changes in --is_active and quality_class
 WITH lagged AS (
 SELECT actor
@@ -9,7 +9,7 @@ SELECT actor
      , is_active
      , LAG(is_active, 1) OVER(PARTITION BY actor, actor_id ORDER BY current_year) is_active_last_year
      , current_year
-FROM actors
+FROM meetapandit89096646.actors
 WHERE current_year <= 2020
 )
 , changed AS (
