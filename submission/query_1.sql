@@ -19,7 +19,7 @@ Write a DDL query to create an actors table with the following fields:
 
 **/
    
-CREATE TABLE harathi.actors (
+CREATE OR REPLACE TABLE harathi.actors (
   --actor: Actor name
    actor VARCHAR,
    --actor_id: Actor's ID
