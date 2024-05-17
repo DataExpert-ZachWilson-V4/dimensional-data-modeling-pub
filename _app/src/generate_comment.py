@@ -87,7 +87,7 @@ def main(testing: bool, submissions: dict, files_to_process: list):
     logger.warning('No submissions found')
     return None
   if not files_to_process:
-    logger.warning('No files specified for processing')
+    logger.warning('No comments generated because no changed submission files were detected in the current push. Please modify one or more of your submission files to receive LLM-generated feedback on those files.')
     return None
   s3_solutions_dir = f"academy/2/homework-keys/{assignment}"
   local_solutions_dir = os.path.join(os.getcwd(), 'solutions', assignment)
