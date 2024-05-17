@@ -21,7 +21,7 @@ jobs:
     outputs:
       all_changed_submission_files: ${{ steps.filtered-changed-files.outputs.all_changed_submission_files }}
       any_submission_changes: ${{ steps.filtered-changed-files.outputs.any_submission_changes }}
-      changed_submission_files_push: ${{ steps.filtered-changed-files-list.outputs.changed_submission_files_push }}
+      changed_submission_files_push: ${{ steps.filtered-changed-files.outputs.changed_submission_files_push }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -46,34 +46,33 @@ jobs:
         run: |
           all_changed_submission_files="${{ steps.tj-actions-changed-files.outputs.all_changed_files }}"
           echo "Files changed in PR: $all_changed_submission_files"
-          echo "::set-output name=all_changed_submission_files::$all_changed_submission_files"
+          echo "all_changed_submission_files=$all_changed_submission_files" >> $GITHUB_OUTPUT
           
           any_submission_changes=$(if [ -n "$all_changed_submission_files" ]; then echo 'true'; else echo 'false'; fi)
           echo "Any changes: $any_submission_changes"
-          echo "::set-output name=any_submission_changes::$any_submission_changes"
+          echo "any_submission_changes=$any_submission_changes" >> $GITHUB_OUTPUT
 
           changed_files_push="$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})"
           for file in $changed_files_push; do
             if [[ " $all_changed_submission_files " =~ " $file " ]]; then
-              echo "Found changes in $file"
+              echo "Valid changes in $file"
               filter_changed_files_push+=( "$file" )
             fi
           done
 
           changed_submission_files_push=$(echo "${filter_changed_files_push[@]}" | xargs)
           echo "Filtered list of files changed: '$changed_submission_files_push'"
-          echo "::set-output name=changed_submission_files_push::$changed_submission_files_push"
+          echo "changed_submission_files_push=${changed_submission_files_push// /,}" >> $GITHUB_OUTPUT
           
-      # Set output indicating whether any submission files have changed
-      - name: Run step only if any submission file(s) changed
-        id: filtered-changed-files-list
+      - name: Run step only if any submission file(s) changed in PR
         if: steps.filtered-changed-files.outputs.any_submission_changes == 'true'
         env:
-          SUBMISSION_CHANGES_push: ${{ steps.filtered-changed-files.outputs.changed_submission_files_push }}
+          ALL_CHANGED_FILES: ${{ steps.filtered-changed-files.outputs.changed_submission_files_push }}
+          PUSHED_CHANGED_FILES: ${{ steps.filtered-changed-files.outputs.changed_submission_files_push }}
         run: |
           echo "One or more files in the submission folder has changed."
-          echo "Files changed: ${SUBMISSION_CHANGES_push// /,}"
-          echo "::set-output name=changed_submission_files_push::${SUBMISSION_CHANGES_push// /,}"
+          echo "Files changed in PR: ${ALL_CHANGED_FILES// /,}"
+          echo "Files changed in push: ${PUSHED_CHANGED_FILES// /,}"
 
   configure_environment:
     name: 'Configure environment'
@@ -95,10 +94,10 @@ jobs:
         run: |
           assignment="dimensional-data-modeling" # $(basename "${{ github.event.repository.full_name }}")
           echo "Assignment: $assignment"
-          echo "::set-output name=assignment_name::$assignment"
+          echo "assignment_name=$assignment" >> $GITHUB_OUTPUT
           schema="$(echo "$(basename "${{ github.repository }}")" | tr '-' '_')_${{github.event.number}}_test"
           echo "Test Schema: $schema"
-          echo "::set-output name=schema_name::$schema"
+          echo "schema_name=$schema" >> $GITHUB_OUTPUT
 
   deploy_application:
     name: 'Deploy application'
