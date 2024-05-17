@@ -47,5 +47,4 @@ GROUP BY actor
      , actor_id
      , quality_class
      , is_active
-     , status_changed
-     
+     , status_changed  

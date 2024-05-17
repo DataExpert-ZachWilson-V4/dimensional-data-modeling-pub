@@ -20,5 +20,4 @@ WITH (
   format = 'PARQUET',
   --  partition on current_year to optimize retrieval
   partitioning = ARRAY['current_year']
-  )
-  
+  ) 

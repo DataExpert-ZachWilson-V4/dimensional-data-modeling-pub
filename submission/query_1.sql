@@ -27,4 +27,3 @@ WITH
     -- partitioning the file by current_year
     partitioning = ARRAY['current_year']
   )
-  
