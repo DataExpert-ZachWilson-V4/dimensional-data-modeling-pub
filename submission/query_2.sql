@@ -1,9 +1,9 @@
-INSERT INTO meetapandit89096646.actors
+INSERT INTO actors
 -- Create CTE to read data from actors table for last year
 WITH
   last_year AS (
     SELECT *
-    FROM meetapandit89096646.actors
+    FROM actors
     WHERE
       current_year = 2018
   )
@@ -11,7 +11,7 @@ WITH
   -- is not in actors table
   , this_year AS (
     SELECT *
-    FROM bootcamp.actor_films
+    FROM actor_films
     WHERE year = 2019
   )
   , average_rating_ty AS (

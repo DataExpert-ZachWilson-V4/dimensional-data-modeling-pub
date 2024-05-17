@@ -1,14 +1,14 @@
-INSERT INTO meetapandit89096646.actors_history_scd
+INSERT INTO actors_history_scd
 --Tracking changes in quality class and is_active
 --Incremental load of actors_history_scd
 WITH last_year AS (
 SELECT *
-FROM meetapandit89096646.actors_history_scd
+FROM actors_history_scd
 WHERE current_year = 2020
 )
 , this_year AS (
   SELECT *
-  FROM meetapandit89096646.actors
+  FROM actors
   WHERE current_year = 2021
 )
 , combined AS (
