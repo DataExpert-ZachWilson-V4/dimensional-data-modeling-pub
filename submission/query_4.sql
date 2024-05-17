@@ -1,6 +1,6 @@
 -- This SQL query can backfill the entire actors_history_scd table in a single query.
 
-INSERT INTO anjanashivangi.actors_history_scd 
+INSERT INTO actors_history_scd 
 WITH lagged AS (
   SELECT
     actor,
@@ -26,7 +26,7 @@ WITH lagged AS (
     ) AS qc_last_year, -- Use LAG() function to get last year's quality_class value
     current_year
   FROM
-    anjanashivangi.actors
+    actors
   WHERE
     current_year <= 1930 -- Hardcoded to the year upto which we want to backfill
 ),

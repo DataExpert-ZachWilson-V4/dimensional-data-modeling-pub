@@ -1,9 +1,9 @@
-INSERT INTO anjanashivangi.actors_history_scd 
+INSERT INTO actors_history_scd 
   WITH last_year_scd AS (
     SELECT
       *
     FROM
-      anjanashivangi.actors_history_scd
+      actors_history_scd
     WHERE
       current_year = 1930 -- pull last years data
   ),
@@ -11,7 +11,7 @@ INSERT INTO anjanashivangi.actors_history_scd
     SELECT
       *
     FROM
-      anjanashivangi.actors
+      actors
     WHERE
       current_year = 1931 -- pull current year's data as incremental input
   ),

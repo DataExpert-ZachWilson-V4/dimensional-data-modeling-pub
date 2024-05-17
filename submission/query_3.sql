@@ -1,4 +1,4 @@
-CREATE OR REPLACE TABLE anjanashivangi.actors_history_scd (
+CREATE OR REPLACE TABLE actors_history_scd (
   actor VARCHAR,
   actor_id VARCHAR,
   quality_class VARCHAR,

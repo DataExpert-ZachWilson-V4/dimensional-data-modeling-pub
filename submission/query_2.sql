@@ -1,12 +1,12 @@
-INSERT INTO
-    anjanashivangi.actors WITH last_year AS (
+INSERT INTO actors 
+WITH last_year AS (
         -- This CTE grabs existing records from target table. 
         -- 'currenty_year' is set to 1913 for the first run. This will be empty in the first run.
         -- 'currenty_year' should be increased sequentially for each incremental run. 
         SELECT
             *
         FROM
-            anjanashivangi.actors
+            actors
         WHERE
             current_year = 1913
     ),
