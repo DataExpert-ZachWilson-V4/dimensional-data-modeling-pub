@@ -1,4 +1,4 @@
-INSERT INTO actors
+INSERT INTO meetapandit89096646.actors
 -- Create CTE to read data from actors table for last year
 WITH
   last_year AS (
@@ -47,4 +47,3 @@ WITH
        , COALESCE(ty.current_year, ly.current_year + 1) AS current_year
   FROM last_year ly
   FULL OUTER JOIN average_rating_ty ty ON ly.actor_id = ty.actor_id
-  

@@ -1,4 +1,4 @@
-INSERT INTO actors_history_scd
+INSERT INTO meetapandit89096646.actors_history_scd
 --Full load of actors_history_scd table by tracking changes in --is_active and quality_class
 WITH lagged AS (
 SELECT actor
@@ -48,4 +48,3 @@ GROUP BY actor
      , quality_class
      , is_active
      , status_changed
-     

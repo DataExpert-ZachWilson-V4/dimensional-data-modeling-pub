@@ -1,4 +1,4 @@
-CREATE TABLE actors_history_scd(
+CREATE TABLE meetapandit89096646.actors_history_scd(
   -- attribute for actor name
 actor VARCHAR,
   -- attribute for actor_id identifier
@@ -21,4 +21,3 @@ WITH (
   --  partition on current_year to optimize retrieval
   partitioning = ARRAY['current_year']
   )
-  
