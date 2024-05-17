@@ -1,5 +1,4 @@
 -- query_2
-
 -- Insert data into the 'actors' table using data accumulated so far from previous years and the current year
 INSERT INTO
   actors
@@ -53,5 +52,5 @@ SELECT
   ty.year IS NOT NULL AS is_active,
   COALESCE(ty.year, ly.current_year+1) AS current_year
   FROM last_year ly
-  FULL OUTER JOIN this_year ty ON ly.actor = ty.actor OR (ly.actor_id IS NULL AND ty.actor_id IS NOT NULL)
+  FULL OUTER JOIN this_year ty ON ly.actor_id = ty.actor_id OR (ly.actor_id IS NULL AND ty.actor_id IS NOT NULL)
   
