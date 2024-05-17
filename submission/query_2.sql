@@ -16,9 +16,9 @@ WITH
       current_year = 2020
   ),
   --Note: The point of row_number() here is to dedup, so no particular order is really required
-  this_year AS (
+  this_year_unfiltered AS (
     SELECT
-      first_value(actor) over w as actor,
+      first_value(actor) over w AS actor,
       actor_id,
       ARRAY_AGG(
         ROW(
@@ -35,7 +35,7 @@ WITH
         ELSE 'bad'
       END AS quality_class,
       TRUE AS is_active,
-      first_value(YEAR) over w,
+      first_value(YEAR) over w AS year,
       row_number() over w AS row_count
     FROM
       derekleung.actor_films
