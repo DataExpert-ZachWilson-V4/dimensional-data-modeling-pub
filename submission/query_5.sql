@@ -1,3 +1,7 @@
+/*
+Actors History SCD Table Incremental Backfill Query (query_5)
+Write an "incremental" query that can populate a single year's worth of the actors_history_scd table by combining the previous year's SCD data with the new incoming data from the actors table for this year.
+*/
 insert into harathi.actors_history_scd
 with last_year As
 (
