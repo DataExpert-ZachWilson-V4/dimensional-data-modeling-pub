@@ -1,4 +1,5 @@
 -- query_3
+
 -- Create a table named 'actors_history_scd' to store historical data of actors with SCD
 CREATE TABLE actors_history_scd (
   actor VARCHAR,
