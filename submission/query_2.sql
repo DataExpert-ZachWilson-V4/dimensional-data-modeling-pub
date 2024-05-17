@@ -11,7 +11,7 @@ WITH
   -- is not in actors table
   , this_year AS (
     SELECT *
-    FROM actor_films
+    FROM bootcamp.actor_films
     WHERE year = 2019
   )
   , average_rating_ty AS (
