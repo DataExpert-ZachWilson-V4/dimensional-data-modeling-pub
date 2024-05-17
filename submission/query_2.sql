@@ -18,7 +18,7 @@ WITH
       ARRAY_AGG(ROW(film, votes, rating, film_id)) AS films,
       AVG(rating) AS rating,
       year
-    FROM actor_films
+    FROM bootcamp.actor_films
     WHERE year = 2000
     GROUP BY actor, actor_id, year
   )
