@@ -1,7 +1,7 @@
-INSERT INTO actors 
+INSERT INTO richiesingh.actors 
 --actors from last year
 WITH last_year as (
-SELECT * FROM actors
+SELECT * FROM richiesingh.actors
 where current_year = 2019 
 )
 --actors from current year 
