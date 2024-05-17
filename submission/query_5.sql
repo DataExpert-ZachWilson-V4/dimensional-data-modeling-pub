@@ -1,5 +1,5 @@
 INSERT INTO actors_history_scd
---Tracking changes in quality class and is_active
+--Tracking changes in quality class and is_active 
 --Incremental load of actors_history_scd
 WITH last_year AS (
 SELECT *

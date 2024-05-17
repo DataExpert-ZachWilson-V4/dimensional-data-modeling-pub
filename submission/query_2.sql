@@ -1,5 +1,5 @@
 INSERT INTO actors
--- Create CTE to read data from actors table for last year
+-- Create CTE to read data from actors table for last year  
 WITH
   last_year AS (
     SELECT *

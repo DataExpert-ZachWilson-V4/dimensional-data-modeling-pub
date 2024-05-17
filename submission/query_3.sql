@@ -1,5 +1,5 @@
 CREATE TABLE actors_history_scd(
-  -- attribute for actor name
+  -- attribute for actor name 
 actor VARCHAR,
   -- attribute for actor_id identifier
 actor_id VARCHAR,

@@ -1,5 +1,5 @@
 CREATE TABLE actors (
-  -- create actors table in Iceberg
+  -- create actors table in Iceberg 
   -- Name of the actor defined as varchar
   actor VARCHAR,
   -- actor's identifier defined as varchar
