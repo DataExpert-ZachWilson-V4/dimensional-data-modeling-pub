@@ -1,15 +1,16 @@
 --Table creation:
 --films and attributes related to it are stored as a struct
 --quality_class would only handle a specific set of strings, namely 'star', 'good', 'average', 'bad'
-CREATE TABLE derekleung.actors (
+CREATE OR REPLACE TABLE derekleung.actors (
   actor VARCHAR(63),
-  actor_id CHARACTER(9),
+  actor_id VARCHAR(9),
   films ARRAY(
     ROW(
-      film INTEGER,
+      film VARCHAR(255),
+      film_id VARCHAR(9),
       votes INTEGER,
-      rating DOUBLE,
-      film_id CHARACTER(9)
+      rating DOUBLE
+
     )
   ),
   quality_class VARCHAR(7),
