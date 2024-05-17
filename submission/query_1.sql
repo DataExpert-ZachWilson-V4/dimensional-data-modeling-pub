@@ -1,5 +1,5 @@
 
-CREATE OR REPLACE TABLE actors(
+CREATE OR REPLACE TABLE richiesingh.actors(
 actor VARCHAR, -- 'actor': Stores the actor's name. Part of the actor_films dataset.
 actor_ID VARCHAR, -- 'actor_id': Unique identifier for each actor, part of the primary key in actor_films dataset.
 -- 'films': Array of ROWs for multiple films associated with each actor. Each row contains film details.
