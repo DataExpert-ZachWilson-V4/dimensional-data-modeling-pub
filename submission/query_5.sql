@@ -1,12 +1,12 @@
-INSERT INTO richiesingh.actors_history_scd 
+INSERT INTO actors_history_scd 
 with last_year_scd as(
-select * from richiesingh.actors_history_scd
+select * from actors_history_scd
 where current_year =2020
 
 )
 --get this year records
 , this_year_scd as(
-select * from richiesingh.actors
+select * from actors
 where current_year = 2021
 )
 --combining the records from last year and this year and evaluating different case statements to see if there's a change in is_active and quality class from last year to this year
