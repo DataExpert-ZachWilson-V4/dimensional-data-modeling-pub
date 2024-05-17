@@ -1,5 +1,4 @@
 -- query_4
-
 -- Insert data into the 'actors_history_scd' table using historical data from the 'actors' table
 INSERT INTO
   actors_history_scd
