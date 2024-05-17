@@ -1,6 +1,6 @@
 /*
 Actors Table DDL (query_1)
-
+prompt: 
 Write a DDL query to create an actors table with the following fields:
 * actor: Actor name
 * actor_id: Actor's ID
