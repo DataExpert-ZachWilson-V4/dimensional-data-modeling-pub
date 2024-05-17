@@ -36,7 +36,7 @@ streaked AS (
     SUM(
       CASE
         WHEN is_active <> is_active_last_year
-        or quality_class <> qc_last_year THEN 1 -- Updates Streak identifier if there is change in either is_active or quality_class
+        or quality_class <> qc_last_year THEN 1 -- Updates Streak_identifier if there is change in either is_active or quality_class
         ELSE 0
       END
     ) OVER (
