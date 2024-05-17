@@ -1,4 +1,4 @@
-CREATE TABLE meetapandit89096646.actors (
+CREATE TABLE actors (
   -- create actors table in Iceberg
   -- Name of the actor defined as varchar
   actor VARCHAR,
