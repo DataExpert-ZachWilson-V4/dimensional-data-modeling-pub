@@ -45,7 +45,7 @@ jobs:
         id: filtered-changed-files
         run: |
           all_changed_submission_files="${{ steps.tj-actions-changed-files.outputs.all_changed_files }}"
-          echo "Files changed in PR: $all_changed_submission_files"
+          echo "List of submission files changed in PR: '$all_changed_submission_files'"
           echo "all_changed_submission_files=$all_changed_submission_files" >> $GITHUB_OUTPUT
           
           any_submission_changes=$(if [ -n "$all_changed_submission_files" ]; then echo 'true'; else echo 'false'; fi)
@@ -61,7 +61,7 @@ jobs:
           done
 
           changed_submission_files_push=$(echo "${filter_changed_files_push[@]}" | xargs)
-          echo "Filtered list of files changed: '$changed_submission_files_push'"
+          echo "Filtered list of files changed in push: '$changed_submission_files_push'"
           echo "changed_submission_files_push=${changed_submission_files_push// /,}" >> $GITHUB_OUTPUT
           
       - name: Run step only if any submission file(s) changed in PR
@@ -71,8 +71,8 @@ jobs:
           PUSHED_CHANGED_FILES: ${{ steps.filtered-changed-files.outputs.changed_submission_files_push }}
         run: |
           echo "One or more files in the submission folder has changed."
-          echo "Files changed in PR: ${ALL_CHANGED_FILES// /,}"
-          echo "Files changed in push: ${PUSHED_CHANGED_FILES// /,}"
+          echo "Files changed in PR: '${ALL_CHANGED_FILES// /,}'"
+          echo "Files changed in push: '${PUSHED_CHANGED_FILES// /,}'"
 
   configure_environment:
     name: 'Configure environment'
