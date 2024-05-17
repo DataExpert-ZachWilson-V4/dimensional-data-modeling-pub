@@ -1,7 +1,7 @@
 /*
 Actors History SCD Table Batch Backfill Query (query_4)
 
-Write a "backfill" query that can populate the entire actors_history_scd table in a single qu
+Write a "backfill" query that can populate the entire actors_history_scd table in a single query
 */
 
 INSERT INTO harathi.actors_history_scd 
