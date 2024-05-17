@@ -19,6 +19,7 @@ Write a DDL query to create an actors table with the following fields:
 * current_year: The year this row represents for the actor
 
 **/
+   
 CREATE TABLE harathi.actors (
   actor VARCHAR,
   actor_id VARCHAR,
