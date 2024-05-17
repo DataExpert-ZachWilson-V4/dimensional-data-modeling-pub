@@ -4,7 +4,7 @@ WITH last_year as (
 SELECT * FROM actors
 where current_year = 2019 
 )
---actors from current year
+--actors from current year 
 , this_year as (
 SELECT actor,actor_id,
    ARRAY_AGG(
