@@ -1,4 +1,4 @@
-CREATE TABLE juliescherer.actors (
+CREATE OR REPLACE TABLE juliescherer.actors (
   actor VARCHAR,
   actor_id VARCHAR,
   quality_class VARCHAR,
