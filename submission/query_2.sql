@@ -16,6 +16,7 @@ WITH
       current_year = 2020
   ),
   --Note: The point of row_number() here is to dedup, so no particular order is really required
+  --The dedup is done in this_year instead of this_year_unfiltered because of the order of execution
   this_year_unfiltered AS (
     SELECT
       first_value(actor) over w AS actor,
@@ -40,9 +41,17 @@ WITH
     FROM
       derekleung.actor_films
     WHERE
-      YEAR = 2021 and row_count = 1
+      YEAR = 2021
     WINDOW w as (partition by actor_id)
     ORDER BY actor_id
+  ),
+  this_year AS (
+    SELECT
+      *
+    FROM
+      this_year_unfiltered
+    WHERE
+      row_count = 1
   )
   --Join last year's cumulative and today's snapshot
 SELECT
