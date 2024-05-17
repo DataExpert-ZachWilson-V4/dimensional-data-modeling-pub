@@ -93,8 +93,7 @@ def get_submissions(submission_dir: str) -> dict:
     file_path = os.path.join(submission_dir, filename)
     with open(file_path, "r") as file:
       file_content = file.read()
-    m = re.findall(r'\S+', file_content) # Check which files have been modified
-    if m:
+    if re.search(r'\S', file_content):
       submissions[filename] = file_content
   if not submissions:
     logging.warning('no submissions found')
