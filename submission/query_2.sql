@@ -1,6 +1,6 @@
 /* 
 Cumulative Table Computation Query (query_2)
-Prompt:
+Prompt:  
 Write a query that populates the actors table one year at a time.
 Note: the cumulative table DDL harathi.actors, created as part of query_1.sql should be populated in the following steps:
 1. Create a CTE for last year's data
