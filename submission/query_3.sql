@@ -1,4 +1,4 @@
-CREATE TABLE jrsarrat.actors_history_scd (
+CREATE OR REPLACE TABLE jrsarrat.actors_history_scd (
   actor VARCHAR,
   quality_class VARCHAR,
   is_active BOOLEAN,
@@ -11,12 +11,3 @@ WITH (
   partitioning = ARRAY['current_year']
 
 )
-
---------------------------------------------------------------------------------------
-SELECT
-  actor,
-  is_active,
-  LAG(is_active, 1) OVER (PARTITION BY actor ORDER BY current_year) AS is_active_last_year,
-  current_year
-FROM
-  jrsarrat.actors
