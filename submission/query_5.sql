@@ -1,5 +1,5 @@
 
-DECLARE @current_year INT = 2022
+
 -- Insert the processed data into the actors_history_scd table
 INSERT INTO faraanakmirzaei15025.actors_history_scd
 WITH
@@ -10,7 +10,7 @@ WITH
     FROM
       faraanakmirzaei15025.actors_history_scd
     WHERE 
-      current_year = @current_year - 1
+      current_year = 2021
   ),
   -- Select current year's actor data where the year is 2000
   this_year_scd AS (
@@ -23,7 +23,7 @@ WITH
     FROM
       faraanakmirzaei15025.actors
     WHERE
-      current_year = @current_year
+      current_year = 2022
   ),
   -- Combine last year's and this year's data to determine changes
   combined AS (
