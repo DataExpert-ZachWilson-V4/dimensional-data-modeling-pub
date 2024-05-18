@@ -8,6 +8,7 @@ on:
       - "cicd/**"
     paths:
       - "submission/**"
+  workflow_dispatch:
 
 permissions:
   checks: write
@@ -106,7 +107,7 @@ jobs:
     if: needs.check_files.outputs.any_submission_changes == 'true'
     env:
       SUBMISSION_DIR: 'submission'
-      CHANGED_FILES: ${{ needs.check_files.outputs.changed_submission_files_push }}
+      CHANGED_FILES: ${{ needs.check_files.outputs.changed_submission_files_push || github.event_name == 'workflow_dispatch' && needs.check_files.outputs.all_changed_submission_files }}
       ASSIGNMENT: ${{ needs.configure_environment.outputs.assignment }}
       ASSIGNMENT_SCHEMA: ${{ needs.configure_environment.outputs.assignment_schema }}
       PR_NUMBER: ${{ github.event.pull_request.number }}
