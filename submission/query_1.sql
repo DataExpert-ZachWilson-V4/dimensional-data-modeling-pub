@@ -10,7 +10,7 @@ CREATE OR REPLACE TABLE tharwaninitin.actors (
             year INTEGER -- Release year of the film
         )
     ),
-    quality_class VARCHAR, -- Classification of the actor's performance quality
+    quality_class VARCHAR, -- Classification of the actor's performance quality based on average rating in the most recent year: 'star' (>8), 'good' (>7 and ≤8), 'average' (>6 and ≤7), 'bad' (≤6)
     is_active BOOLEAN, -- Indicates whether the actor is currently active
     current_year INTEGER -- Year in which the data is current
 )
