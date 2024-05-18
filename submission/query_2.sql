@@ -1,9 +1,9 @@
-INSERT INTO actors
+INSERT INTO chinmay_hebbal.actors
 WITH last_year_films AS (
   SELECT
     *
   FROM
-    actors
+    chinmay_hebbal.actors
   WHERE
     current_year = 2011
 ),
@@ -40,6 +40,7 @@ SELECT
       WHEN ts.year IS NOT NULL AND ls.films IS NULL THEN ts.films  -- Use current year's films if no last year's films
       WHEN ts.year IS NOT NULL AND ls.films IS NOT NULL THEN ts.films || ls.films  -- Concatenate films if both years have films
   END AS films,
+   ts.average_rating,
   CASE
     WHEN ts.average_rating > 8 THEN 'star'
     WHEN ts.average_rating > 7 AND ts.average_rating <= 8 THEN 'good'
