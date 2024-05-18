@@ -3,24 +3,24 @@
 INSERT INTO nancyatienno21998.actors_history_scd
 
 -- Using Common Table Expressions (CTEs) to organize the query
-WITH 
+WITH
   -- last_year_scd CTE  to fetch data from last year's records
   last_year_scd AS (
-    SELECT 
-      * 
-    FROM 
-      nancyatienno21998.actors_history_scd 
-    WHERE 
+    SELECT
+      *
+    FROM
+      nancyatienno21998.actors_history_scd
+    WHERE
       current_year = 1922
-  ), 
+  ),
 
   -- current_year_scd CTE to fetch data from current year's records
   current_year_scd AS (
-    SELECT 
-      * 
-    FROM 
-      nancyatienno21998.actors 
-    WHERE 
+    SELECT
+      *
+    FROM
+      nancyatienno21998.actors
+    WHERE
       current_year = 1923
   ), 
 
