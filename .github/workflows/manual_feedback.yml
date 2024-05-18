@@ -37,6 +37,8 @@ jobs:
 
       - name: Get pull request head branch and commit
         id: get_pr
+        env:
+          GH_TOKEN: ${{ github.PAT_TOKEN }}
         run: |
           pr_number=${{ github.event.inputs.pr_number }}
           pr_info=$(gh pr view $pr_number --json headRefName,headRepository,headRefOid --jq '.')
