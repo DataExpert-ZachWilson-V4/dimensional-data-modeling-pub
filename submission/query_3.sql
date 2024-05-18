@@ -25,5 +25,6 @@ CREATE TABLE harathi.actors_history_scd (
   -- 'current_year': The year this record pertains to.
   current_year INTEGER
 ) WITH (
+ FORMAT = 'PARQUET',
   partitioning = ARRAY ['current_year']
 )
