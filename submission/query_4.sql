@@ -15,7 +15,7 @@ WITH lagged AS (
             ) THEN 1
             ELSE 0
         END AS is_active_last_year,
-        -- Check if the actor was active last year using LAG function
+        -- Check if the actor was active last year
         current_year
     FROM actors
 ),

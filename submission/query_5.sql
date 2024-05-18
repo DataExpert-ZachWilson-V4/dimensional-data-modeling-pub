@@ -30,7 +30,7 @@ WITH last_year_actors_scd AS (  -- Gets the data of actors from the previous yea
             ts.average_rating AS average_rating_this_year, -- defining this years average rating as such
             ls.quality_class AS quality_class_last_year, -- defining last years quality class as such
             ts.quality_class AS quality_class_this_year,-- defining this years quality class as such
-            2011 as current_year -- Set the current year for the records being processed
+            2012 as current_year -- Set the current year for the records being processed
         FROM last_year_actors_scd ls
             FULL OUTER JOIN this_year_actors ts ON ls.actor_id = ts.actor_id --get all records from both last year and this year queries
             AND ls.end_date + 1 = ts.current_year -- Join condition to match records between last year and current year
