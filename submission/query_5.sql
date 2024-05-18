@@ -16,19 +16,7 @@ WITH
             actor,
             quality_class,
             is_active,
-            current_year,
-            lag(quality_class) over (
-                partition by
-                    actor
-                order by
-                    current_year
-            ) as quality_class_last_year,
-            lag(is_active) over (
-                partition by
-                    actor
-                order by
-                    current_year
-            ) as is_active_last_year
+            current_year
         from
             fayiztk.actors
         where

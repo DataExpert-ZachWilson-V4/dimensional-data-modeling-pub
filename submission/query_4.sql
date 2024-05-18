@@ -1,4 +1,4 @@
--- loading data till 2002
+
 insert into fayiztk.actors_history_scd
 with
     last_year_values as (
