@@ -1,4 +1,4 @@
-create table fayiztk.actors (
+create or replace table fayiztk.actors (
     actor varchar,
     actor_id varchar,
     films ARRAY (
