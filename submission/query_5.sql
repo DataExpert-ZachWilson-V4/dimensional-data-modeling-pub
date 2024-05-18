@@ -52,10 +52,8 @@ Select
       quality_class VARCHAR,
       is_active boolean,
       start_date Integer,
-      end_date Integer
-      )
-      )
-      ]
+      end_date Integer)
+  )]
     WHEN did_change = 1 THEN ARRAY[
     CAST(
     ROW(
