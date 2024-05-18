@@ -113,7 +113,8 @@ SELECT
   quality_class,  -- Pass through the quality classification.
   is_active,
   start_year,
-  end_year
+  end_year,
+  current_year
 FROM
   changes
   CROSS JOIN UNNEST(change_array) AS t(is_active, start_year, end_year) 

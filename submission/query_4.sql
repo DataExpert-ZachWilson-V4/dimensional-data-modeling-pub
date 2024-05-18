@@ -31,15 +31,15 @@ streaked AS (
         is_active_last_year,     -- Last year's active status
         current_is_active,       -- This year's active status
         -- Calculate changes in active status across years using a running sum
-            SUM(
-        CASE
-            WHEN current_is_active <> is_active_last_year OR current_quality_class <> last_quality_class THEN 1
-            ELSE 0
-        END
-    ) OVER (
-        PARTITION BY actor_id
-        ORDER BY current_year
-    ) AS streak_identifier  -- Identifier for each change streak
+        SUM(
+            CASE
+                WHEN current_is_active <> is_active_last_year THEN 1
+                ELSE 0
+            END
+        ) OVER (
+            PARTITION BY actor_id
+            ORDER BY current_year
+        ) AS streak_identifier  -- Identifier for each change streak
     FROM
         last_active_year
 )
@@ -55,7 +55,8 @@ SELECT
     -- Start date is the first day of the earliest year in the current streak
     DATE_PARSE(CAST(MIN(current_year) AS VARCHAR) || '-01-01', '%Y-%m-%d') AS start_date,
     -- End date is the last day of the latest year in the current streak
-    DATE_PARSE(CAST(MAX(current_year) AS VARCHAR) || '-12-31', '%Y-%m-%d') AS end_date
+    DATE_PARSE(CAST(MAX(current_year) AS VARCHAR) || '-12-31', '%Y-%m-%d') AS end_date,
+    current_year
 FROM
     streaked
 GROUP BY
