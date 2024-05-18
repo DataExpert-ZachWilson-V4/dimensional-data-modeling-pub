@@ -1,3 +1,3 @@
-create or replace actors (
+create or replace table actors (
   actor_name varchar
 )
