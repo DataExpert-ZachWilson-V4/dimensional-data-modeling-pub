@@ -42,11 +42,7 @@ WITH
       cy.is_active AS cy_is_active,
       COALESCE(ly.start_date, cy.current_year) AS start_date,
       COALESCE(ly.end_date, cy.current_year) AS end_date,
-<<<<<<< HEAD
-      2022 AS current_year -- Fixed year, same as where clause in this_year_scd CTE
-=======
-      2000 AS current_year -- Fixed year, same as where clause in this_year_scd CTE
->>>>>>> 62d0abfb8bb09a2ece99ebfc3ecf5c9edc5207cf
+      2022 AS current_year 
     FROM last_year_scd ly
     FULL OUTER JOIN this_year_scd cy 
     ON ly.actor_id = cy.actor_id
