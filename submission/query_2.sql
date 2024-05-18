@@ -6,7 +6,7 @@ with
             actor,
             actor_id,
             year,
-            array_agg (Row (film, votes, rating, film_id, year)) as films,
+            array_agg(Row (film, votes, rating, film_id, year)) as films,
             avg(rating) as avg_rating
         from
             bootcamp.actor_films

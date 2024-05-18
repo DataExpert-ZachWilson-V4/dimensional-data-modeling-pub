@@ -21,8 +21,6 @@ with
             ) as is_active_last_year
         from
             fayiztk.actors
-        where 
-            current_year<=2002
     ),
     streaks as (
         select
