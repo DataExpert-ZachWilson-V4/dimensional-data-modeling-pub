@@ -62,7 +62,7 @@ FROM
 GROUP BY
     actor_id,
     quality_class,
-    streak_identifier
-    ,current_year  -- Group by streak to separate different periods of activity
+    streak_identifier,
+    current_year  -- Group by streak to separate different periods of activity
 ORDER BY
     actor_id, start_date  -- Order results for clarity
