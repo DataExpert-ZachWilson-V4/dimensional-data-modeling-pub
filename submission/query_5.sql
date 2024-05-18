@@ -1,6 +1,6 @@
 INSERT INTO tharwaninitin.actors_history_scd
 WITH lag_scd AS (
-  SELECT actor_id, actor,
+  SELECT actor, actor_id,
     current_year,
     is_active,
     LAG(is_active) OVER(PARTITION BY actor_id, actor ORDER BY current_year) is_active_last_year,
@@ -18,9 +18,9 @@ streak_identified AS (
     ) OVER (PARTITION BY actor_id, actor ORDER BY current_year) streak_identifier
 FROM lag_scd
 )
-SELECT actor_id, actor, quality_class, is_active,
+SELECT actor, actor_id, quality_class, is_active,
     MIN(current_year) start_year,
     MAX(current_year) end_year,
     1919 current_year
 FROM streak_identified
-GROUP BY actor_id, actor, is_active, quality_class, streak_identifier
+GROUP BY actor, actor_id, is_active, quality_class, streak_identifier
