@@ -14,12 +14,7 @@ Note: the cumulative table DDL harathi.actors, created as part of query_1.sql sh
 
 insert into harathi.actors
 with actors_last_yr as (
-  select
-    *
-  from
-    harathi.actors
-  where
-    current_year = 1939
+  select * from harathi.actors where current_year = 1939
 ),
 actors_this_yr as (
   select
