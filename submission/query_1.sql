@@ -33,7 +33,7 @@ CREATE TABLE harathi.actors (
       rating DOUBLE -- rating: The rating of the film.
     )
   ),
---quality_class: A categorical bucketing of the average rating of the movies for this actor in their most recent year
+ --quality_class: A categorical bucketing of the average rating of the movies for this actor in their most recent year
   quality_class varchar,
    --is_active: A BOOLEAN field that indicates whether an actor is currently active in the film industry
   is_active BOOLEAN,
