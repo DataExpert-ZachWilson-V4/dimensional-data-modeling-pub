@@ -1,3 +1,5 @@
+-- loading data till 2002
+insert into fayiztk.actors_history_scd
 with
     last_year_values as (
         select
@@ -19,6 +21,8 @@ with
             ) as is_active_last_year
         from
             fayiztk.actors
+        where 
+            current_year<=2002
     ),
     streaks as (
         select
@@ -41,8 +45,8 @@ with
     
 select
     actor,
-    max(quality_class),
-    max(is_active),
+    max(quality_class) as quality_class,
+    max(is_active) as is_active ,
     min(current_year) start_date,
     max(current_year) end_date,
     2002 as current_year
