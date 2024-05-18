@@ -1,8 +1,8 @@
 --query_2
 
-INSERT INTO actors
+INSERT INTO hdamerla.actors
 WITH last_year AS (
-  SELECT * from actors
+  SELECT * from hdamerla.actors
   WHERE current_year = 2000
 ),
 this_year AS (
@@ -18,7 +18,7 @@ this_year AS (
         )) as films,
    SUM(votes*rating)/SUM(votes) as avg_rating,
    year    
-  FROM actor_films
+  FROM bootcamp.actor_films
   WHERE year = 2001
   group by actor, actor_id, year
 )
