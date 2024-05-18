@@ -1,4 +1,4 @@
-CREATE TABLE jrsarrat.actors ( --create an actors table with applicable data types
+CREATE OR REPLACE TABLE jrsarrat.actors ( --create an actors table with applicable data types
   actor VARCHAR, 
   actor_id VARCHAR, 
   films ARRAY(ROW( --this struct provides a table of data consisting of film attributes
