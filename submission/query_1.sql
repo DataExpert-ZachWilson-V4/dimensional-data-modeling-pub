@@ -12,6 +12,6 @@ CREATE TABLE actors (
     current_year INTEGER
 )
 WITH (
-    format = 'PARQUET'
+    format = 'PARQUET',
     partitioning = ARRAY['current_year']
 )
