@@ -17,7 +17,7 @@ WITH last_year AS (
         SELECT
             actor,
             actor_id,
-            array_agg(ROW(film, votes, rating, film_id)) as films,
+            array_agg(ROW(film, votes, rating, film_id, year)) as films,
             -- array_agg because an actor can have multiple films in a year
             AVG(rating) as average_rating,
             -- calculate average rating of all the movies for an actor in current year
