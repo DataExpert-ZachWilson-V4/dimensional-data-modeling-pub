@@ -6,7 +6,8 @@ create or replace table fayiztk.actors (
             film varchar,
             votes integer,
             rating double,
-            film_id varchar
+            film_id varchar,
+            year integer
         )
     ),
     quality_class varchar,
@@ -18,3 +19,4 @@ with
 format='parquet',  
 partitioning=ARRAY['current_year']  
 ) 
+
