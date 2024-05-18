@@ -1,15 +1,46 @@
--- Populating the entire actors_history_scd table using backfill approach from the actors table in Trino
+WITH lagged AS (
+    SELECT
+        actor_id,
+        quality_class,
+        is_active,
+        LAG(quality_class, 1) OVER (
+      PARTITION BY actor_id
+      ORDER BY current_year
+    ) AS previous_quality_class,
+            LAG(is_active, 1) OVER (
+      PARTITION BY actor_id
+      ORDER BY current_year
+    ) AS previous_is_active,
+            current_year
+    FROM jlcharbneau.actors
+),
+ streaked AS (
+     SELECT
+         *,
+         SUM(
+                 CASE
+                     WHEN quality_class <> previous_quality_class
+                         THEN 1
+                     WHEN is_active <> previous_is_active
+                         THEN 1
+                     ELSE 0
+                     END
+             ) OVER (
+  PARTITION BY actor_id
+  ORDER BY current_year
+) AS streak_identifier
+     FROM lagged
+)
 INSERT INTO jlcharbneau.actors_history_scd (actor_id, quality_class, is_active, start_date, end_date)
 SELECT
-    a.actor_id,
-    a.quality_class,
-    a.is_active,
-    DATE(CONCAT(CAST(a.current_year AS VARCHAR), '-01-01')) AS start_date,  -- Constructing a DATE from an integer year
+    actor_id,
+    quality_class,
+    is_active,
+    DATE(CONCAT(CAST(MIN(current_year) AS VARCHAR), '-01-01')) AS start_date,
     COALESCE(
-    date_add('day', -1, DATE(CONCAT(CAST(LEAD(a.current_year) OVER (PARTITION BY a.actor_id ORDER BY a.current_year) AS VARCHAR), '-01-01'))),
+    date_add('day', -1, DATE(CONCAT(CAST(MAX(current_year) AS VARCHAR), '-01-01'))),
     DATE '9999-12-31'
     ) AS end_date
-FROM
-    jlcharbneau.actors a
-ORDER BY
-    a.actor_id, a.current_year
+FROM streaked
+GROUP BY actor_id, quality_class, is_active, streak_identifier
+ORDER BY actor_id, start_date
