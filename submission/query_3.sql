@@ -4,8 +4,8 @@ CREATE OR REPLACE TABLE chinmay_hebbal.actors_history_scd (
   is_active BOOLEAN,
   average_rating DOUBLE, -- column to store the average rating
   quality_class VARCHAR, --column to store the average rating category
-  start_date INTEGER,
-  end_date INTEGER,
+  start_date DATE,
+  end_date DATE,
   current_year INTEGER
 )
 WITH
