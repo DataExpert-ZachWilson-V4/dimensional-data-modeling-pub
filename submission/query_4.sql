@@ -26,8 +26,8 @@ SELECT
     actor_id,
     quality_class,
     is_active,
-    CAST(CAST(MIN(current_year) AS VARCHAR) || '-01-01' AS DATE) AS start_date,
-    CAST(CAST(MAX(current_year) AS VARCHAR) || '-12-31' AS DATE) AS end_date,
+    DATE(MIN(current_year), 1, 1) AS start_date,
+    DATE(MAX(current_year), 12, 31) AS end_date,
     MAX(cy.max_current_year) AS current_year
 FROM streaked
     CROSS JOIN cy
