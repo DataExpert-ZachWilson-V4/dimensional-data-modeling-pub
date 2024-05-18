@@ -6,8 +6,7 @@ CREATE OR REPLACE TABLE tharwaninitin.actors (
             film VARCHAR, -- Name of the film
             votes INTEGER, -- Number of votes the film has received
             rating DOUBLE, -- Rating of the film
-            film_id VARCHAR, -- Unique identifier for each film
-            year INTEGER -- Release year of the film
+            film_id VARCHAR -- Unique identifier for each film
         )
     ),
     quality_class VARCHAR, -- Classification of the actor's performance quality based on average rating in the most recent year: 'star' (>8), 'good' (>7 and ≤8), 'average' (>6 and ≤7), 'bad' (≤6)
