@@ -47,7 +47,7 @@ select
     max(is_active) as is_active ,
     min(current_year) start_date,
     max(current_year) end_date,
-    2002 as current_year
+    2021 as current_year
 from
     streaks
 group by
