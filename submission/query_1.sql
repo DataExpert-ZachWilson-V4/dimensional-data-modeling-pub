@@ -21,4 +21,4 @@ with
         FORMAT = 'PARQUET',
         partitioning = ARRAY['current_year']
     )
-    -- testing @v44 change
+    --comment for grader

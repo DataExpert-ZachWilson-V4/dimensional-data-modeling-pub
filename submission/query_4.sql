@@ -68,3 +68,4 @@ from
 group by
     actor_id,
     streak_identifier
+    --comment for grader

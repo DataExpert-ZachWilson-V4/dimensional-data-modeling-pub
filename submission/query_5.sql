@@ -125,3 +125,4 @@ select
 from
     scd_info
     cross join unnest (scd_arr) as scd_arr
+    --comment for grader

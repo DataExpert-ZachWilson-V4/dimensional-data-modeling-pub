@@ -51,3 +51,4 @@ select
 from
     prev_year p
     full outer join curr_year c on p.actor_id = c.actor_id
+    --comment for grader

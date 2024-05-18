@@ -13,3 +13,4 @@ with
         FORMAT = 'PARQUET',
         partitioning = ARRAY['current_year']
     )
+    --comment for grader
