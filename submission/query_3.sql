@@ -3,8 +3,8 @@
 -- * is_active
 -- * start_date
 -- * end_date
-
-CREATE OR REPLACE TABLE actors_history_scd (
+CREATE
+OR REPLACE TABLE actors_history_scd (
     actor VARCHAR,
     -- actor: The name of the actor.
     actor_id VARCHAR,
@@ -19,7 +19,7 @@ CREATE OR REPLACE TABLE actors_history_scd (
     end_year INTEGER,
     -- end_year: end year of the streak
     -- (streak here is defined as a period of time, consecutive number years of with no change in actor's is_active or quality_class status)
-   current_year INTEGER
+    current_year INTEGER
 ) WITH (
     format = 'PARQUET',
     partitioning = ARRAY ['current_year']

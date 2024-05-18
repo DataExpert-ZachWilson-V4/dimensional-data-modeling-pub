@@ -1,5 +1,5 @@
-INSERT INTO actors 
-WITH last_year AS (
+INSERT INTO
+    actors WITH last_year AS (
         -- This CTE grabs existing records from target table. 
         -- 'currenty_year' is set to 1913 for the first run. This will be empty in the first run.
         -- 'currenty_year' should be increased sequentially for each incremental run. 
@@ -36,8 +36,10 @@ SELECT
     COALESCE(ly.actor_id, ty.actor_id) as actor_id,
     CASE
         WHEN ty.films is NULL THEN ly.films -- if actor not in current year then pull last year's data
-        WHEN ty.films is NOT NULL and ly.films is NULL THEN ty.films -- Use this year data if it's brand new actor
-        WHEN ty.films is NOT NULL and ly.films is NOT NULL THEN ty.films || ly.films -- if this year actor already existed then concat films
+        WHEN ty.films is NOT NULL
+        and ly.films is NULL THEN ty.films -- Use this year data if it's brand new actor
+        WHEN ty.films is NOT NULL
+        and ly.films is NOT NULL THEN ty.films || ly.films -- if this year actor already existed then concat films
     END as films,
     IF(
         -- if current year average_rating is not NULL then compute quality_class else use last year's quality_class

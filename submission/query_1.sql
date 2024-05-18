@@ -15,8 +15,7 @@ OR REPLACE TABLE actors (
       -- rating: The rating of the film.
       film_id VARCHAR,
       -- film_id: A unique identifier for each film.
-      year INTEGER 
-      -- year: Release year of the film
+      year INTEGER -- year: Release year of the film
     )
   ),
   quality_class VARCHAR,
