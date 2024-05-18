@@ -55,20 +55,6 @@ GROUP BY
   quality_class,
   actor_identifier
 
---------------------------------------------------------------------------
-
-INSERT INTO  
-  jrsarrat.actors_history_scd 
-WITH last_year_scd AS (
-  SELECT 
-    * 
-  FROM jrsarrat.actors_history_scd
-    WHERE current_year = 2020
-),
-current_year_scd AS (
-  SELECT 
-    * 
-  FROM jrsarrat.actors
     WHERE current_year = 2021
 )
  
