@@ -1,5 +1,5 @@
 --query_3
-CREATE TABLE hdamerla.actors_history_scd (
+CREATE TABLE actors_history_scd (
   actor VARCHAR,
   actor_id VARCHAR,
   quality_class VARCHAR,
