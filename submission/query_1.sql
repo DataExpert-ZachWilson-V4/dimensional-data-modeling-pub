@@ -8,4 +8,3 @@ CREATE TABLE actors
     current_year  INTEGER
 )
     WITH ( format = 'PARQUET', partitioning = ARRAY['current_year'])
-
