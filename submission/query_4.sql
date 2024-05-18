@@ -54,8 +54,3 @@ GROUP BY
   actor,
   quality_class,
   actor_identifier
-
-    WHERE current_year = 2021
-)
- 
- SELECT * FROM last_year_scd 
