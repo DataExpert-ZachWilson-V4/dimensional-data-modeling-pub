@@ -1,5 +1,5 @@
 -- query_1
-CREATE TABLE actors (
+CREATE TABLE hdamerla.actors (
     actor VARCHAR,
     actor_id VARCHAR,
     films ARRAY(ROW(
