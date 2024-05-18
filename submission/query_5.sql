@@ -68,4 +68,3 @@ FROM changed
         start_date,
         end_date
     )
-```

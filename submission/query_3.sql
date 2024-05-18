@@ -1,6 +1,5 @@
 CREATE OR REPLACE TABLE chinmay_hebbal.actors_history_scd (
     actor VARCHAR ,           -- actor name
-    quality_class VARCHAR,            -- Categorical quality based on average film rating
     is_active BOOLEAN,                -- Flag to indicate if the actor is currently active in the film industry
     average_rating DOUBLE,            -- column to store the average rating
     quality_class VARCHAR, --column to store the average rating category
