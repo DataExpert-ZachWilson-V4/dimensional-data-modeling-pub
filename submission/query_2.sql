@@ -1,3 +1,3 @@
-create or replace table query_2 (
+create or replace table query (
   query_name varchar
 )
