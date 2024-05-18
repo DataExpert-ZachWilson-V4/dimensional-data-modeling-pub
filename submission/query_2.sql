@@ -1,4 +1,5 @@
 --query_2
+
 INSERT INTO actors
 WITH last_year AS (
   SELECT * from actors
