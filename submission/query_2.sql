@@ -58,7 +58,7 @@ SELECT
     COALESCE(ly.actor, cy.actor) AS actor,
     COALESCE(ly.actor_id, cy.actor_id) AS actor_id,
     CASE
-        WHEN ly.films IS NOT NULL AND cy.films IS NOT NULL THEN cy.films || ly.films
+        WHEN ly.films IS NOT NULL AND cy.films IS NOT NULL THEN ly.films || cy.films
         WHEN ly.films IS NULL THEN cy.films
         WHEN cy.films IS NULL THEN ly.films
         END AS films,
