@@ -18,15 +18,17 @@ WITH lagged AS (
                             END
                     ) OVER (PARTITION BY actor_id ORDER BY current_year) AS streak_identifier
          FROM lagged
-     )
+     ),  cy AS (SELECT MAX(current_year) as max_current_year
+                FROM jlcharbneau.actors)
 
 SELECT
     actor,
     actor_id,
     quality_class,
     is_active,
-    MIN(streaked.current_year) AS start_date,
-    MAX(streaked.current_year) AS end_date,
-    2021 AS current_year
+    CAST(CAST(MIN(current_year) AS VARCHAR) || '-01-01' AS DATE) AS start_date,
+    CAST(CAST(MAX(current_year) AS VARCHAR) || '-12-31' AS DATE) AS end_date,
+    MAX(cy.max_current_year) AS current_year
 FROM streaked
+    CROSS JOIN cy
 GROUP BY actor, actor_id, quality_class, is_active, streak_identifier
