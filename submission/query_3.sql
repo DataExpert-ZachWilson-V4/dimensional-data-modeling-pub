@@ -1,7 +1,6 @@
 -- actors history SCD TABLE
 CREATE OR REPLACE TABLE nancycast01.actors_history_scd (
   actor VARCHAR,
-  actor_id VARCHAR,
   quality_class VARCHAR,
   is_active BOOLEAN,
   start_date INTEGER,
@@ -13,5 +12,5 @@ CREATE OR REPLACE TABLE nancycast01.actors_history_scd (
 WITH
   (
     FORMAT = 'PARQUET',
-    partitioning = ARRAY['end_date']
+    partitioning = ARRAY['current_year']
   )

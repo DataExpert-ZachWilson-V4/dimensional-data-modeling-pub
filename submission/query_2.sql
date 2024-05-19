@@ -25,7 +25,8 @@ WITH
         film,
         votes,
         rating,
-        film_id
+        film_id,
+        year
       )
       ) AS film,
       AVG(rating) AS rating
@@ -55,7 +56,10 @@ SELECT
       WHEN ty.rating <= 6 THEN 'bad'
   END AS quality_class,
 
-  ty.year IS NOT NULL AS is_active,
+  CASE
+      WHEN ty.film IS NULL THEN FALSE
+      ELSE TRUE
+  END AS is_active,
   COALESCE(ty.year, ly.current_year +1 ) AS current_year
 
 FROM

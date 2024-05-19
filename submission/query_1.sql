@@ -1,5 +1,5 @@
 CREATE OR REPLACE TABLE nancycast01.actors (
-    
+
   actor VARCHAR,
   actor_id VARCHAR,
   films ARRAY (
@@ -7,7 +7,8 @@ CREATE OR REPLACE TABLE nancycast01.actors (
       film VARCHAR,
       votes INTEGER,
       rating DOUBLE,
-      film_id VARCHAR
+      film_id VARCHAR,
+      year INTEGER
     )
   ),
   quality_class VARCHAR,
