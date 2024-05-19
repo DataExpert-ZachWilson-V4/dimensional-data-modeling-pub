@@ -118,8 +118,8 @@ WITH
 SELECT
   actor_id,
   actor,
-  arr.is_active,
   arr.quality_class,
+  arr.is_active,
   arr.start_date,
   arr.end_date,
   current_year
