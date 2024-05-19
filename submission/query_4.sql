@@ -28,7 +28,8 @@ streak AS (
         ) AS streak
     FROM changed
 )
-SELECT actor,
+SELECT 
+    actor,
     actor_id,
     quality_class,
     is_active,
