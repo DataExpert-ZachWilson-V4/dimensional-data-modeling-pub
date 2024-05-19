@@ -31,7 +31,7 @@ WITH
       AVG(rating) AS rating
       
     FROM
-      actor_films
+      bootcamp.actor_films
     WHERE
       year = 2017
     GROUP BY year, actor, actor_id
