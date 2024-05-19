@@ -7,7 +7,8 @@ create or replace table hariomnayani88482.actors(
         film varchar,
         votes integer,
         rating double,
-        film_id varchar
+        film_id varchar,
+      year integer
       )),
       quality_class varchar,
       is_active boolean,
