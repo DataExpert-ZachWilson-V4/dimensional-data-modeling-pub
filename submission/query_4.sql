@@ -34,7 +34,7 @@ SELECT actor,
     is_active,
     MIN(current_year) AS start_date,
     MAX(current_year) AS end_date,
-    1980 current_year
+    1921 current_year
 FROM streak
 GROUP BY actor, actor_id, quality_class, is_active, streak
 
