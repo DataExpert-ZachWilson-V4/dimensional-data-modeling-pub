@@ -1,5 +1,5 @@
 --query 1, schema for Cumulative Table
-CREATE TABLE devpatel18.actors (
+CREATE OR REPLACE TABLE devpatel18.actors (
     actor VARCHAR,
     actor_id VARCHAR,
     films ARRAY(ROW(
