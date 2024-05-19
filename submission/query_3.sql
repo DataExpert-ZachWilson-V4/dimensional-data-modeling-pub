@@ -1,6 +1,6 @@
 --Query 3
 --Creating SCD table for each actor in table
-create table hariomnayani88482.actors_history_scd 
+create or replace table hariomnayani88482.actors_history_scd 
 (
   actor varchar,
   quality_class varchar,
