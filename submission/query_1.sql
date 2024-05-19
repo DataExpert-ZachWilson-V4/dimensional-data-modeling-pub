@@ -1,4 +1,4 @@
-CREATE TABLE ivomuk37854.actors (
+CREATE or REPLACE TABLE ivomuk37854.actors (
   actor_id VARCHAR,
   actor VARCHAR,
   films ARRAY(
