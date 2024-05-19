@@ -32,11 +32,15 @@ select
   COALESCE(py.actor, ty.actor) AS actor,
   COALESCE(py.actor_id, ty.actor_id) AS actor_id,
 CASE 
-WHEN ty.films IS NULL THEN py.films
-WHEN ty.films IS NOT NULL and py.films IS NULL
-THEN ty.films
-WHEN ty.films IS NOT NULL and py.films IS NOT NULL THEN ty.films || py.films
-END AS films,
+when py.films is null then ty.films
+when ty.films is null then py.films 
+else ty.films || py.films
+end as films,
+--WHEN ty.films IS NULL THEN py.films
+--WHEN ty.films IS NOT NULL and py.films IS NULL
+--THEN ty.films
+--WHEN ty.films IS NOT NULL and py.films IS NOT --NULL THEN ty.films || py.films
+--END AS films,
 CASE WHEN avg_rating > 8 THEN 'star'
      WHEN avg_rating > 7 THEN 'good'
      WHEN avg_rating > 6 THEN 'average'
