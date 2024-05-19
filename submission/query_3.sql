@@ -1,3 +1,4 @@
+DROP TABLE dswills94.actors_history_scd
 CREATE TABLE dswills94.actors_history_scd (
 	actor VARCHAR,
 	actor_id VARCHAR,
