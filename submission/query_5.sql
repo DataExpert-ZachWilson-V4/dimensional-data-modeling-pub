@@ -1,15 +1,15 @@
-INSERT INTO actors_history_scd
+INSERT INTO nancycast01.actors_history_scd
 
 WITH last_year_scd AS (
 
-  SELECT * FROM actors_history_scd
+  SELECT * FROM nancycast01.actors_history_scd
   WHERE current_year = 2020
 
 
 ),
 
 current_year_scd AS (
-  SELECT * FROM actors
+  SELECT * FROM nancycast01.actors
   WHERE current_year = 2021
 
 ),

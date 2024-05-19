@@ -4,7 +4,7 @@
 -- assuming we want to have one row per actor
 
 
-INSERT INTO actors
+INSERT INTO nancycast01.actors
 
 WITH
   last_year AS (
