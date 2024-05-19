@@ -1,4 +1,4 @@
-CREATE TABLE alia.actors_history_scd (
+CREATE OR REPLACE TABLE alia.actors_history_scd (
   actor VARCHAR,
   quality_class VARCHAR,
   is_active BOOLEAN,

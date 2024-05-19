@@ -1,4 +1,4 @@
-CREATE TABLE alia.actors (
+CREATE OR REPLACE TABLE alia.actors (
   actor VARCHAR,
   actor_id VARCHAR,
   films ARRAY(
