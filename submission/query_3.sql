@@ -1,5 +1,5 @@
 CREATE OR REPLACE TABLE ivomuk37854.actors_history_scd (
-actor_id VARCHAR,
+--actor_id VARCHAR,
 actor VARCHAR,
 quality_class VARCHAR,
 is_active BOOLEAN,
