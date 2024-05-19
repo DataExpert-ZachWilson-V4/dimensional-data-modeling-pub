@@ -1,9 +1,9 @@
-CREATE TABLE actors
-(
+-- DDL query to create an actors table
+
+CREATE TABLE actors (
   actor VARCHAR,
   actor_ID VARCHAR,
-  films ARRAY(ROW
-  (
+  films ARRAY(ROW(
     film VARCHAR,
     votes INTEGER,
     rating DOUBLE,
