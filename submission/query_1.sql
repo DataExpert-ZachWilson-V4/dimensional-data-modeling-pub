@@ -8,11 +8,11 @@ CREATE TABLE alissabdeltoro.actors (
         rating DOUBLE, 
         film_id VARCHAR
     )),  -- Array of films with their details
-    quality_class VARCHAR CHECK (quality_class IN ('star', 'good', 'average', 'bad')),  -- Categorical bucketing of the average rating of the movies
+    quality_class VARCHAR,  -- Categorical bucketing of the average rating of the movies
     is_active BOOLEAN,  -- Indicates whether an actor is currently active
     current_year INTEGER  -- Year this row represents for the actor
 )
 WITH (
     FORMAT = 'PARQUET',  -- Data format
-    partitioned_by = ARRAY['current_year']  -- Partitioned by current_year
-);
+    partitioning = ARRAY['current_year']  -- Partitioned by current_year
+)
