@@ -1,5 +1,5 @@
 -- actors history SCD TABLE
-CREATE TABLE nancycast01.actors_history_scd (
+CREATE OR REPLACE TABLE nancycast01.actors_history_scd (
   actor VARCHAR,
   actor_id VARCHAR,
   quality_class VARCHAR,

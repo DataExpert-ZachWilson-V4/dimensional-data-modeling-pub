@@ -11,7 +11,7 @@ WITH
     SELECT
       *
     FROM
-      actors
+      nancycast01.actors
     WHERE
       current_year = 2016
   ),
