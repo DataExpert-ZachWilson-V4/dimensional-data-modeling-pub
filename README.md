@@ -12,7 +12,7 @@ To ensure smooth processing of your submissions through GitHub Classroom automat
     git push origin <main/your_homework_repo> -f
     ```
 
-3. **Open a PR in THIS repository to submit your work:**
+3. **Open a PR in the upstream repository to submit your work:**
     - Open a Pull Request (PR) to merge changes from your `main` or custom `homework` branch in your forked repository into the main branch in the upstream repository, i.e., the repository your fork was created from.
     - Ensure your PR is opened correctly to trigger the GitHub workflow. Submitting to the wrong branch or repository will cause the GitHub action to fail.
     - See the [Steps to open a PR](#steps-to-open-a-pr) section below if you need help with this.
