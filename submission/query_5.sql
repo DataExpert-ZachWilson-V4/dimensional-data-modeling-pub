@@ -6,7 +6,7 @@ insert into sanniepatron.actors_history_scd
 -- CTE for last year's data in the actors_history_scd table
 WITH last_year_scd AS (  
     select * from sanniepatron.actors_history_scd
-    where current_year = 1917
+    where current_year = 1916
   
     
 ),
@@ -14,7 +14,7 @@ WITH last_year_scd AS (
 -- CTE for this year's data in the actors table
 this_year_scd AS (  --THIS YEAR
    select * from sanniepatron.actors
-    where current_year = 1918
+    where current_year = 1917
 ),
 
 -- CTE for combining last year's and this year's data
@@ -23,6 +23,7 @@ combined as(
 select
 coalesce(ly.actor,ty.actor)                 as actor,
 coalesce(ly.actor_id,ty.actor_id)           as actor_id,
+coalesce(ly.quality_class,ty.quality_class)           as quality_class,
 coalesce(ly.start_date, ty.current_year)    as start_date,
 coalesce(ly.end_date, ty.current_year)      as end_date,
 CASE
@@ -44,6 +45,7 @@ changes as (
 select 
 actor,
 actor_id,
+quality_class,
 case 
     when did_change = 0 then ARRAY[ cast(ROW(is_active_last_season, start_date,end_date + 1 ) as row(is_active boolean, start_date integer, end_date integer))]
     
@@ -63,6 +65,7 @@ from combined
 select
 actor,
 actor_id,
+quality_class,
 arr.is_active,
 arr.start_date,
 arr.end_date,
