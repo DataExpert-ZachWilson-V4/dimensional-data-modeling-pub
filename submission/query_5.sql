@@ -6,7 +6,7 @@ with ly_data as (select *
      cy_data as (select *
                  from hariomnayani88482.actors
                  where current_year = 1920),
-     combined as (select coalesce(ly.actor_id, cy.actor_id)       as actor_id,
+     combined as (select coalesce(ly.actor, cy.actor)       as actor,
                          coalesce(ly.start_date, cy.current_year) as start_date,
                          coalesce(ly.end_date, cy.current_year)   as end_date,
                          ly.is_active                             as ly_is_active,
@@ -20,8 +20,8 @@ with ly_data as (select *
                          1920                                     as current_year
                   from ly_data ly
                            full outer join cy_data cy
-                                           on ly.actor_id = cy.actor_id and ly.end_date + 1 = cy.current_year),
-     cte as (select actor_id,
+                                           on ly.actor = cy.actor and ly.end_date + 1 = cy.current_year),
+     cte as (select actor,
                     case
                         when did_change = 0 then
                             array [
@@ -52,7 +52,7 @@ with ly_data as (select *
                         end as change_array
              from combined)
 
-select actor_id,
+select actor,
        change.*
 from cte
          cross join unnest(change_array) as change
