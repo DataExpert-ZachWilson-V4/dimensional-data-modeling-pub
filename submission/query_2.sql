@@ -1,47 +1,34 @@
-INSERT INTO alissabdeltoro.actors
--- Common Table Expression (CTE) to fetch data for the last year
-WITH last_year AS (
-    SELECT * 
-    FROM alissabdeltoro.actors
-    WHERE current_year = 2017  
-    AND actor IN ('Lance Henriksen', 'William Shatner')
-),
--- Common Table Expression (CTE) to fetch data for the current year and calculate average ratings
-this_year AS (
+INSERT INTO alissabdeltoro.actors_history_scd (actor_id, actor_name, quality_class, is_active, start_date, end_date, current_year)
+-- Common Table Expression (CTE) to retrieve lagged data for each actor
+WITH actor_lagged_data AS (
     SELECT 
+        actor_id,
         actor,
-        actor_id,
-        ARRAY_AGG(ROW(film, votes, rating, film_id)) AS films,
-        year AS current_year  
-    FROM bootcamp.actor_films
-    WHERE year = 2018  
-    GROUP BY actor, actor_id, year
+        quality_class,
+        is_active,
+        current_year,
+        -- Retrieve the previous year's is_active value for each actor
+        LAG(is_active, 1) OVER (PARTITION BY actor_id ORDER BY current_year) AS is_active_previous_year
+    FROM alissabdeltoro.actors
+    WHERE actor IN ('Lance Henriksen', 'William Shatner') -- Use the correct column name
 ),
--- Common Table Expression (CTE) to calculate average ratings for actors in the current year
-avg_ratings AS (
+-- Common Table Expression (CTE) to calculate streaks of consecutive years with the same is_active value
+actor_streaks AS (
     SELECT 
-        actor_id,
-        AVG(rating) AS avg_rating
-    FROM bootcamp.actor_films
-    GROUP BY actor_id
+        *,
+        -- Generate a streak identifier based on changes in is_active values
+        SUM(CASE WHEN is_active <> is_active_previous_year THEN 1 ELSE 0 END) OVER (PARTITION BY actor_id ORDER BY current_year) AS streak_identifier
+    FROM actor_lagged_data
+    WHERE actor IN ('Lance Henriksen', 'William Shatner') -- Use the correct column name
 )
--- Main query to select and manipulate the data
+-- Main query to determine the start and end dates of each streak for each actor
 SELECT 
-    COALESCE(ly.actor, ty.actor) AS actor,
-    COALESCE(ly.actor_id, ty.actor_id) AS actor_id,
-    CASE
-        WHEN ty.current_year IS NULL THEN ly.films  
-        WHEN (ty.current_year IS NOT NULL AND ly.films IS NULL) THEN ty.films
-        WHEN (ty.current_year IS NOT NULL AND ly.films IS NOT NULL) THEN ty.films || ly.films  
-    END AS films,
-    CASE
-        WHEN ar.avg_rating > 8 THEN 'star'  
-        WHEN ar.avg_rating > 7 THEN 'good'  
-        WHEN ar.avg_rating > 6 THEN 'average'  
-        ELSE 'bad'  
-    END AS quality_class,
-    ty.current_year IS NOT NULL AS is_active,
-    COALESCE(ty.current_year, ly.current_year + 1) AS current_year
-FROM last_year ly
-FULL OUTER JOIN this_year ty ON ly.actor_id = ty.actor_id  
-LEFT JOIN avg_ratings AS ar ON COALESCE(ly.actor_id, ty.actor_id) = ar.actor_id
+    actor_id,
+    actor AS actor_name, -- Renamed to match the column name in the table
+    quality_class,
+    MAX(is_active) AS is_active,  -- Determine the overall is_active value for each actor
+    CAST(MIN(CONCAT(CAST(current_year AS VARCHAR), '-01-01')) AS DATE) AS start_date,  -- Start date set to January 1st of the year
+    CAST(MAX(CONCAT(CAST(current_year AS VARCHAR), '-12-31')) AS DATE) AS end_date,  -- End date set to December 31st of the year
+    2021 AS current_year  -- Set the current year for the backfill query
+FROM actor_streaks
+GROUP BY actor_id, actor, quality_class, streak_identifier  -- Group results by actor_id, actor, quality_class, and streak_identifier
