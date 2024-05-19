@@ -3,7 +3,7 @@
 -- even though actor are not explicitly required, having the name of the actor could be beneficial for downstream users to refer with
 -- even though current_year are not explicitly required, having it would better record the incremental updating history
 
-CREATE TABLE derekleung.actors_history_scd (
+CREATE OR REPLACE TABLE derekleung.actors_history_scd (
   actor_id VARCHAR(9),
   actor VARCHAR(63),
   quality_class VARCHAR(7),
