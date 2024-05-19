@@ -1,3 +1,4 @@
+INSERT INTO alissabdeltoro.actors
 -- Common Table Expression (CTE) to fetch data for the last year
 WITH last_year AS (
     SELECT * 
@@ -25,7 +26,6 @@ avg_ratings AS (
     GROUP BY actor_id
 )
 -- Main query to select and manipulate the data
-INSERT INTO alissabdeltoro.actors (actor, actor_id, films, quality_class, is_active, current_year)
 SELECT 
     COALESCE(ly.actor, ty.actor) AS actor,
     COALESCE(ly.actor_id, ty.actor_id) AS actor_id,
