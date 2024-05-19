@@ -1,3 +1,4 @@
+DROP TABLE dswills94.actors
 CREATE TABLE dswills94.actors (
   actor VARCHAR,
   actor_id VARCHAR,
