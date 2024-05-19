@@ -1,4 +1,5 @@
 CREATE OR REPLACE TABLE nancycast01.actors (
+    
   actor VARCHAR,
   actor_id VARCHAR,
   films ARRAY (
