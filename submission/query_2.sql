@@ -12,9 +12,9 @@ WITH
   ),
   this_year AS (
     SELECT
-      array_agg(row(film, votes, rating, film_id, YEAR)) AS films,
       actor,
       actor_id,
+      array_agg(row(film, votes, rating, film_id, YEAR)) AS films,
       YEAR,
       CASE
     WHEN AVG(rating) > 8 THEN 'star'
