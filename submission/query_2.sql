@@ -9,7 +9,7 @@ with ly_data as (select *
                             when avg(rating) > 7 then 'good'
                             when avg(rating) > 6 then 'average'
                             else 'bad'
-                            end as qualicy_class,
+                            end as quality_class,
     year, array_agg(row (year, film_id, film, votes, rating)) as films
 from bootcamp.actor_films
 where year = 1914
@@ -19,7 +19,7 @@ group by actor,
 
 select coalesce(ly.actor_id, cy.actor_id)           as actor_id,
        coalesce(ly.actor, cy.actor)                 as actor,
-       coalesce(cy.qualicy_class, ly.qualicy_class) as qualicy_class,
+       coalesce(cy.quality_class, ly.quality_class) as quality_class,
        cy.actor is not null                         as is_active,
        coalesce(cy.year, ly.current_year + 1)       as currrent_year,
        case
