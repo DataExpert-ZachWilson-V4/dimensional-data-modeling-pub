@@ -1,7 +1,7 @@
-INSERT INTO actors 
+INSERT INTO richiesingh.actors 
 --actors from last year
 WITH last_year as (
-SELECT * FROM actors
+SELECT * FROM richiesingh.actors
 where current_year = 2019 
 )
 --actors from current year 
@@ -23,7 +23,7 @@ SELECT actor,actor_id,
            WHEN avg(rating) <= 6 THEN 'bad'
  END as quality_class,
     max(year) as year
- FROM actor_films 
+ FROM bootcamp.actor_films 
 where year = 2020
 GROUP BY actor,actor_id
 )
