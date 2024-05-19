@@ -1,4 +1,4 @@
-
+ 
 CREATE OR REPLACE TABLE actors(
 actor VARCHAR, -- 'actor': Stores the actor's name. Part of the actor_films dataset.
 actor_ID VARCHAR, -- 'actor_id': Unique identifier for each actor, part of the primary key in actor_films dataset.
@@ -27,3 +27,4 @@ WITH
   )
 
 
+  ----
