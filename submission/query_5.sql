@@ -21,9 +21,9 @@ SELECT
 	, quality_class
 	, is_active
 	, current_year
-FROM mamontesp.actors
-LEFT JOIN defined_years
-ON current_year = current_year
+FROM mamontesp.actors AS a
+LEFT JOIN defined_years dy
+ON a.current_year = dy.current_year
 ),
 
 combined_years AS (
