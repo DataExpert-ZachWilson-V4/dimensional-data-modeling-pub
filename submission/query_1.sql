@@ -1,5 +1,5 @@
 -- Creating a new table named "nancyatienno21998.actors"
-CREATE TABLE nancyatienno21998.actors(
+CREATE OR REPLACE TABLE nancyatienno21998.actors(
   actor VARCHAR,                               -- Column to store actor names
   actor_id VARCHAR,                            -- Column to store actor IDs
   films ARRAY(                                 -- Column to store an array of films for each actor

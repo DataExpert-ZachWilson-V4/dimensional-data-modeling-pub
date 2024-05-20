@@ -1,5 +1,5 @@
 -- Creating a new table named "nancyatienno21998.actors_history_scd"
-CREATE TABLE nancyatienno21998.actors_history_scd (
+CREATE OR REPLACE TABLE  nancyatienno21998.actors_history_scd (
   -- Defining columns for the table
   actor VARCHAR,                    -- Column to store actor names
   quality_class VARCHAR,           -- Column to store quality class
