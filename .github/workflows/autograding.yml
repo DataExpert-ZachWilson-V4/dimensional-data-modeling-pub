@@ -52,7 +52,7 @@ jobs:
           echo "Any changes: $any_submission_changes"
           echo "any_submission_changes=$any_submission_changes" >> $GITHUB_OUTPUT
           
-          before_sha="${{ github.event.pull_request.base.sha }}"  # "${{ github.event.before }}"
+          before_sha="${{ github.event.before }}" #! "${{ github.event.pull_request.base.sha }}" 
           after_sha="${{ github.event.after }}"
           if ! git rev-parse --verify "$before_sha" >/dev/null || ! git rev-parse --verify "$after_sha" >/dev/null || [ -z "${{ github.event.before }}" ] || [ -z "${{ github.event.after }}" ]; then
             echo "One or both of the commit SHAs don't exist. Skipping git diff."
@@ -98,7 +98,7 @@ jobs:
       - name: Generate variables using GitHub context
         id: get_variables
         run: |
-          assignment="dimensional-data-modeling" # $(basename "${{ github.event.repository.full_name }}")
+          assignment="dimensional-data-modeling" # ! $(basename "${{ github.event.repository.full_name }}")
           echo "Assignment: $assignment"
           echo "assignment_name=$assignment" >> $GITHUB_OUTPUT
           schema="$(echo "$(basename "${{ github.repository }}")" | tr '-' '_')_${{github.event.number}}_test"
