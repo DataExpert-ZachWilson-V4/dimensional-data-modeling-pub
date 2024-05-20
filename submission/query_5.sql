@@ -1,5 +1,5 @@
 --Actors History SCD Table Incremental Backfill Query (query_5)
-
+--table
 insert into sanniepatron.actors_history_scd
 
 -- Common Table Expressions (CTEs) for processing last year's and this year's data
