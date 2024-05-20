@@ -1,5 +1,6 @@
 -- Populate a single year's worth of the actors_history_scd table incrementally
-INSERT INTO actors_history_scd
+INSERT INTO alissabdeltoro.actors_history_scd (actor_id, actor_name, quality_class, is_active, start_date, end_date, current_year)
+
 -- Common Table Expression (CTE) to fetch data for the previous year
 WITH previous_year_scd AS (
     SELECT * FROM alissabdeltoro.actors_history_scd
