@@ -49,3 +49,4 @@ GROUP BY
     is_active,
     quality_class,
     tracked_changes
+    

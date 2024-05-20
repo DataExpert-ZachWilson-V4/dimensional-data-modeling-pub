@@ -54,3 +54,4 @@ FROM
   OUTER JOIN this_year ty ON ty.actor_id = ly.actor_id
   AND ty.actor = ly.actor
   LEFT JOIN actor_data ad ON ad.actor_id = COALESCE(ty.actor_id, ly.actor_id)
+  

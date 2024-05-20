@@ -64,3 +64,4 @@ SELECT
 FROM
     changes
     CROSS JOIN UNNEST (change_array) AS arr
+    
