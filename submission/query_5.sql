@@ -1,8 +1,8 @@
 --INSERT INTO mamontesp.actors_history_scd
 WITH defined_years AS (
 	SELECT 
-	1919 AS input_current_date,
-	1920 AS input_next_year
+	:previous_year AS previous_year,
+	:current_year AS current_year
 ),
 last_year_report AS (
 SELECT 
@@ -13,7 +13,7 @@ SELECT
 	, end_date
 FROM mamontesp.actors_history_scd
 LEFT JOIN defined_years
-ON end_date = input_current_date
+ON end_date = previous_year
 ), 
 this_year_report AS (
 SELECT
@@ -23,7 +23,7 @@ SELECT
 	, current_year
 FROM mamontesp.actors
 LEFT JOIN defined_years
-ON current_year = input_next_year
+ON current_year = current_year
 ),
 
 combined_years AS (
