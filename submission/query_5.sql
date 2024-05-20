@@ -23,7 +23,7 @@ SELECT
 	, current_year
 FROM mamontesp.actors
 LEFT JOIN defined_years
-ON end_date = input_next_year
+ON current_year = input_next_year
 ),
 
 combined_years AS (
