@@ -1,3 +1,6 @@
+-- DDL statement to create an actors_history_scd table that tracks
+-- the following fields for each actor in the actors table:
+-- quality_class, is_active, start_date, end_date
 CREATE OR REPLACE TABLE positivelyamber.actors_history_scd(
     -- The id of the actor that the history is associated with
     actor_id VARCHAR,
@@ -14,7 +17,7 @@ CREATE OR REPLACE TABLE positivelyamber.actors_history_scd(
 )
 WITH (
     -- Parquet formatting
-    FORMAT = 'PARQUET',
+    format = 'PARQUET',
     -- Partition by year
     partitioning = ARRAY['current_year']
 )
