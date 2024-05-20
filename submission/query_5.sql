@@ -1,20 +1,26 @@
+-- Populate ovoxo.actors_history_scd table using ovoxo.actors table and ovoxo.actors_history_scd table.
+-- Data is poplulated using incremental load
+
 INSERT INTO ovoxo.actors_history_scd
 WITH
+  -- get previous year scd data
   previous_year_scd AS (
     SELECT *
     FROM ovoxo.actors_history_scd
     WHERE current_year = 2019
   ),
 
+  -- get new incoming data from actors table to be combines with existing data
   current_year_scd AS (
     SELECT *
     FROM ovoxo.actors
     WHERE current_year = 2020
   ),
 
+  -- combine previous and current year data to generate records for current year
   previous_current_combined AS ( -- similar idea to cummulative table design
     SELECT
-      COALESCE(py.actor_name, cy.actor_name) AS actor_name, -- COALESCE so we don't have nulls for new players in cy
+      COALESCE(py.actor, cy.actor) AS actor, -- COALESCE so we don't have nulls for new players in cy
       COALESCE(py.actor_id, cy.actor_id) AS actor_id,
       COALESCE(py.start_date, cy.current_year) AS start_date,
       COALESCE(py.end_date, cy.current_year) AS end_date,
@@ -32,9 +38,10 @@ WITH
         AND py.end_date + 1 = cy.current_year --- match on only records that have the potential to change, records that can't change, we don't have to worry about
   ),
 
+  -- handle different scenarios to track changes in the data for each actor across current year
   changes AS (
     SELECT
-      actor_name,
+      actor,
       actor_id,
       current_year,
       CASE
@@ -50,7 +57,7 @@ WITH
   )
 
 SELECT
-  actor_name,
+  actor,
   actor_id,
   arr.quality_class,
   arr.is_active,
