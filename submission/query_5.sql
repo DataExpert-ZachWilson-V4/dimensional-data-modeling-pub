@@ -1,5 +1,6 @@
 --INSERT INTO mamontesp.actors_history_scd
 WITH defined_years AS (
+	SELECT 
 	1919 AS input_current_date,
 	1920 AS input_next_year
 ),
