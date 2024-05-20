@@ -1,4 +1,3 @@
--- CREATE SCHEMA IF NOT EXISTS mamontesp
 CREATE TABLE mamontesp.actors (
 	  actor VARCHAR
 	, actor_id VARCHAR

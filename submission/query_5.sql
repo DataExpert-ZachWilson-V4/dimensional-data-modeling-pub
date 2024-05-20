@@ -1,3 +1,4 @@
+INSERT INTO mamontesp.actors_history_scd
 WITH last_year_report AS (
 SELECT 
 	  actor
