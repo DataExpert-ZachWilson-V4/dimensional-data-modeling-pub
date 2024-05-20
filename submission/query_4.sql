@@ -30,10 +30,10 @@ SELECT
     actor_id,
     quality_class,
     is_active,
-    MIN(current_year) AS start_date,
-    MAX(current_year) AS end_date,
+    MIN(st.current_year) AS start_date,
+    MAX(st.current_year) AS end_date,
     MAX(cy.current_year) AS current_year
-FROM streaked
+FROM streaked st
 -- cannot group by current_year due to aggregate, so use a cross join to get the max year
 CROSS JOIN (SELECT MAX(current_year) AS current_year FROM danieldavid.actors) cy
 GROUP BY actor, actor_id, quality_class, is_active, streak_identifier
