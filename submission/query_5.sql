@@ -90,3 +90,4 @@ SELECT
 FROM
   change_info_cte
   CROSS JOIN UNNEST (change_status_array) AS cs_arr -- Unpack each array value to get a column in the final table
+  
