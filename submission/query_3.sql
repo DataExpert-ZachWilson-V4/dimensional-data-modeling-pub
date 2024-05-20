@@ -1,5 +1,5 @@
 CREATE
-OR REPLACE TABLE actors_history_scd (
+OR REPLACE TABLE  halloweex.actors_history_scd (
     actor VARCHAR NOT NULL,
     quality_class VARCHAR,
     start_date INTEGER,

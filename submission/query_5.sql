@@ -1,5 +1,5 @@
 INSERT INTO
-    actors_history_scd
+    halloweex.actors_history_scd
 WITH
   -- Step 1: Retrieve the last year's SCD data
   last_year_scd AS (
@@ -12,7 +12,7 @@ WITH
       is_current,
       is_active
     FROM
-      actors_history_scd
+       halloweex.actors_history_scd
     WHERE
       current_year = 2021
   ),
@@ -28,7 +28,7 @@ WITH
       2022 AS current_year,
       TRUE AS is_current
     FROM
-      actors
+       halloweex.actors
     WHERE
       current_year = 2022
   ),

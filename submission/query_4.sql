@@ -1,5 +1,5 @@
 -- Insert data into the halloweex.actors_history_scd table
-INSERT INTO actors_history_scd
+INSERT INTO  halloweex.actors_history_scd
 WITH
   -- Step 1: Retrieve the data and calculate previous year's is_active status using LAG
   lagged AS (

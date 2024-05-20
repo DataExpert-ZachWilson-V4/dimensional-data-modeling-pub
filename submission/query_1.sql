@@ -1,5 +1,5 @@
 CREATE
-OR REPLACE TABLE actors (
+OR REPLACE TABLE  halloweex.actors (
     actor VARCHAR NOT NULL,
     actor_id VARCHAR NOT NULL,
     -- Array for multiple films associated with each actor. Each row contains film details.

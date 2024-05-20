@@ -1,5 +1,5 @@
 -- Insert data into the halloweex.actors table
-INSERT INTO actors
+INSERT INTO  halloweex.actors
 WITH
     -- Step 1: Retrieve data from the last year (2020)
     last_year AS (
