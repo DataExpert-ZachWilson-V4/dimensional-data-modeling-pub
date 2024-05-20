@@ -1,6 +1,7 @@
--- "Backfill" query to populate the entire actors_history_scd
+-- "Backfill" query to bulk populate the entire actors_history_scd
 
-INSERT INTO actors_history_scd
+INSERT INTO steve_hut.actors_history_scd
+-- lagged CTE to return whether or not was active for a previous year
 WITH lagged AS (
   SELECT
     a.actor,
@@ -11,6 +12,7 @@ WITH lagged AS (
     a.current_year
   FROM actors a
 ),
+-- Using is_active_last_year, calculate an active_identitifer that can be used with a GROUP BY to calculate MIN start_year and MAX end_year for each actor
 active_years AS (
   SELECT
     l.*,
@@ -21,6 +23,7 @@ active_years AS (
       END) OVER(PARTITION BY actor_id ORDER BY current_year) as active_identifier
   FROM lagged l
 )
+-- returned dataset to backfill the actors_history_scd
 SELECT
   actor,
   actor_id,

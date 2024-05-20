@@ -1,17 +1,22 @@
 -- incremental query to populate single year's worth of 'actors_history_scd' table, by combining previous year's SCD with new incoming data from the actor's table for this year
-INSERT INTO actors_history_scd
+INSERT INTO steve_hut.actors_history_scd
+-- grab only those records with an end_date of last year. Other records are already set, and will not change.
 WITH last_year_scd AS (
   SELECT
     *
-  FROM actors_history_scd
+  FROM steve_hut.actors_history_scd
   WHERE end_date = 1917
 ),
+-- grab current year records from actors table.
 this_year_scd AS (
   SELECT
     *
-  FROM actors
+  FROM steve_hut.actors
   WHERE current_year = 1918
 ),
+-- Combine last_year and this_year CTEs.
+-- Coalesce fields for those instances with new actors in this_year CTE
+-- return a did_change field that checks whether quality_class or is_active has changed.
 combined AS (
   SELECT 
     COALESCE(ly.actor, ty.actor) as actor,
@@ -32,6 +37,7 @@ combined AS (
   FULL OUTER JOIN this_year_scd ty ON ly.actor_id = ty.actor_id
     AND ly.end_date + 1 = ty.current_year
 ),
+-- based on did_change field, return the appropriate array with the fields that need to be Updated or Inserted into actors_history_scd
 changes AS (
   SELECT 
     actor,
@@ -109,6 +115,8 @@ changes AS (
     END AS change_array
   FROM combined
 ),
+-- use did_change to help specifiy DML statement needed.
+-- CROSS JOIN and UNNEST the arrays from changes CTE, so they can be used for Update or Insert statements to the actors_history_scd
 modifications AS (
   SELECT
     c.actor,
@@ -135,6 +143,8 @@ modifications AS (
   CROSS JOIN UNNEST(change_array) as arr
   ORDER BY actor_id, end_date
 )
+-- Insert rows into actors_history_scd, only those records that are new, or quality_class or is_active have changed.
+-- Update records would have to be executed separately, to update the end_date on those records in actors_history_scd that don't have changes.
 SELECT
   actor,
   actor_id,

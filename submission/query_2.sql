@@ -1,7 +1,7 @@
 -- query to populate 'actors' table, one year at a time.
 -- 'current_year' within last_year CTE, and 'year' within this_year CTE, have to be increased by 1 with each pass.
 
-INSERT INTO actors
+INSERT INTO steve_hut.actors
 -- Start by querying last_year within the actors table. This_year will then be JOINED on last_year to incrementally build the cumulative table year by year.
 WITH last_year AS (
   SELECT

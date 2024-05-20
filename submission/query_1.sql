@@ -1,6 +1,6 @@
 -- DDL query to create an actors table
 
-CREATE TABLE actors (
+CREATE OR REPALCE TABLE steve_hut.actors (
   actor VARCHAR,
   actor_ID VARCHAR,
   films ARRAY(ROW(
