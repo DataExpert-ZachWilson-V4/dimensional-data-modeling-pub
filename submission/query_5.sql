@@ -1,5 +1,9 @@
-INSERT INTO mamontesp.actors_history_scd
-WITH last_year_report AS (
+--INSERT INTO mamontesp.actors_history_scd
+WITH defined_years AS (
+	1919 AS input_current_date,
+	1920 AS input_next_year
+),
+last_year_report AS (
 SELECT 
 	  actor
 	, quality_class
@@ -7,7 +11,8 @@ SELECT
 	, start_date
 	, end_date
 FROM mamontesp.actors_history_scd
-WHERE end_date = 1919  
+LEFT JOIN defined_years
+ON end_date = input_current_date
 ), 
 this_year_report AS (
 SELECT
@@ -16,7 +21,8 @@ SELECT
 	, is_active
 	, current_year
 FROM mamontesp.actors
-WHERE current_year = 1920
+LEFT JOIN defined_years
+ON end_date = input_next_year
 ),
 
 combined_years AS (
