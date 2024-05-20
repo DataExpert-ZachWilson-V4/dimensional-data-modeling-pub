@@ -13,9 +13,8 @@ CREATE OR REPLACE TABLE positivelyamber.actors(
             -- Rating of the film
             rating DOUBLE,
             -- Unique id of the film
-            film_id VARCHAR,
-        )
-    ),
+            film_id VARCHAR
+        )),
     -- The bucket of the average rating of the movies for this actor in their most recent year
     quality_class VARCHAR,
     -- Whether the actor is making films this year
