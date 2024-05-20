@@ -8,14 +8,14 @@ WITH previous_year_scd AS (
 ),
 -- Common Table Expression (CTE) to fetch data for the current year
 current_year_scd AS (
-    SELECT * FROM alissabdeltoro.actors_history_scd
+    SELECT * FROM alissabdeltoro.actors
     WHERE current_year = 2021  -- Fetch data for the current year (2021)
 ),
 -- Common Table Expression (CTE) to combine data from the previous year with the current year
 combined_data AS (
     SELECT 
         COALESCE(py.actor_id, cy.actor_id) AS actor_id,
-        COALESCE(py.actor_name, cy.actor_name) AS actor_name,
+        COALESCE(py.actor_name, cy.actor) AS actor_name,
         COALESCE(py.quality_class, cy.quality_class) AS quality_class,
         COALESCE(YEAR(py.start_date), cy.current_year) AS start_date_year,
         COALESCE(YEAR(py.end_date), cy.current_year) AS end_date_year,
