@@ -6,3 +6,7 @@ CREATE TABLE IF NOT EXISTS andreskammerath.actors_history_scd (
     start_date INT,
     end_date INT
 )
+WITH(
+    FORMAT = 'PARQUET',
+    partitioning = ARRAY['start_date']
+)

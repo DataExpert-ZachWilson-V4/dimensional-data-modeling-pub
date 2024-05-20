@@ -13,3 +13,7 @@ CREATE TABLE IF NOT EXISTS andreskammerath.actors (
     is_active BOOLEAN,
     current_year INT
 )
+WITH (
+    FORMAT = 'PARQUET',
+    partitioning = ARRAY['current_year']
+)

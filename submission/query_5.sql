@@ -1,4 +1,24 @@
 -- ============= Query 5 ========
+-- Let's test this by inserting a record for year 2022 for Tom Holland:
+-- INSERT INTO andreskammerath.actors (
+--     actor,
+--     actor_id,
+--     films,
+--     quality_class,
+--     is_active,
+--     current_year
+-- )
+-- VALUES (
+--     'Tom Holland',
+--     'nm4043618',
+--     ARRAY[
+--     ],
+--     'good',
+--     false,
+--     2022
+-- )
+
+
 -- CTE to fetch the latest records for all actors up to 2021
 WITH latest_records AS (
     SELECT
@@ -43,27 +63,12 @@ changes AS (
     LEFT JOIN latest_records l ON n.actor = l.actor AND l.rn = 1
 )
 
--- Update the existing records and insert new ones as necessary
-BEGIN;
-    -- Update the end date where no changes are needed
-    UPDATE andreskammerath.actors_history_scd
-    SET end_date = 2022
-    FROM changes
-    WHERE andreskammerath.actors_history_scd.actor = changes.actor
-    AND changes.needs_update = FALSE
-    AND andreskammerath.actors_history_scd.end_date = 2021;
-
-    -- Insert new records where changes are detected
-    INSERT INTO andreskammerath.actors_history_scd (actor, quality_class, is_active, start_date, end_date)
-    SELECT actor, quality_class, is_active, start_date, end_date
-    FROM changes
-    WHERE needs_update = TRUE;
-
-COMMIT;
-
--- How do I test this?
--- What happens if I have the same values (just need to change the year to year +1)
--- What happens if a dimension changed? (insert the row with the right year)
--- what happens if I need to change the data for a year in the middle of a range (let's take care of this later)
--- TO-DO: Need to test query 5. Probable need to insert record 2022 for Tom H and
--- test case 1 and 2 of above.
+-- Need to update end_date for records didn't change
+-- need to insert new record into actors_history_scd for those that did change (Tom H alone in this case)
+--     -- Insert new records where changes are detected
+INSERT INTO andreskammerath.actors_history_scd (actor, quality_class, is_active, start_date, end_date)
+SELECT actor, quality_class, is_active, start_date, end_date
+FROM changes
+WHERE needs_update = TRUE
+-- -- Update the existing records
+-- I don't find a good way to update only column end_date for records that didn't change any dimension
