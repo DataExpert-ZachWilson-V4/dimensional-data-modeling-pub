@@ -1,4 +1,5 @@
-
+INSERT INTO
+    actors_history_scd
 WITH
   -- Step 1: Retrieve the last year's SCD data
   last_year_scd AS (
@@ -122,4 +123,4 @@ SELECT
   arr.is_active
 FROM
   changes
-  CROSS JOIN UNNEST(change_array) AS arr  -- Unnest the array of changes to insert each change as a new row
+  CROSS JOIN UNNEST(change_array) AS arr;  -- Unnest the array of changes to insert each change as a new row

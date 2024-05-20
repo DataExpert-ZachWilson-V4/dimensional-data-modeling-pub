@@ -1,4 +1,5 @@
-CREATE TABLE halloweex.actors_history_scd (
+CREATE
+OR REPLACE TABLE actors_history_scd (
     actor VARCHAR NOT NULL,
     quality_class VARCHAR,
     start_date INTEGER,
@@ -10,4 +11,4 @@ CREATE TABLE halloweex.actors_history_scd (
 WITH (
     FORMAT = 'PARQUET',
     partitioning = ARRAY['current_year']
-)
+);

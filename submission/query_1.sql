@@ -1,4 +1,5 @@
-CREATE TABLE actors (
+CREATE
+OR REPLACE TABLE actors (
     actor VARCHAR NOT NULL,
     actor_id VARCHAR NOT NULL,
     -- Array for multiple films associated with each actor. Each row contains film details.
