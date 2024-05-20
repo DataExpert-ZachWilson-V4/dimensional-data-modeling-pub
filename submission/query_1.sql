@@ -15,4 +15,4 @@ CREATE OR REPLACE TABLE halloweex.actors (
 WITH (
     FORMAT = 'PARQUET',
     partitioning = ARRAY['current_year']
-);
+)

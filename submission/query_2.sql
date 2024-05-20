@@ -62,4 +62,4 @@ FROM
     last_year ly
     -- Full outer join to combine data from last year and this year
     FULL OUTER JOIN this_year ty ON ty.actor_id = ly.actor_id
-    AND ly.current_year = ty.year - 1;
+    AND ly.current_year = ty.year - 1

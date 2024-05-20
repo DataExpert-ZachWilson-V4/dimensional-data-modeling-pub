@@ -57,4 +57,4 @@ GROUP BY
   streak_identifier  -- Group by actor, quality_class, and streak identifier
 ORDER BY
   actor,
-  start_date;  -- Order by actor and start date
+  start_date  -- Order by actor and start date

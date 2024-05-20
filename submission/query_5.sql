@@ -123,4 +123,4 @@ SELECT
   arr.is_active
 FROM
   changes
-  CROSS JOIN UNNEST(change_array) AS arr;  -- Unnest the array of changes to insert each change as a new row
+  CROSS JOIN UNNEST(change_array) AS arr  -- Unnest the array of changes to insert each change as a new row

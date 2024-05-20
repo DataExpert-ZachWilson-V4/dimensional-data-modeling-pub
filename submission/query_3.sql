@@ -11,4 +11,4 @@ OR REPLACE TABLE  halloweex.actors_history_scd (
 WITH (
     FORMAT = 'PARQUET',
     partitioning = ARRAY['current_year']
-);
+)
