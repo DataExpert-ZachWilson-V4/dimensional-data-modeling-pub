@@ -23,7 +23,7 @@ this_year AS (
         )
       ) as films,
   year
-  FROM actor_films
+  FROM steve_hut.actor_films
   WHERE year = 1914 -- increment by 1 with each pass.
   GROUP BY actor, actor_id, year
 ),
