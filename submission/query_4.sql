@@ -10,7 +10,6 @@ WITH actor_lagged_data AS (
         -- Retrieve the previous year's is_active value for each actor
         LAG(is_active, 1) OVER (PARTITION BY actor_id ORDER BY current_year) AS is_active_previous_year
     FROM alissabdeltoro.actors
-    WHERE actor IN ('Lance Henriksen', 'William Shatner') -- Use the correct column name
 ),
 -- Common Table Expression (CTE) to calculate streaks of consecutive years with the same is_active value
 actor_streaks AS (
@@ -19,7 +18,6 @@ actor_streaks AS (
         -- Generate a streak identifier based on changes in is_active values
         SUM(CASE WHEN is_active <> is_active_previous_year THEN 1 ELSE 0 END) OVER (PARTITION BY actor_id ORDER BY current_year) AS streak_identifier
     FROM actor_lagged_data
-    WHERE actor IN ('Lance Henriksen', 'William Shatner') -- Use the correct column name
 )
 -- Main query to determine the start and end dates of each streak for each actor
 SELECT 
