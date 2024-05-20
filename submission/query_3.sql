@@ -8,3 +8,7 @@ CREATE OR REPLACE TABLE steve_hut.actors_history_scd (
     start_date INTEGER,
     end_date INTEGER
 )
+WITH (
+    FORMAT = 'PARQUET',
+    PARTITIONING = ARRAY['end_date']
+)

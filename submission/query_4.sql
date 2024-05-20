@@ -10,7 +10,7 @@ WITH lagged AS (
     CASE WHEN is_active THEN 1 ELSE 0 END as is_active,
     CASE WHEN LAG(is_active, 1) OVER(PARTITION BY a.actor_id ORDER BY a.current_year) THEN 1 ELSE 0 END as is_active_last_year,
     a.current_year
-  FROM actors a
+  FROM steve_hut.actors a
 ),
 -- Using is_active_last_year, calculate an active_identitifer that can be used with a GROUP BY to calculate MIN start_year and MAX end_year for each actor
 active_years AS (

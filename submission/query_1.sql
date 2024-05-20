@@ -13,3 +13,7 @@ CREATE OR REPLACE TABLE steve_hut.actors (
   is_active BOOLEAN,
   current_year INTEGER
 )
+WITH (
+  FORMAT = 'PARQUET',
+  PARTITIONING = ARRAY['current_year']
+)
