@@ -5,7 +5,8 @@ CREATE TABLE mamontesp.actors (
 		ROW( film VARCHAR
 			, votes INTEGER
 			, rating DOUBLE
-			, film_id VARCHAR ))
+			, film_id VARCHAR
+			, year INTEGER ))
 	, quality_class VARCHAR
 	, is_active BOOLEAN
 	, current_year INTEGER

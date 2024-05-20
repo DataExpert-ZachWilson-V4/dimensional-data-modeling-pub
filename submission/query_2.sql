@@ -14,7 +14,7 @@ this_year AS (
 	SELECT 
 		  actor
 		, actor_id
-		, ARRAY_AGG(ROW(film, votes, rating, film_id)) AS films
+		, ARRAY_AGG(ROW(film, votes, rating, film_id, year)) AS films
 		, CASE  
 			WHEN AVG(rating) > 8
 				THEN 'star'
@@ -41,7 +41,3 @@ SELECT
 FROM this_year AS ty
 FULL OUTER JOIN last_year AS ly
 ON ty.actor_id = ly.actor_id 
-
--- Test queries
-	--, COALESCE(ly.films, ARRAY[]) || ty.films AS films 
--- SELECT * FROM mamontesp.actors limit 10
