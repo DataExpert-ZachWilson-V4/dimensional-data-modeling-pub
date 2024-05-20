@@ -13,7 +13,7 @@ this_year AS (
         actor,
         actor_id,
         AVG(rating) AS avg_rating,
-        ARRAY_AGG(ROW(film, votes, rating, film_id)) AS films,
+        ARRAY_AGG(ROW(year, film, votes, rating, film_id)) AS films,
         year AS current_year  
     FROM bootcamp.actor_films
     WHERE year = 2020
