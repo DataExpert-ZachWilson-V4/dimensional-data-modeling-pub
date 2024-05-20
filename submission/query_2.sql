@@ -30,11 +30,11 @@ SELECT
         WHEN (ty.current_year IS NOT NULL AND ly.films IS NOT NULL) THEN ty.films || ly.films  
     END AS films,
     CASE
+        WHEN ty.current_year IS NULL THEN ly.quality_class
         WHEN ty.avg_rating > 8 THEN 'star'  
         WHEN ty.avg_rating > 7 THEN 'good'  
         WHEN ty.avg_rating > 6 THEN 'average' 
         WHEN ty.avg_rating <= 6 THEN 'bad' 
-        WHEN ly.quality_class IS NOT NULL THEN ly.quality_class
         ELSE NULL
     END AS quality_class,
     ty.current_year IS NOT NULL AS is_active,
