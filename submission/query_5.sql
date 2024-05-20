@@ -20,6 +20,7 @@
 
 
 -- CTE to fetch the latest records for all actors up to 2021
+INSERT INTO andreskammerath.actors_history_scd
 WITH latest_records AS (
     SELECT
         actor,
@@ -66,9 +67,9 @@ changes AS (
 -- Need to update end_date for records didn't change
 -- need to insert new record into actors_history_scd for those that did change (Tom H alone in this case)
 --     -- Insert new records where changes are detected
-INSERT INTO andreskammerath.actors_history_scd (actor, quality_class, is_active, start_date, end_date)
 SELECT actor, quality_class, is_active, start_date, end_date
 FROM changes
 WHERE needs_update = TRUE
 -- -- Update the existing records
 -- I don't find a good way to update only column end_date for records that didn't change any dimension
+-- And I don't have more time. Will have to submit with the problem parcially resolved
