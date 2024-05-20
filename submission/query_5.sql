@@ -20,7 +20,7 @@ SELECT
 	  actor
 	, quality_class
 	, is_active
-	, current_year
+	, a.current_year
 FROM mamontesp.actors AS a
 LEFT JOIN defined_years dy
 ON a.current_year = dy.current_year
