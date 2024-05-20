@@ -6,7 +6,7 @@ INSERT INTO steve_hut.actors
 WITH last_year AS (
   SELECT
       *
-  FROM actors
+  FROM steve_hut.actors
   WHERE current_year = 1913 -- increment by 1 with each pass.
 ),
 -- Need and ARRAY_AGG() since actors can have more than one film in a given year.
