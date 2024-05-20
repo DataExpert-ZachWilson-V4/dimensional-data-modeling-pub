@@ -1,8 +1,8 @@
 --INSERT INTO mamontesp.actors_history_scd
 WITH defined_years AS (
 	SELECT 
-	:previous_year AS previous_year,
-	:current_year AS current_year
+	1919 AS previous_year,
+	1920 AS current_year
 ),
 last_year_report AS (
 SELECT 
