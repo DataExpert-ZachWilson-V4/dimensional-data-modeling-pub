@@ -1,6 +1,6 @@
 /* DDL statement to create an actors_history_scd table that tracks the relevant fields */
 
-CREATE TABLE supreethkabbin.actors_history_scd (
+CREATE TABLE actors_history_scd (
   actor VARCHAR,
   actor_id VARCHAR,
   quality_class VARCHAR,

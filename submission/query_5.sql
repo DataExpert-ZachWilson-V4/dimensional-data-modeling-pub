@@ -1,12 +1,12 @@
 /* An "incremental" query that can populate a single year's worth of the actors_history_scd table by combining the previous year's SCD data with the new incoming data from the actors table for this year */
 
-INSERT INTO supreethkabbin.actors_history_scd
+INSERT INTO actors_history_scd
 -- Retrieve last years actors SCD data
 WITH last_year AS (
   SELECT 
     *
   FROM 
-    supreethkabbin.actors_history_scd
+    actors_history_scd
   WHERE
     current_year = 2020
 ), 
@@ -15,7 +15,7 @@ this_year AS (
   SELECT
     *
   FROM 
-    supreethkabbin.actors
+    actors
   WHERE
     current_year = 2021
 ),

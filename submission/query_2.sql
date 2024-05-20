@@ -1,13 +1,13 @@
 /* Cumulative Table Computation query to populate actors table one at a time */
 
-INSERT INTO supreethkabbin.actors
+INSERT INTO actors
 -- CTE for existing data in actors table from last year
 WITH
   last_year AS (
     SELECT
       *
     FROM
-      supreethkabbin.actors
+      actors
     WHERE
       current_year = 1913
 ),

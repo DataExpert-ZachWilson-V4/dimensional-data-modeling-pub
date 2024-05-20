@@ -1,6 +1,6 @@
 /* DDL to create actors table with relevant fields */
 
-CREATE TABLE supreethkabbin.actors (
+CREATE TABLE actors (
   actor VARCHAR, 
   -- actor_id is a unique identifier and part of the primary key for actor_films
   actor_id VARCHAR, 

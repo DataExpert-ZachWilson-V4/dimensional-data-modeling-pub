@@ -1,6 +1,6 @@
 /* A DDL "backfill" query that can populate the entire actors_history_scd table in a single query */
 
-INSERT INTO supreethkabbin.actors_history_scd
+INSERT INTO actors_history_scd
 -- Track is_active and quality_class for an actor from the previous year
 WITH lagged AS (
   SELECT
@@ -12,7 +12,7 @@ WITH lagged AS (
     LAG(is_active, 1) OVER(PARTITION BY actor, actor_id ORDER BY current_year) is_active_last_year,
     current_year
   FROM 
-    supreethkabbin.actors
+    actors
   WHERE current_year <= 2020
 ), 
 -- Track if change in is_active and quality class fields
