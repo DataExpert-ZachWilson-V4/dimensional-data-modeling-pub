@@ -1,4 +1,4 @@
--- QUERY 5 ASSIGNMENT
+-- QUERY 5 ASSIGNMENT --
 
 -- Actors History SCD Table Incremental Backfill Query (query_5)
 -- Write an "incremental" query that can populate a single year's
