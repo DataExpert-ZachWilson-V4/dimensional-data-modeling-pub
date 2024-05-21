@@ -35,16 +35,28 @@ SELECT
   actor_id,
   current_year,
   quality_class,
+  -- CASE 
+  --   WHEN did_change = 0 THEN       
+  --        ARRAY[CAST(ROW(is_active_last_year, start_date, end_date+1) AS ROW(is_active BOOLEAN, start_date INTEGER, end_date INTEGER))]
+  --   WHEN did_change = 1 THEN
+  --   ARRAY[CAST(ROW(is_active_last_year, start_date, end_date) AS ROW(is_active BOOLEAN, start_date INTEGER, end_date INTEGER)),
+  --     CAST(ROW(is_active_this_year, current_year , current_year) AS ROW(is_active BOOLEAN, start_date INTEGER, end_date INTEGER))
+  --     ]
+  --     WHEN did_change is NULL THEN
+  --       ARRAY[CAST(ROW(
+  --       COALESCE(is_active_last_year, is_active_this_year), start_date, end_date) AS ROW(is_active BOOLEAN, start_date INTEGER, end_date INTEGER))]
+  --       end as change_array
+  --       from combined
   CASE 
     WHEN did_change = 0 THEN       
-         ARRAY[CAST(ROW(is_active_last_year, start_date, end_date+1) AS ROW(is_active BOOLEAN, start_date INTEGER, end_date INTEGER))]
+         ARRAY[CAST(ROW(is_active_last_year, quality_class, start_date, end_date+1) AS ROW(is_active BOOLEAN, quality_class VARCHAR, start_date INTEGER, end_date INTEGER))]
     WHEN did_change = 1 THEN
-    ARRAY[CAST(ROW(is_active_last_year, start_date, end_date) AS ROW(is_active BOOLEAN, start_date INTEGER, end_date INTEGER)),
-      CAST(ROW(is_active_this_year, current_year , current_year) AS ROW(is_active BOOLEAN, start_date INTEGER, end_date INTEGER))
+    ARRAY[CAST(ROW(is_active_last_year, quality_class, start_date, end_date) AS ROW(is_active BOOLEAN, quality_class VARCHAR, start_date INTEGER, end_date INTEGER)),
+      CAST(ROW(is_active_this_year, quality_class, current_year , current_year) AS ROW(is_active BOOLEAN, quality_class VARCHAR, start_date INTEGER, end_date INTEGER))
       ]
       WHEN did_change is NULL THEN
         ARRAY[CAST(ROW(
-        COALESCE(is_active_last_year, is_active_this_year), start_date, end_date) AS ROW(is_active BOOLEAN, start_date INTEGER, end_date INTEGER))]
+        COALESCE(is_active_last_year, is_active_this_year), quality_class, start_date, end_date) AS ROW(is_active BOOLEAN, quality_class VARCHAR, start_date INTEGER, end_date INTEGER))]
         end as change_array
         from combined
 )
