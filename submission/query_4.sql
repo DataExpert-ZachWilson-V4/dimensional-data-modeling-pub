@@ -1,5 +1,5 @@
 INSERT INTO raniasalzahrani.actors_history_scd (
-    actor_id,
+    actor,
     quality_class,
     is_active,
     start_date,
@@ -8,7 +8,7 @@ INSERT INTO raniasalzahrani.actors_history_scd (
 WITH ranked_actors AS (
     -- Create a CTE to generate the start and end dates for each actor's record
     SELECT 
-        actor_id,
+        actor,
         quality_class,
         is_active,
         -- Calculate the start date as the first day of the current year
@@ -18,7 +18,7 @@ WITH ranked_actors AS (
     FROM raniasalzahrani.actors
 )
 SELECT 
-    actor_id,
+    actor,
     quality_class,
     is_active,
     start_date,
