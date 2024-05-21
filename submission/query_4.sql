@@ -7,13 +7,13 @@ INSERT INTO
                 PARTITION BY actor
                 ORDER BY
                     current_year
-            ) AS quality_class_last_year,
+            ) AS quality_class_last_year, -- Using LAG to determine the quality class of an actor last year.
             is_active,
             LAG(is_active, 1) OVER (
                 PARTITION BY actor
                 ORDER BY
                     current_year
-            ) as is_active_last_year,
+            ) as is_active_last_year, -- Using LAG to determine the activity of an actor last year
             current_year
         FROM
             actors
@@ -21,6 +21,9 @@ INSERT INTO
     streaked AS (
         SELECT
             *,
+            -- Sum the number of times that either the activity or quality class of an actor
+            -- has changed from the prior year to the current year. This indicates that
+            -- one of the slowly changing dimensions has changed. 
             SUM(
                 CASE
                     WHEN is_active <> is_active_last_year
@@ -39,9 +42,9 @@ SELECT
     actor,
     quality_class,
     is_active,
-    MIN(current_year) AS start_date,
-    MAX(current_year) AS end_date,
-    2018 as current_year
+    MIN(current_year) AS start_date, -- Determine the start date of every interval which dimensions did not change.
+    MAX(current_year) AS end_date, -- Determine the end date of every interval which dimensions did not change.
+    2021 as current_year
 FROM
     streaked
 GROUP BY
@@ -49,4 +52,4 @@ GROUP BY
     is_active,
     quality_class,
     tracked_changes
-    
+
