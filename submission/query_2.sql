@@ -42,7 +42,7 @@ SELECT
   COALESCE(ty.year, ly.current_year + 1) AS current_year  -- Determine the current year for the actor
 FROM last_year ly
 FULL OUTER JOIN this_year ty ON ly.actor_id = ty.actor_id
-;
+
 -- Testing the output table
 -- SELECT *
 -- FROM actors

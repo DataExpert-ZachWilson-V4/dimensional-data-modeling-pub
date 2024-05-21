@@ -9,4 +9,4 @@ CREATE TABLE IF NOT EXISTS actors_history_scd (
 WITH (
   format = 'parquet',
   partitioning = ARRAY['current_year']
-);
+)

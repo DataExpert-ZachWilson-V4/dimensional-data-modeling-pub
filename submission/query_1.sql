@@ -18,4 +18,3 @@ WITH (
   format = 'parquet',
   partitioning = ARRAY['current_year']
 )
-;

@@ -114,7 +114,7 @@ SELECT
   changes_cte.current_year
 FROM 
   changes_cte
-  CROSS JOIN UNNEST (change_array) AS arr;  -- Unnest the change array
+  CROSS JOIN UNNEST (change_array) AS arr  -- Unnest the change array
 
 -- Testing the output table
 -- SELECT *
