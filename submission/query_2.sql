@@ -38,7 +38,7 @@ SELECT
     WHEN ty.year IS NOT NULL AND ly.films IS NULL THEN ty.films
     WHEN ty.year IS NOT NULL AND ly.films IS NOT NULL THEN ly.films || ty.films
   END AS films,
-  ty.year IS NOT NULL AS is_active,  -- Mark actor as active if they have films this year
+  COALESCE(ty.year IS NOT NULL, FALSE) AS is_active,  -- Mark actor as active if they have films this year
   COALESCE(ty.year, ly.current_year + 1) AS current_year  -- Determine the current year for the actor
 FROM last_year ly
 FULL OUTER JOIN this_year ty ON ly.actor_id = ty.actor_id
