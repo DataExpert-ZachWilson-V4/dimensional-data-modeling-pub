@@ -1,3 +1,15 @@
+    -- Subqueries:
+    --     last_year_scd: Selects all records from alia.actors_history_scd where current_year is 2001.
+    --     current_year_scd: Selects all records from alia.actors where current_year is 2002.
+    --     combined: Merges data from last_year_scd (ly) and current_year_scd (cy). Determines if there are changes in is_active or quality_class between the two years, creating a flag did_change.
+
+    -- Change Detection:
+    --     changes: Based on the did_change flag, constructs arrays (change_array) representing periods of no change, changes, or new entries, including the corresponding start_date and end_date.
+
+    -- Main logic:
+    --     Unnests the change_array to produce individual records for insertion into alia.actors_history_scd.
+
+
 INSERT INTO
    alia.actors_history_scd
 WITH

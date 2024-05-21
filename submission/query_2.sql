@@ -1,3 +1,16 @@
+--     Subqueries:
+--         last_year: Selects actor data from alia.actors where current_year is 2001.
+--         this_year: Aggregates film data for actors from bootcamp.actor_films where the year is 2002. Calculates the quality_class based on average film ratings.
+
+--     Main logic:
+--         Combines results from last_year (ly) and this_year (ty) using a full outer join on actor_id.
+--         Selects the actor and actor_id from either the previous or current year.
+--         Merges film arrays from both years.
+--         Determines quality_class from the current year if available; otherwise, uses the previous year's class.
+--         Sets is_active based on the availability of data for the current year.
+--         Updates current_year to the current year or increments it from the previous year.
+
+
 INSERT INTO
   alia.actors
 WITH
@@ -19,13 +32,11 @@ WITH
       actor,
       actor_id,
       year,
-      array_agg (ROW (year, film, votes, rating, film_id)) films,
+      array_agg (ROW (film, votes, rating, film_id,year)) films,
       CASE
         WHEN AVG(rating) > 8.0 THEN 'star'
-        WHEN AVG(rating) > 7.0
-        AND AVG(rating) <= 8.0 THEN 'good'
-        WHEN AVG(rating) > 6.0
-        AND AVG(rating) <= 7.0 THEN 'average'
+        WHEN AVG(rating) > 7.0 AND AVG(rating) <= 8.0 THEN 'good'
+        WHEN AVG(rating) > 6.0 AND AVG(rating) <= 7.0 THEN 'average'
         WHEN AVG(rating) <= 6.0 THEN 'bad'
       END as quality_class
     FROM
@@ -42,10 +53,8 @@ SELECT
   COALESCE(ly.actor_id, ty.actor_id) AS actor_id,
   CASE
     WHEN ty.year IS NULL THEN ly.films
-    WHEN ty.year IS NOT NULL
-    AND ly.current_year IS NULL THEN ty.films
-    WHEN ty.year IS NOT NULL
-    AND ly.current_year IS NOT NULL THEN ty.films || ly.films
+    WHEN ty.year IS NOT NULL AND ly.current_year IS NULL THEN ty.films
+    WHEN ty.year IS NOT NULL AND ly.current_year IS NOT NULL THEN ty.films || ly.films
   END AS films,
   COALESCE(ty.quality_class, ly.quality_class) quality_class,
   ty.year IS NOT NULL AS is_active,
