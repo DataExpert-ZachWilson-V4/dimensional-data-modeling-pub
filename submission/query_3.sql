@@ -3,21 +3,20 @@ CREATE OR REPLACE TABLE dswills94.actors_history_scd (
 actor VARCHAR,
 --name of actor
 actor_id VARCHAR,
---id of actor primary key
+--unique id of actor
 quality_class VARCHAR,
---qualifier of film quality
+--categorical rating based on average rating in the most recent year
 is_active BOOLEAN,
---active flag
+--indicates if the actor is currently active, based on making films this year.
 start_date INTEGER,
---this is the SCD Type 2 for idenmpotency
+--marks the beginning of a particular state (quality_class/is_active). Used in Type 2 SCD to track changes over time.
 end_date INTEGER,
---this is the SCD Type 2 for idenmpotency
+--signifies the end of a particular state. Used in Type 2 SCD to understand the duration of each state
 current_year INTEGER
---current year
-)
+--the year this record pertains to. Useful for partitioning and analyzing data by year
 WITH (
 	format = 'PARQUET',
---usualy format to handle large data
+--data stored in PARQUET format for optimized analytics
 partitioning = ARRAY['current_year']
---temporal compoenent by current year
+--Partitioned by 'current_year' for efficient time-based analysis.
 )
