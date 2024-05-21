@@ -1,4 +1,4 @@
-CREATE TABLE actors (
+CREATE TABLE IF NOT EXISTS actors (
   actor VARCHAR,
   actor_id VARCHAR,
   quality_class VARCHAR,

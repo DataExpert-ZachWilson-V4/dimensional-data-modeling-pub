@@ -1,4 +1,4 @@
-CREATE TABLE actors_history_scd (
+CREATE TABLE IF NOT EXISTS actors_history_scd (
   actor VARCHAR,
   is_active BOOLEAN,
   quality_class VARCHAR,
