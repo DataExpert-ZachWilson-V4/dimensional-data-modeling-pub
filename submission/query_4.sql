@@ -8,8 +8,8 @@ SELECT
   actor,
   actor_id,
   quality_class,
-  is_active,
-  LAG(is_active, 1) OVER (PARTITION BY actor ORDER BY current_year) AS is_active_last_year,
+  CASE WHEN is_active THEN 1 ELSE 0 END AS is_active,
+  CASE WHEN  LAG(is_active, 1) OVER (PARTITION BY actor ORDER BY current_year) THEN 1 ELSE 0 END AS is_active_last_year,
   LAG(quality_class, 1) OVER (PARTITION BY actor_id ORDER BY current_year) AS quality_class_last_year,
   current_year 
 FROM hdamerla.actors
