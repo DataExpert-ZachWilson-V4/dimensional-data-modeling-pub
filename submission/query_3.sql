@@ -1,7 +1,7 @@
 
 -- Create the table to track the historical data of actors
 CREATE OR REPLACE TABLE raniasalzahrani.actors_history_scd (
-    current_year INTEGER  -- The year this record pertains to
+    current_year INTEGER,  -- The year this record pertains to
     actor VARCHAR,  -- Stores the actor's name
     quality_class VARCHAR(10),  -- Quality classification of the actor based on average rating
     is_active BOOLEAN,  -- Indicates if the actor is currently active
