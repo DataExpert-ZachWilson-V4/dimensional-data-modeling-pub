@@ -1,4 +1,4 @@
-CREATE TABLE dswills94.actors_history_scd (
+CREATE OR REPLACE TABLE dswills94.actors_history_scd (
 --generate SCD table of actor history data
 actor VARCHAR,
 --name of actor
