@@ -31,10 +31,10 @@ FROM LAGGED
 SELECT
   actor,
   actor_id,
-  quality_class,
+  MAX(quality_class) as quality_class,
   MAX(is_active) = 1 as is_active, -- in lagged CTE boolean is converted to INT like in the labs/lecture
   MIN(current_year) as start_date,
   MAX(current_year) as end_date,
   2021 as current_year
 FROM streaked
-GROUP BY actor, actor_id, streak_identifier, quality_class, is_active
+GROUP BY actor, actor_id, streak_identifier
