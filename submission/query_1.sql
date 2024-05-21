@@ -1,6 +1,6 @@
 
 -- Create table
-CREATE TABLE raniasalzahrani.actors (
+CREATE OR REPLACE TABLE raniasalzahrani.actors (
     actor_id INT,
     actor VARCHAR,
     films ARRAY(
