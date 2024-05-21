@@ -1,14 +1,14 @@
 
 -- Create table
 CREATE OR REPLACE TABLE raniasalzahrani.actors (
-    actor_id INT,
+    actor_id VARCHAR,
     actor VARCHAR,
     films ARRAY(
         ROW(
             film VARCHAR,
             votes INT,
             rating DOUBLE,
-            film_id INT
+            film_id VARCHAR
         )
     ),
     quality_class VARCHAR,
