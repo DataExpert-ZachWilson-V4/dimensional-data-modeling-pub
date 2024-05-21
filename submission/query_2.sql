@@ -1,10 +1,10 @@
-INSERT INTO alissabdeltoro.actors (actor, actor_id, films, quality_class, is_active, current_year)
+INSERT INTO actors (actor, actor_id, films, quality_class, is_active, current_year)
 
 
 -- Common Table Expression (CTE) to fetch data for the last year
 WITH last_year AS (
     SELECT * 
-    FROM alissabdeltoro.actors
+    FROM actors
     WHERE current_year = 2019
 ),
 -- Common Table Expression (CTE) to fetch data for the current year and calculate average ratings
