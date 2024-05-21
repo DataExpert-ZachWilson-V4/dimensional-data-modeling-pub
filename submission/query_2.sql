@@ -9,6 +9,7 @@ INSERT INTO
   ),
   this_year AS (
     SELECT
+      actor,
       actor_id,
       AVG(rating) AS avg_rating, -- Create an aggregation of film ratings for a given year.
       ARRAY_AGG(
