@@ -40,7 +40,7 @@ this_year AS (
       CASE
         WHEN ty.films IS NULL THEN ly.films
         WHEN ty.films IS NOT NULL AND ly.films IS NULL THEN ty.films
-        WHEN ty.films IS NOT NULL AND ly.films IS NOT NULL THEN ty.films || ly.films
+        WHEN ty.films IS NOT NULL AND ly.films IS NOT NULL THEN ARRAY_CONCAT(ty.films, ly.films)
       END AS films,
       COALESCE(ty.quality_class, ly.quality_class) as quality_class,
       ty.actor_id IS NOT NULL AS is_active,
