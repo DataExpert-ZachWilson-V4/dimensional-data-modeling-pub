@@ -1,5 +1,6 @@
 -- Populating shruthishridhar.actors table defined before according to description
 
+
 INSERT INTO shruthishridhar.actors
 WITH
     last_year AS (

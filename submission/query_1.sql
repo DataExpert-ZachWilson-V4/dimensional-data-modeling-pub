@@ -1,5 +1,6 @@
 -- Creating table actors from the fields in actors_films dataset
 
+
 CREATE OR REPLACE TABLE shruthishridhar.actors (
     actor VARCHAR,  -- actor's name
     actor_id VARCHAR, -- actor's unique identifier

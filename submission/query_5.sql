@@ -1,5 +1,6 @@
 -- Incremental query that populates one year's actors_history_scd table by combining last year with this year
 
+
 INSERT INTO shruthishridhar.actors_history_scd
 WITH
     last_year_actor_scd AS (    -- get last year actor scd from actors_history_scd table

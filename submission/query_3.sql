@@ -1,5 +1,6 @@
 -- Creating table actors_history_scd from the fields in actors_films dataset
 
+
 CREATE OR REPLACE TABLE shruthishridhar.actors_history_scd (
     actor VARCHAR,  -- actor's name
     quality_class VARCHAR,  -- bucketing of average rating of films the most recent year

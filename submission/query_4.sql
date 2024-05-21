@@ -1,5 +1,6 @@
 -- Backfill query that populates entire actors_history_scd table at once
 
+
 INSERT INTO shruthishridhar.actors_history_scd
 WITH
     lagged AS ( -- calculate previous year's quality_class and is_active for each actor
