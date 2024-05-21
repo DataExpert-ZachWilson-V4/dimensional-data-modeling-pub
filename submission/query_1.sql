@@ -5,7 +5,7 @@ Even though year is not mentioned in the query1, including it basedon the feedba
 
 
 --creating table statement and columns based on the requirements provided 
-CREATE TABLE hdamerla.actors ( 
+CREATE TABLE actors ( 
     actor VARCHAR,
     actor_id VARCHAR,
     films ARRAY(ROW(  -- creation of films array
