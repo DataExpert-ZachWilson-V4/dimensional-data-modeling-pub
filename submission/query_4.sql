@@ -2,7 +2,7 @@
 --
 -- Write a "backfill" query that can populate the entire `actors_history_scd` table in a single query.
 -- Note: We are attempting a Type 2 'slowly changing dimension' pipeline intended to be idempotent
--- ie reconcile backfilled data vs data generated in production
+-- ie reconcile back filled data vs data generated in production
 
 -- Key takeaway: Batch backfill is effectively a single load query
 -- Note: may not always be feasible...imagine batching in one go a table of terabytes of data, this may not be practical or take too long
@@ -26,15 +26,25 @@ with
     -- which allows us to group by actors and review a checkered history
     streaked as (
         select *,
-        -- rolling streak identifier
+        -- rolling streak identifier; sum increments every time there is a change
+        -- is_active
         SUM(
             case
                 when is_active <> is_active_last_year
                     then 1 else 0
             end
-            ) over (
-                partition by actor_id order by current_year
-            ) as streak_identifier
+        ) over (
+            partition by actor_id order by current_year
+            ) as is_active_streak,
+        -- quality_class
+        SUM(
+            case
+                when quality_class <> quality_class_last_year
+                    then 1 else 0
+            end
+        ) over (
+            partition by actor_id order by current_year
+            ) as quality_class_streak
         from lagged
     )
 select
@@ -46,4 +56,5 @@ select
     MAX(current_year) as end_year,
     1999 as current_year
 from streaked
-group by actor, actor_id, streak_identifier
+-- group by actor and the identified streaks to segment history accurately
+group by actor, actor_id, is_active_streak, quality_class_streak
