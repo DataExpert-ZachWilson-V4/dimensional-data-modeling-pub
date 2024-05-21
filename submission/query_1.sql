@@ -11,7 +11,7 @@ CREATE OR REPLACE TABLE alia.actors (
       -- 'votes': Number of votes the film received, from actor_films dataset.
       votes INTEGER,
       -- 'rating': Rating of the film, from actor_films dataset.
-      rating DOUBLE CHECK (rating >= 0 AND rating <= 10),
+      rating DOUBLE,
       -- 'film_id': Unique identifier for each film, part of the primary key in actor_films dataset.
       film_id VARCHAR,
       -- 'year' : Release year of the film, part of actor_films dataset.

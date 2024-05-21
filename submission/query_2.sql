@@ -1,6 +1,6 @@
 --     Subqueries:
---         last_year: Selects actor data from alia.actors where current_year is 2001.
---         this_year: Aggregates film data for actors from bootcamp.actor_films where the year is 2002. Calculates the quality_class based on average film ratings.
+--         last_year: Selects actor data from alia.actors where current_year is 2000.
+--         this_year: Aggregates film data for actors from bootcamp.actor_films where the year is 2001. Calculates the quality_class based on average film ratings.
 
 --     Main logic:
 --         Combines results from last_year (ly) and this_year (ty) using a full outer join on actor_id.
@@ -25,7 +25,7 @@ WITH
     FROM
       alia.actors
     WHERE
-      current_year = 2001
+      current_year = 1999
   ),
   this_year AS (
     SELECT
@@ -42,7 +42,7 @@ WITH
     FROM
       bootcamp.actor_films
     WHERE
-      year = 2002
+      year = 2000
     GROUP BY
       1,
       2,
