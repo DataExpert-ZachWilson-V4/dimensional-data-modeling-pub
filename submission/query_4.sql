@@ -43,9 +43,9 @@ SELECT
   actor,
   is_active,
   quality_class,
-  MIN(current_year) AS start_date,  -- Get the start date of the streak
-  MAX(current_year) AS end_date,  -- Get the end date of the streak
-  2021 AS current_year  -- Set the current year to 2021
+  MIN(current_year) AS start_date,  -- Get the start_date of the streak
+  MAX(current_year) AS end_date,  -- Get the end_date of the streak
+  2021 AS current_year  -- Set the current_year to 2021
 FROM streak_change
 GROUP BY
   actor,

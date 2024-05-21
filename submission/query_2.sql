@@ -1,5 +1,5 @@
 INSERT INTO actors
--- CTE to select actors from aggregated data in the previous year
+-- CTE to select actors from previously aggregated data in the previous year
 WITH last_year AS (
   SELECT *
   FROM actors

@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS actors (
   actor VARCHAR,
   actor_id VARCHAR,
   quality_class VARCHAR,
-  films ARRAY(
+  films ARRAY(  -- films array to hold all films for that year
     ROW(
       film VARCHAR,
       film_id VARCHAR,
