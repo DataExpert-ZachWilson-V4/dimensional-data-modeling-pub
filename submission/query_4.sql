@@ -1,3 +1,8 @@
+-- SCD [FULL LOAD] [BACKFILL] => Below query populates the entire actors_history_scd table in a single query from actors table
+-- SCD fields => is_active and quality_class
+-- TEMPORAL field => current_year
+-- In this example year is 1919, it is assumed data is loaded from 1914 till 1919 in actors table
+
 INSERT INTO tharwaninitin.actors_history_scd
 WITH lag_scd AS (
   SELECT actor, actor_id,

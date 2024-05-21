@@ -1,3 +1,6 @@
+-- CUMULATIVE TABLE [INCREMENTAL LOAD] => Below query populates the actors table one year at a time
+-- We need to aggregate actor_films table to arrive at one row per actor by aggregating all movies
+
 INSERT INTO tharwaninitin.actors
 WITH
   last_year AS (
