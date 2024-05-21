@@ -1,6 +1,7 @@
 --query_5
+/*incremental" query that can populate a single year's worth of the actors_history_scd*/
 
-INSERT INTO hdamerla.actors_history_scd
+INSERT INTO hdamerla.actors_history_scd --CTE to get data from given and next year
 WITH last_year_scd AS (
   SELECT * FROM hdamerla.actors_history_scd
   WHERE current_year = 2021
