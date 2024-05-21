@@ -20,7 +20,7 @@ this_year AS (
    SUM(votes*rating)/SUM(votes) as avg_rating, --logic to caluculate the avg_rating
    year    
   FROM bootcamp.actor_films
-  WHERE year = 2001
+  WHERE year = 2001 and votes is not null and votes <> 0
   group by actor, actor_id, year
 )
 
