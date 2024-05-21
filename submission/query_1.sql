@@ -1,5 +1,5 @@
 -- Create table to store information about actors
-CREATE TABLE alissabdeltoro.actors (
+CREATE TABLE actors (
     actor VARCHAR,  -- Name of the actor
     actor_id VARCHAR,  -- Unique identifier for the actor
     films ARRAY(ROW(
