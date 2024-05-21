@@ -1,4 +1,4 @@
--- Insert the historical data into the actors_history_scd table
+-- Insert updated and new records into the actors_history_scd table
 INSERT INTO raniasalzahrani.actors_history_scd (
     actor,
     quality_class,
@@ -6,44 +6,59 @@ INSERT INTO raniasalzahrani.actors_history_scd (
     start_date,
     end_date
 )
-WITH
--- Select the current year's data from the actors table
-current_year_data AS (
-    SELECT
-        actor,
-        quality_class,
-        is_active,
-        -- Set the start_date to the first day of the specified year
-        DATE_TRUNC('day', CAST('2024-01-01' AS DATE)) AS start_date,
-        -- Set the end_date to a far future date to indicate it is the current record
-        DATE '9999-12-31' AS end_date
-    FROM
-        raniasalzahrani.actors
-    WHERE
-        current_year = 2024
-),
--- Select the records from actors_history_scd that need to be closed out
-closed_out_scd AS (
+WITH previous_year AS (
+    -- Retrieve data from the previous year's SCD table
     SELECT
         actor,
         quality_class,
         is_active,
         start_date,
-        -- Set the end_date to the day before the new year's start_date
-        DATE_TRUNC('day', CAST('2024-01-01' AS DATE)) - INTERVAL '1' DAY AS end_date
+        end_date
     FROM
         raniasalzahrani.actors_history_scd
     WHERE
         end_date = DATE '9999-12-31'
-        AND actor IN (
-            -- Ensure we only close out records that have a corresponding actor in the current year data
-            SELECT
-                actor
-            FROM
-                current_year_data
-        )
+),
+current_year AS (
+    -- Aggregate actor films for the current year
+    SELECT
+        actor,
+        CASE
+            WHEN AVG(rating) > 8 THEN 'star'
+            WHEN AVG(rating) > 7 THEN 'good'
+            WHEN AVG(rating) > 6 THEN 'average'
+            ELSE 'bad'
+        END AS quality_class,
+        TRUE AS is_active,
+        DATE_TRUNC('day', CAST('2024-01-01' AS DATE)) AS start_date,
+        DATE '9999-12-31' AS end_date
+    FROM
+        bootcamp.actor_films
+    WHERE
+        year = 2024
+    GROUP BY
+        actor
+),
+closed_out_records AS (
+    -- Close out previous year records for actors present in the current year
+    SELECT
+        p.actor,
+        p.quality_class,
+        p.is_active,
+        p.start_date,
+        DATE_TRUNC('day', CAST('2024-01-01' AS DATE)) - INTERVAL '1' DAY AS end_date
+    FROM
+        previous_year p
+    WHERE
+        p.actor IN (SELECT actor FROM current_year)
+),
+combined_data AS (
+    -- Combine closed out records and current year records
+    SELECT * FROM closed_out_records
+    UNION ALL
+    SELECT * FROM current_year
 )
--- Combine the closed out records and the current year data and insert them into the actors_history_scd table
+-- Insert the combined data into the actors_history_scd table
 SELECT
     actor,
     quality_class,
@@ -51,13 +66,4 @@ SELECT
     start_date,
     end_date
 FROM
-    closed_out_scd
-UNION ALL
-SELECT
-    actor,
-    quality_class,
-    is_active,
-    start_date,
-    end_date
-FROM
-    current_year_data
+    combined_data
