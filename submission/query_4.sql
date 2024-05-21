@@ -1,4 +1,4 @@
-INSERT INTO alissabdeltoro.actors_history_scd (actor_id, actor_name, quality_class, is_active, start_date, end_date, current_year)
+INSERT INTO actors_history_scd (actor_id, actor_name, quality_class, is_active, start_date, end_date, current_year)
 -- Common Table Expression (CTE) to retrieve lagged data for each actor
 WITH actor_lagged_data AS (
     SELECT 
@@ -9,7 +9,7 @@ WITH actor_lagged_data AS (
         current_year,
         -- Retrieve the previous year's is_active value for each actor
         LAG(is_active, 1) OVER (PARTITION BY actor_id ORDER BY current_year) AS is_active_previous_year
-    FROM alissabdeltoro.actors
+    FROM actors
 ),
 -- Common Table Expression (CTE) to calculate streaks of consecutive years with the same is_active value
 actor_streaks AS (
