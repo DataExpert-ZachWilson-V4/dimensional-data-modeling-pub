@@ -1,4 +1,5 @@
 -- query_1
+
 CREATE TABLE actors (
     actor VARCHAR,
     actor_id VARCHAR,
