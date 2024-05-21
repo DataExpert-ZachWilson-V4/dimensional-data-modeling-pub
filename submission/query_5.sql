@@ -39,18 +39,18 @@ changes AS (
         actor,
         actor_id,
         current_year,
-        CASE
+        CAST(CASE
             WHEN did_change = 0 THEN ARRAY[
-                CAST(ROW(quality_class_last_year, is_active_last_year, start_date, end_date + 1) AS ROW(quality_class VARCHAR, is_active BOOLEAN,start_date INTEGER, end_date INTEGER))
+                ROW(quality_class_last_year, is_active_last_year, start_date, end_date + 1)
             ]
             WHEN did_change = 1 THEN ARRAY[
-                CAST(ROW(quality_class_last_year, is_active_last_year, start_date, end_date + 1) AS ROW(quality_class VARCHAR, is_active BOOLEAN, start_date INTEGER, end_date INTEGER)),
-                CAST(ROW(quality_class_current_year, is_active_current_year, current_year, current_year) AS ROW(quality_class VARCHAR, is_active BOOLEAN, start_date INTEGER, end_date INTEGER))
+                ROW(quality_class_last_year, is_active_last_year, start_date, end_date + 1),
+                ROW(quality_class_current_year, is_active_current_year, current_year, current_year)
             ]
             WHEN did_change IS NULL THEN ARRAY[
-                CAST(ROW(COALESCE(quality_class_last_year, quality_class_current_year), COALESCE(is_active_last_year, is_active_current_year), start_date, end_date) AS ROW(quality_class VARCHAR, is_active BOOLEAN, start_date INTEGER, end_date INTEGER))
+                ROW(COALESCE(quality_class_last_year, quality_class_current_year), COALESCE(is_active_last_year, is_active_current_year), start_date, end_date)
             ]
-        END AS change_array
+        END AS ARRAY(ROW(quality_class VARCHAR, is_active BOOLEAN,start_date INTEGER, end_date INTEGER))) AS change_array
     FROM joined
 )
 -- Unnest the change_array and aggregate to insert into the final table
