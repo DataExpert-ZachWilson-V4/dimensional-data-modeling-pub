@@ -55,8 +55,8 @@ SELECT
     actor_id,
     quality_class,
     MAX(is_active) = True AS is_active,
-    MIN(current_year) AS start_year,
-    MAX(current_year) AS end_year,
+    DATE(CAST(MIN(current_year) as varchar) || '-01-01') AS start_date,
+    DATE(CAST(MAX(current_year) as varchar) || '-12-31') AS end_date,
     1916 AS current_year
 FROM
     streaked

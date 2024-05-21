@@ -19,8 +19,8 @@ WITH
     combined AS (
         SELECT
             COALESCE(ls.actor_id, cs.actor_id) AS actor_id,
-            COALESCE(ls.start_year, cs.current_year) AS start_year,
-            COALESCE(ls.end_year, cs.current_year) AS end_year,
+            COALESCE(ls.start_date, cs.current_year) AS start_date,
+            COALESCE(ls.end_date, cs.current_year) AS end_date,
             ls.is_active <> cs.is_active OR ls.quality_class <> cs.quality_class AS did_change,
             ls.is_active AS is_active_previous_year,
             cs.is_active AS is_active_current_year,
@@ -30,7 +30,7 @@ WITH
         FROM
             previous_year_scd ls
             FULL OUTER JOIN current_year_scd cs ON ls.actor_id = cs.actor_id
-            AND ls.end_year + 1 = cs.current_year
+            AND ls.end_date + 1 = cs.current_year
     ),
     changes AS (
         SELECT
@@ -39,29 +39,29 @@ WITH
             CASE
                 WHEN NOT did_change THEN ARRAY[
                     CAST(
-                        ROW(is_active_previous_year, quality_class_previous_year, start_year, end_year + 1) AS ROW(
+                        ROW(is_active_previous_year, quality_class_previous_year, start_date, end_date + 1) AS ROW(
                             is_active boolean,
                             quality_class varchar,
-                            start_year integer,
-                            end_year integer
+                            start_date date,
+                            end_date date
                         )
                     )
                 ]
                 WHEN did_change THEN ARRAY[
                     CAST(
-                        ROW(is_active_previous_year, quality_class_previous_year, start_year, end_year) AS ROW(
+                        ROW(is_active_previous_year, quality_class_previous_year, start_date, end_date) AS ROW(
                             is_active boolean,
                             quality_class varchar,
-                            start_year integer,
-                            end_year integer
+                            start_date date,
+                            end_date date
                         )
                     ),
                     CAST(
                         ROW(is_active_current_year, quality_class_current_year, current_year, current_year) AS ROW(
                             is_active boolean,
                             quality_class varchar,
-                            start_year integer,
-                            end_year integer
+                            start_date date,
+                            end_date date
                         )
                     )
                 ]
@@ -70,13 +70,13 @@ WITH
                         ROW(
                             COALESCE(is_active_previous_year, is_active_current_year),
                             COALESCE(quality_class_previous_year, quality_class_current_year),
-                            start_year,
-                            end_year
+                            start_date,
+                            end_date
                         ) AS ROW(
                             is_active boolean,
                             quality_class varchar,
-                            start_year integer,
-                            end_year integer
+                            start_date date,
+                            end_date date
                         )
                     )
                 ]
@@ -90,8 +90,8 @@ SELECT
     actor_id,
     arr.quality_class,
     arr.is_active,
-    arr.start_year,
-    arr.end_year,
+    arr.start_date,
+    arr.end_date,
     current_year
 FROM
     changes
