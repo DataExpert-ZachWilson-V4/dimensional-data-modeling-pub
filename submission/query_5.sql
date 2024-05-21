@@ -60,7 +60,7 @@ SELECT
       ]
       WHEN did_change is NULL THEN
         ARRAY[CAST(ROW(
-        COALESCE(quality_class_last_year, quality_class_this_year), COALESCE(is_active_last_year, is_active_this_year), quality_class, start_date, end_date) AS ROW(quality_class VARCHAR, is_active BOOLEAN, start_date INTEGER, end_date INTEGER))]
+        COALESCE(quality_class_last_year, quality_class_this_year), COALESCE(is_active_last_year, is_active_this_year), start_date, end_date) AS ROW(quality_class VARCHAR, is_active BOOLEAN, start_date INTEGER, end_date INTEGER))]
         end as change_array
         from combined
 )
