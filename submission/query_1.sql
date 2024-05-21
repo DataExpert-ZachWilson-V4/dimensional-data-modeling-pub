@@ -1,4 +1,4 @@
-CREATE TABLE sravan.actors (
+CREATE OR REPLACE TABLE sravan.actors (
   actor_id VARCHAR,
   actor VARCHAR,
   films ARRAY(ROW(
