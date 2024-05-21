@@ -1,6 +1,6 @@
 -- Create table to track historical changes for each actor
 CREATE TABLE actors_history_scd (
-    actor_id VARCHAR,  -- Unique identifier for the actor
+    actor_id VARCHAR NOT NULL,  -- Unique identifier for the actor
     actor_name VARCHAR,  -- Name of the actor
     quality_class VARCHAR,  -- Categorical bucketing of the average rating of the movies
     is_active BOOLEAN,  -- Indicates whether an actor is currently active
