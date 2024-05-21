@@ -1,5 +1,5 @@
 -- Populate a single year's worth of the actors_history_scd table incrementally
-INSERT INTO alissabdeltoro.actors_history_scd (
+INSERT INTO actors_history_scd (
     actor_id,
     actor_name,
     quality_class,
@@ -18,7 +18,7 @@ WITH previous_year_scd AS (
         start_date,
         end_date
     FROM
-        alissabdeltoro.actors_history_scd
+        actors_history_scd
     WHERE
         current_year = 2018 -- Fetch data for the previous year
 ),
@@ -32,7 +32,7 @@ this_year_scd AS (
         is_active,
         current_year -- Fetch data for the current year
     FROM
-        alissabdeltoro.actors
+        actors
     WHERE
         current_year = 2019
 ),
