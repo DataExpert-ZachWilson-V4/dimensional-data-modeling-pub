@@ -4,7 +4,7 @@ INSERT INTO ebrunt.actors_history_scd WITH last_year AS (
   FROM 
     ebrunt.actors_history_scd 
   WHERE 
-    processed_year = 1960
+    current_year = 1960
 ), 
 this_year AS (
   SELECT 
@@ -26,11 +26,11 @@ combined AS (
     CASE WHEN ly.is_active <> ty.is_active 
     OR ly.quality_class <> ty.quality_class THEN 1 WHEN ly.is_active = ty.is_active 
     AND ly.quality_class = ty.quality_class THEN 0 ELSE NULL END as did_change, 
-    current_year 
+    ty.current_year 
   FROM 
     last_year as ly FULL 
     OUTER JOIN this_year as ty ON ly.actor_id = ty.actor_id 
-    AND end_date + 1 = current_year
+    AND ly.end_date + 1 = ty.current_year
 ), 
 final AS (
   SELECT 
