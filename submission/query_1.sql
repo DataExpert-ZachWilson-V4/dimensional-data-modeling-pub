@@ -1,4 +1,4 @@
-CREATE TABLE ningde95.actors(
+CREATE TABLE IF NOT EXISTS ningde95.actors(
     actor       VARCHAR,
     actor_id     VARCHAR,
     films       ARRAY(
