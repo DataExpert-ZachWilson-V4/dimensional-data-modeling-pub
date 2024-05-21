@@ -9,6 +9,8 @@ WITH actor_lagged_data AS (
         current_year,
         -- Retrieve the previous year's is_active value for each actor
         LAG(is_active, 1) OVER (PARTITION BY actor_id ORDER BY current_year) AS is_active_previous_year
+        -- Retrieve the previous year's quality_class value for each actor
+        LAG(quality_class, NULL) OVER (PARTITION BY actor_id ORDER BY current_year) AS quality_class_previous_year
     FROM actors
 ),
 -- Common Table Expression (CTE) to calculate streaks of consecutive years with the same is_active value
@@ -16,7 +18,7 @@ actor_streaks AS (
     SELECT 
         *,
         -- Generate a streak identifier based on changes in is_active values
-        SUM(CASE WHEN is_active <> is_active_previous_year THEN 1 ELSE 0 END) OVER (PARTITION BY actor_id ORDER BY current_year) AS streak_identifier
+        SUM(CASE WHEN is_active <> is_active_previous_year OR quality_class <> quality_class_previous_year THEN 1 ELSE 0 END) OVER (PARTITION BY actor_id ORDER BY current_year) AS streak_identifier
     FROM actor_lagged_data
 )
 -- Main query to determine the start and end dates of each streak for each actor
