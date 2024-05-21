@@ -24,7 +24,7 @@ SELECT
         THEN 1
       ELSE 0
     END
-  ) OVER (PARTITION BY actor ORDER BY current_year) as streak_identifier
+  ) OVER (PARTITION BY actor ORDER BY current_year) as streak_identifier --changes in actor values from one year to the next
 FROM LAGGED
 )
 
