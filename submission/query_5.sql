@@ -15,10 +15,10 @@ SELECT
   COALESCE(ls.actor_id, cs.actor_id) as actor_id,
   COALESCE(ls.start_date, cs.current_year) as start_date,
   COALESCE(ls.end_date, cs.current_year) as end_date,
-  CASE 
-    WHEN ls.is_active <> cs.is_active THEN 1
-    WHEN ls.is_active <> cs.is_active THEN 0
-  END AS did_change,
+ CASE 
+    WHEN ls.is_active <> cs.is_active OR ls.quality_class <> cs.quality_class THEN 1
+    WHEN ls.is_active = cs.is_active AND ls.quality_class = cs.quality_class THEN 0
+END AS did_change,
   ls.is_active as is_active_last_year,
   cs.is_active as is_active_this_year,
   2022 AS current_year,
