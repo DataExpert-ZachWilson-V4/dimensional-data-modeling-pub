@@ -30,8 +30,19 @@ SELECT
         WHEN ty.films IS NULL THEN ly.films
         WHEN ly.films IS NULL THEN ty.films
         WHEN ty.films IS NOT NULL AND ly.films IS NOT NULL 
-            THEN (ty.films || ly.films)
-    END AS films,
+            THEN ARRAY_AGG(
+    (
+      ROW(
+        ty.year,
+        ty.film,
+        ty.votes,
+        ty.rating,
+        ty.film_id
+      )
+    )
+  )
+  ELSE ly.films
+END AS films,
  CASE
      WHEN ty.avg_rating > 8 THEN 'star'
      WHEN ty.avg_rating > 7 AND ty.avg_rating <= 8 THEN 'good'
@@ -46,3 +57,4 @@ SELECT
 FROM last_year ly 
 FULL OUTER JOIN this_year ty
 ON ly.actor_id=ty.actor_id
+WHERE ly.actor_id IS NOT NULL AND ty.actor_id IS NOT NULL
