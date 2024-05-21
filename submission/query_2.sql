@@ -27,17 +27,17 @@ this_year AS (
 SELECT 
   COALESCE(ly.actor, ty.actor) as actor,
   COALESCE(ly.actor_id, ty.actor_id) as actor_id,
- CASE
+ CASE -- case statement for calculating the films array
       WHEN ty.films IS NULL THEN ly.films
       WHEN ly.films IS NULL THEN ty.films
       WHEN ty.films IS NOT NULL AND ly.films IS NOT NULL 
         THEN (ty.films || ly.films)
 END AS films,
- CASE
-     WHEN ty.avg_rating > 8 THEN 'star'
-     WHEN ty.avg_rating > 7 AND ty.avg_rating <= 8 THEN 'good'
-     WHEN ty.avg_rating > 6 AND ty.avg_rating <= 7 THEN 'average'
-     ELSE 'bad'
+ CASE -- case statement to calculate the quality_class based on average rating
+     WHEN ty.avg_rating is NOT NULL AND ty.avg_rating > 8 THEN 'star'
+     WHEN ty.avg_rating is NOT NULL AND ty.avg_rating > 7 AND ty.avg_rating <= 8 THEN 'good'
+     WHEN ty.avg_rating is NOT NULL AND ty.avg_rating > 6 AND ty.avg_rating <= 7 THEN 'average'
+     WHEN ty.avg_rating is NOT NULL AND ty.avg_rating <= 6 THEN 'average'
   END AS quality_class, 
   CASE 
     WHEN ty.year is NOT NULL then TRUE
@@ -47,4 +47,3 @@ END AS films,
 FROM last_year ly 
 FULL OUTER JOIN this_year ty
 ON ly.actor_id=ty.actor_id
-WHERE ly.actor_id IS NOT NULL AND ty.actor_id IS NOT NULL -- checks to ensure actor_id is not null
