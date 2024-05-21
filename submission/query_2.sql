@@ -1,58 +1,47 @@
--- Insert data into the raniasalzahrani.actors table
-INSERT INTO raniasalzahrani.actors (
-  actor,
-  actor_id,
-  films,
-  quality_class,
-  is_active,
-  current_year
+-- Insert into the actors table
+INSERT INTO raniasalzahrani.actors
+WITH last_year AS (
+    -- CTE to get data from the previous year (1913)
+    SELECT
+        *
+    FROM
+        raniasalzahrani.actors
+    WHERE
+        current_year = 1913
+),
+this_year AS (
+    -- CTE to aggregate actor films for the current year (1914)
+    SELECT
+        actor,
+        actor_id,
+        year,
+        ARRAY_AGG(ROW(YEAR, film, votes, rating, film_id)) AS films,
+        AVG(rating) AS avg_rating
+    FROM
+        bootcamp.actor_films
+    WHERE
+        year = 1914
+    GROUP BY
+        actor,
+        actor_id,
+        year
 )
--- Define a Common Table Expression (CTE) named yearly_actors
-WITH yearly_actors AS (
-  -- Select relevant columns and compute additional columns from the bootcamp.actor_films table
-  SELECT
-    actor,
-    actor_id,
-    film,
-    votes,
-    rating,
-    film_id,
-    YEAR,
-    -- Determine the quality class of the actor's performance based on average rating per year
-    CASE
-    WHEN AVG(rating) OVER (PARTITION BY actor_id, YEAR) > 8 THEN 'star'
-      WHEN AVG(rating) OVER (PARTITION BY actor_id, YEAR) > 7 THEN 'good'
-      WHEN AVG(rating) OVER (PARTITION BY actor_id, YEAR) > 6 THEN 'average'
-      ELSE 'bad'
-    END AS quality_class,
-    -- Determine if the actor is active by checking if the maximum year for the actor is the current row's year
-    MAX(YEAR) OVER (PARTITION BY actor_id) = YEAR AS is_active
-  FROM
-    bootcamp.actor_films
-)
--- Select data from the CTE to insert into the final table
 SELECT
-  actor,
-  actor_id,
-  -- Aggregate films information into an array of rows
-  ARRAY_AGG(
-    CAST(
-      ROW(film, votes, rating, film_id) AS ROW(
-        film VARCHAR,
-        votes INTEGER,
-        rating DOUBLE,
-        film_id VARCHAR
-      )
-    )
-  ) AS films,
-  quality_class,
-  is_active,
-  YEAR AS current_year
+    COALESCE(ly.actor, ty.actor) AS actor,  -- Handle null values for actor
+    COALESCE(ly.actor_id, ty.actor_id) AS actor_id,  -- Handle null values for actor_id
+    CASE
+        WHEN ty.films IS NULL THEN ly.films  -- If no films this year, use last year's films
+        WHEN ty.films IS NOT NULL AND ly.films IS NULL THEN ty.films  -- If new films this year, use this year's films
+        WHEN ty.films IS NOT NULL AND ly.films IS NOT NULL THEN ty.films || ly.films  -- If films in both years, concatenate
+    END AS films,
+    CASE
+        WHEN avg_rating > 8 THEN 'star'
+        WHEN avg_rating > 7 AND avg_rating <= 8 THEN 'good'
+        WHEN avg_rating > 6 AND avg_rating <= 7 THEN 'average'
+        ELSE 'bad'
+    END AS quality_class,  -- Determine quality class based on average rating
+    ty.year IS NOT NULL AS is_active,  -- Check if the actor is active this year
+    COALESCE(ty.year, ly.current_year + 1) AS current_year  -- Handle null values for current year
 FROM
-  yearly_actors
-GROUP BY
-  actor,
-  actor_id,
-  quality_class,
-  is_active,
-  YEAR
+    last_year ly
+FULL OUTER JOIN this_year ty ON ly.actor_id = ty.actor_id;  -- Combine data from last year and this year
