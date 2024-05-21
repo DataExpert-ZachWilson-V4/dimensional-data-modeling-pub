@@ -14,6 +14,7 @@ end_date INTEGER,
 --signifies the end of a particular state. Used in Type 2 SCD to understand the duration of each state
 current_year INTEGER
 --the year this record pertains to. Useful for partitioning and analyzing data by year
+)
 WITH (
 	format = 'PARQUET',
 --data stored in PARQUET format for optimized analytics
