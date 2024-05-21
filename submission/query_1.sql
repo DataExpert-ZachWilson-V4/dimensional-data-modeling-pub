@@ -1,6 +1,6 @@
 -- Creating table actors from the fields in actors_films dataset
 
-CREATE TABLE shruthishridhar.actors (
+CREATE OR REPLACE TABLE shruthishridhar.actors (
     actor VARCHAR,  -- actor's name
     actor_id VARCHAR, -- actor's unique identifier
     films ARRAY(  -- actor's films array with a struct for each film
