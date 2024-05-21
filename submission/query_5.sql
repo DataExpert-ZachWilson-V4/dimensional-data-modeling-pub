@@ -20,7 +20,7 @@ WITH previous_year_scd AS (
     FROM
         actors_history_scd
     WHERE
-        current_year = 2018 -- Fetch data for the previous year
+        current_year = 2021 -- Fetch data for the previous year
 ),
 
 -- Common Table Expression (CTE) to fetch data for the current year
@@ -34,7 +34,7 @@ this_year_scd AS (
     FROM
         actors
     WHERE
-        current_year = 2019
+        current_year = 2022
 ),
 
 -- Common Table Expression (CTE) to combine data from the previous year with the current year
