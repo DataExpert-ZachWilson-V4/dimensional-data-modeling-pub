@@ -31,7 +31,7 @@ WITH
         SELECT
             *,
             REDUCE(
-                ratings,
+                TRANSFORM(films, x -> x.rating),
                 CAST(ROW(0.0, 0) AS ROW(SUM DOUBLE, COUNT INTEGER)),
                 (s, x) -> CAST(
                     ROW(x + s.sum, s.count + 1) AS ROW(SUM DOUBLE, COUNT INTEGER)

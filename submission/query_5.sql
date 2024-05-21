@@ -43,7 +43,7 @@ WITH
             CASE
                 WHEN NOT did_change THEN ARRAY[
                     CAST(
-                        ROW(is_active_previous_year, quality_class_previous_year, start_date, DATE_ADD('year', 1, end_date + 1) AS ROW(
+                        ROW(is_active_previous_year, quality_class_previous_year, start_date, DATE_ADD('year', 1, end_date + 1)) AS ROW(
                             is_active boolean,
                             quality_class varchar,
                             start_date date,
