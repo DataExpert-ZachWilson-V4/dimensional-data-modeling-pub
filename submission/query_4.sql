@@ -51,7 +51,7 @@ GROUP BY
   actor,
   streak_identifier,
   is_active,
-  quality_class
+  quality_class;
 
 -- Testing the output table
 -- SELECT *
