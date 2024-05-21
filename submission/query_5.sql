@@ -61,7 +61,7 @@ WITH
                         )
                     ),
                     CAST(
-                        ROW(is_active_current_year, quality_class_current_year, current_year, current_year) AS ROW(
+                        ROW(is_active_current_year, quality_class_current_year, date(cast(current_year as varchar) || '-01-01'), date(cast(current_year as varchar) || '-12-31')) AS ROW(
                             is_active boolean,
                             quality_class varchar,
                             start_date date,
