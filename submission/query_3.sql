@@ -1,4 +1,4 @@
-CREATE TABLE
+CREATE TABLE IF NOT EXISTS
   ningde95.actors_history_scd (
     actor VARCHAR,
     quality_class VARCHAR,
