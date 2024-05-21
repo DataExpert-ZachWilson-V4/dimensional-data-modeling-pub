@@ -4,7 +4,6 @@ INSERT INTO positivelyamber.actors_history_scd
 -- Get history from actor's table
 WITH lagged as (
     SELECT 
-        actor,
         actor_id,
         quality_class,
         is_active,
@@ -37,11 +36,11 @@ streaked AS (
 
 -- Find start date and end date for the change
 SELECT 
-    actor,
-    actor_id, 
-    MAX(is_active) = 1 as is_active, 
-    MIN(current_year) as start_date,
-    MAX(current_year) as end_date,
-    2007 as current_year
+    actor_id,
+    quality_class, 
+    MAX(is_active) AS is_active, 
+    MIN(current_year) AS start_date,
+    MAX(current_year) AS end_date,
+    2007 AS current_year
 FROM streaked
 GROUP BY actor_id, quality_class, streak_identifier
