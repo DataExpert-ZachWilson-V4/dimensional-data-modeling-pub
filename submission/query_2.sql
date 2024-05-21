@@ -44,4 +44,4 @@ SELECT
     COALESCE(ty.year, ly.current_year + 1) AS current_year  -- Handle null values for current year
 FROM
     last_year ly
-FULL OUTER JOIN this_year ty ON ly.actor_id = ty.actor_id;  -- Combine data from last year and this year
+FULL OUTER JOIN this_year ty ON ly.actor_id = ty.actor_id  -- Combine data from last year and this year
