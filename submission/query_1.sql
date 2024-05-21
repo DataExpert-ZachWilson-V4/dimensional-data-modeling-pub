@@ -1,4 +1,4 @@
-CREATE TABLE tejalscr.actors (
+CREATE OR REPLACE TABLE tejalscr.actors (
   actor VARCHAR,
   actor_id VARCHAR,
   films ARRAY(
