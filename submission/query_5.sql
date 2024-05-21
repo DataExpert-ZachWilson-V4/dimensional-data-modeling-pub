@@ -49,8 +49,8 @@ WITH
                         ROW(is_active_previous_year, quality_class_previous_year, start_date, end_date + 1) AS ROW(
                             is_active boolean,
                             quality_class varchar,
-                            start_date date,
-                            end_date date
+                            start_date integer,
+                            end_date integer
                         )
                     )
                 ]
@@ -59,16 +59,16 @@ WITH
                         ROW(is_active_previous_year, quality_class_previous_year, start_date, end_date) AS ROW(
                             is_active boolean,
                             quality_class varchar,
-                            start_date date,
-                            end_date date
+                            start_date integer,
+                            end_date integer
                         )
                     ),
                     CAST(
                         ROW(is_active_current_year, quality_class_current_year, current_year, current_year) AS ROW(
                             is_active boolean,
                             quality_class varchar,
-                            start_date date,
-                            end_date date
+                            start_date integer,
+                            end_date integer
                         )
                     )
                 ]
@@ -82,8 +82,8 @@ WITH
                         ) AS ROW(
                             is_active boolean,
                             quality_class varchar,
-                            start_date date,
-                            end_date date
+                            start_date integer,
+                            end_date integer
                         )
                     )
                 ]
