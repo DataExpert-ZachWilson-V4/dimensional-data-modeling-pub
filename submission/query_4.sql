@@ -13,7 +13,15 @@ FROM hdamerla.actors
 streaked AS (
 SELECT
   *,
-  SUM(CASE WHEN is_active <> is_active_last_year THEN 1 ELSE 0 END) OVER (PARTITION BY actor ORDER BY current_year) as streak_identifier
+  SUM(
+    CASE
+      WHEN quality_class <> LAG(quality_class, 1) OVER (PARTITION BY actor ORDER BY current_year)
+        THEN 1
+      WHEN is_active <> is_active_last_year
+        THEN 1
+      ELSE 0
+    END
+  ) OVER (PARTITION BY actor ORDER BY current_year) as streak_identifier
 FROM LAGGED
 )
 
@@ -24,6 +32,6 @@ SELECT
   MAX(is_active) = 1 as is_active,
   MIN(current_year) as start_date,
   MAX(current_year) as end_date,
-  current_year
+  2021 as current_year
 FROM streaked
-GROUP BY actor, actor_id, streak_identifier, quality_class, current_year
+GROUP BY actor, actor_id, streak_identifier, quality_class
