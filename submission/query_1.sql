@@ -1,4 +1,4 @@
-CREATE OR REPLAACE TABLE dswills94.actors (  --we store actor data
+CREATE OR REPLACE TABLE dswills94.actors (  --we store actor data
   actor VARCHAR, --name of actor
   actor_id VARCHAR, -- id of actor primary key
   films ARRAY( --array of dimensions
