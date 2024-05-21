@@ -37,4 +37,4 @@ SELECT
   MAX(current_year) as end_date,
   2021 as current_year
 FROM streaked
-GROUP BY actor, actor_id, streak_identifier
+GROUP BY actor, actor_id, streak_identifier, quality_class, is_active
