@@ -1,27 +1,32 @@
 INSERT INTO actors_history_scd
+-- CTE to retrieve the previous year's is_active and quality_class for each actor
 WITH lagged_activity AS (
   SELECT
     actor,
     is_active,
-    LAG(is_active, 1) OVER(
+    -- Get the previous year's is_active status for each actor
+    LAG(is_active, 1) OVER (
       PARTITION BY actor
       ORDER BY current_year
     ) AS is_active_last_year,
     quality_class,
-    LAG(quality_class, 1) OVER(
+    -- Get the previous year's quality_class for each actor
+    LAG(quality_class, 1) OVER (
       PARTITION BY actor
       ORDER BY current_year
     ) AS quality_class_last_year,
     current_year
   FROM actors
-  WHERE current_year <= 2016
+  WHERE current_year <= 2021  -- Consider only data up to the year 2021
 ),
+-- CTE to identify streaks of changes in is_active or quality_class
 streak_change AS (
   SELECT
     actor,
     current_year,
     is_active,
     quality_class,
+    -- Calculate a streak identifier based on changes in is_active or quality_class
     SUM(
       CASE
         WHEN is_active != is_active_last_year THEN 1
@@ -33,17 +38,20 @@ streak_change AS (
     ) AS streak_identifier
   FROM lagged_activity
 )
+-- Select and group data to determine the start and end dates of each streak
 SELECT
   actor,
-  MAX(is_active) AS is_active,
-  MAX(quality_class) AS quality_class,
-  MIN(current_year) AS start_date,
-  MAX(current_year) AS end_date,
-  2016 AS current_year
+  is_active,
+  quality_class,
+  MIN(current_year) AS start_date,  -- Get the start date of the streak
+  MAX(current_year) AS end_date,  -- Get the end date of the streak
+  2021 AS current_year  -- Set the current year to 2021
 FROM streak_change
 GROUP BY
   actor,
-  streak_identifier
+  streak_identifier,
+  is_active,
+  quality_class
 
 -- Testing the output table
 -- SELECT *
