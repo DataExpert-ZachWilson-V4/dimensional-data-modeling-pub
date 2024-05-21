@@ -1,6 +1,6 @@
 -- Insert the historical data into the actors_history_scd table
 INSERT INTO raniasalzahrani.actors_history_scd (
-    actor_id,
+    actor,
     quality_class,
     is_active,
     start_date,
@@ -10,7 +10,7 @@ WITH
 -- Select the current year's data from the actors table
 current_year_data AS (
     SELECT
-        actor_id,
+        actor,
         quality_class,
         is_active,
         -- Set the start_date to the first day of the specified year
@@ -25,7 +25,7 @@ current_year_data AS (
 -- Select the records from actors_history_scd that need to be closed out
 closed_out_scd AS (
     SELECT
-        actor_id,
+        actor,
         quality_class,
         is_active,
         start_date,
@@ -35,17 +35,17 @@ closed_out_scd AS (
         raniasalzahrani.actors_history_scd
     WHERE
         end_date = DATE '9999-12-31'
-        AND actor_id IN (
+        AND actor IN (
             -- Ensure we only close out records that have a corresponding actor in the current year data
             SELECT
-                actor_id
+                actor
             FROM
                 current_year_data
         )
 )
 -- Combine the closed out records and the current year data and insert them into the actors_history_scd table
 SELECT
-    actor_id,
+    actor,
     quality_class,
     is_active,
     start_date,
@@ -54,7 +54,7 @@ FROM
     closed_out_scd
 UNION ALL
 SELECT
-    actor_id,
+    actor,
     quality_class,
     is_active,
     start_date,
