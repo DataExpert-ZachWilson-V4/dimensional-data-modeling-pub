@@ -7,6 +7,7 @@ SELECT
   quality_class,
   CASE WHEN is_active THEN 1 ELSE 0 END AS is_active,
   CASE WHEN LAG(is_active, 1) OVER (PARTITION BY actor ORDER BY current_year) THEN 1 ELSE 0 END AS is_active_last_year,
+  LAG(quality_class, 1) OVER (PARTITION BY ator_id ORDER BY current_year) AS quality_class_last_year,
   current_year 
 FROM hdamerla.actors
 ),
@@ -15,9 +16,7 @@ SELECT
   *,
   SUM(
     CASE
-      WHEN quality_class <> LAG(quality_class, 1) OVER (PARTITION BY actor ORDER BY current_year)
-        THEN 1
-      WHEN is_active <> is_active_last_year
+      WHEN is_active <> is_active_last_year or quality_class <> quality_class_last_year
         THEN 1
       ELSE 0
     END
