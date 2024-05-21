@@ -37,7 +37,7 @@ END AS films,
      WHEN ty.avg_rating is NOT NULL AND ty.avg_rating > 8 THEN 'star'
      WHEN ty.avg_rating is NOT NULL AND ty.avg_rating > 7 AND ty.avg_rating <= 8 THEN 'good'
      WHEN ty.avg_rating is NOT NULL AND ty.avg_rating > 6 AND ty.avg_rating <= 7 THEN 'average'
-     WHEN ty.avg_rating is NOT NULL AND ty.avg_rating <= 6 THEN 'average'
+     WHEN ty.avg_rating is NOT NULL AND ty.avg_rating <= 6 THEN 'bad'
   END AS quality_class, 
   CASE 
     WHEN ty.year is NOT NULL then TRUE
