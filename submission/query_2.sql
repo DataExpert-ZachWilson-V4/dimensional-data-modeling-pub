@@ -31,18 +31,7 @@ SELECT
       WHEN ty.films IS NULL THEN ly.films
       WHEN ly.films IS NULL THEN ty.films
       WHEN ty.films IS NOT NULL AND ly.films IS NOT NULL 
-    THEN ARRAY_AGG(
-    (
-      ROW(
-        ty.year,
-        ty.film,
-        ty.votes,
-        ty.rating,
-        ty.film_id
-      )
-    )
-  )
-  ELSE ly.films
+        THEN (ty.films || ly.films)
 END AS films,
  CASE
      WHEN ty.avg_rating > 8 THEN 'star'
