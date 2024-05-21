@@ -1,4 +1,5 @@
 --query_2
+/* Inserting data into actors table one year at a time */
 
 INSERT INTO hdamerla.actors
 WITH last_year AS (
@@ -16,7 +17,7 @@ this_year AS (
         film_id,
         year
         )) as films,
-   SUM(votes*rating)/SUM(votes) as avg_rating,
+   SUM(votes*rating)/SUM(votes) as avg_rating, --logic to caluculate the avg_rating
    year    
   FROM bootcamp.actor_films
   WHERE year = 2001
@@ -27,10 +28,10 @@ SELECT
   COALESCE(ly.actor, ty.actor) as actor,
   COALESCE(ly.actor_id, ty.actor_id) as actor_id,
  CASE
-        WHEN ty.films IS NULL THEN ly.films
-        WHEN ly.films IS NULL THEN ty.films
-        WHEN ty.films IS NOT NULL AND ly.films IS NOT NULL 
-            THEN ARRAY_AGG(
+      WHEN ty.films IS NULL THEN ly.films
+      WHEN ly.films IS NULL THEN ty.films
+      WHEN ty.films IS NOT NULL AND ly.films IS NOT NULL 
+    THEN ARRAY_AGG(
     (
       ROW(
         ty.year,
@@ -57,4 +58,4 @@ END AS films,
 FROM last_year ly 
 FULL OUTER JOIN this_year ty
 ON ly.actor_id=ty.actor_id
-WHERE ly.actor_id IS NOT NULL AND ty.actor_id IS NOT NULL
+WHERE ly.actor_id IS NOT NULL AND ty.actor_id IS NOT NULL -- checks to ensure actor_id is not null
