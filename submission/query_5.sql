@@ -1,5 +1,5 @@
 -- Define the current year as a variable.
-DECLARE @current_year INT = 1917;
+-- DECLARE 1917 INT = 1917;
 
 INSERT INTO jb19881.actors_history_scd
 WITH
@@ -9,7 +9,7 @@ WITH
         FROM
             jb19881.actors_history_scd
         WHERE
-            current_year = @current_year - 1
+            current_year = 1917 - 1
     ),
     current_year_scd AS (
         SELECT
@@ -19,7 +19,7 @@ WITH
         FROM
             jb19881.actors
         WHERE
-            current_year = @current_year 
+            current_year = 1917 
     ),
     combined AS (
         SELECT
@@ -32,7 +32,7 @@ WITH
             cs.is_active AS is_active_current_year,
             ls.quality_class AS quality_class_previous_year,
             cs.quality_class AS quality_class_current_year,
-            @current_year AS current_year
+            1917 AS current_year
         FROM
             previous_year_scd ls
             FULL OUTER JOIN current_year_scd cs ON ls.actor_id = cs.actor_id
