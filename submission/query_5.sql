@@ -35,7 +35,7 @@ WITH
             1917 AS current_year
         FROM
             previous_year_scd ls
-            FULL OUTER JOIN current_year_scd cs ON ls.actor_id = cs.actor_id
+            FULL OUTER JOIN current_year_scd cs ON ls.actor = cs.actor
             AND YEAR(ls.end_date) + 1 = cs.current_year
     ),
     changes AS (
