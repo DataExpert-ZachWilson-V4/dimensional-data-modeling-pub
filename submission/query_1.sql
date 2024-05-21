@@ -1,8 +1,8 @@
 CREATE TABLE actors (
-    -- 'actor': Stores the actor's name, ensure this is not null.
-    actor VARCHAR NOT NULL,
+    -- 'actor': Stores the actor's name.
+    actor VARCHAR,
     -- 'actor_id': A unique identifier for each actor.
-    actor_id VARCHAR NOT NULL,
+    actor_id VARCHAR
     -- 'films' : Array of structs containing rows which describe film data.
     films ARRAY(
         ROW(
