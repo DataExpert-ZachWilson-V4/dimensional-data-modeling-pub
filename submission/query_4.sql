@@ -52,16 +52,16 @@ WITH
     --  select * from streaked  order by actor, current_year
 SELECT
     actor,
-    actor_id,
+    -- actor_id,
     quality_class,
     MAX(is_active) = True AS is_active,
-    DATE(CAST(MIN(current_year) as varchar) || '-01-01') AS start_date,
-    DATE(CAST(MAX(current_year) as varchar) || '-12-31') AS end_date,
+    MIN(current_year) AS start_date,
+    MAX(current_year) AS end_date,
     1916 AS current_year
 FROM
     streaked
 GROUP BY
     actor,
-    actor_id,
+    -- actor_id,
     quality_class,
     streak_identifier
