@@ -1,4 +1,5 @@
 CREATE OR REPLACE TABLE jb19881.actors_history_scd (
+    actor varchar COMMENT 'actor''s name',
     actor_id varchar NOT NULL COMMENT 'Unique identifier for each actor, part of the primary key in actor_films dataset.',
     quality_class varchar,
     is_active boolean,

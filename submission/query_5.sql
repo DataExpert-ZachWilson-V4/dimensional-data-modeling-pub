@@ -10,7 +10,9 @@ WITH
     ),
     current_year_scd AS (
         SELECT
-            *
+            *,
+            DATE(CAST(current_year as varchar) || '-01-01') as start_date,
+            DATE(CAST(current_year as varchar) || '-12-31') as end_date
         FROM
             jb19881.actors
         WHERE
@@ -18,9 +20,10 @@ WITH
     ),
     combined AS (
         SELECT
+            COALESCE(ls.actor, cs.actor) AS actor,
             COALESCE(ls.actor_id, cs.actor_id) AS actor_id,
-            COALESCE(ls.start_date, cs.current_year) AS start_date,
-            COALESCE(ls.end_date, cs.current_year) AS end_date,
+            COALESCE(ls.start_date, cs.start_date) AS start_date,
+            COALESCE(ls.end_date, cs.end_date) AS end_date,
             ls.is_active <> cs.is_active OR ls.quality_class <> cs.quality_class AS did_change,
             ls.is_active AS is_active_previous_year,
             cs.is_active AS is_active_current_year,
@@ -30,10 +33,11 @@ WITH
         FROM
             previous_year_scd ls
             FULL OUTER JOIN current_year_scd cs ON ls.actor_id = cs.actor_id
-            AND ls.end_date + 1 = cs.current_year
+            AND YEAR(ls.end_date) + 1 = cs.current_year
     ),
     changes AS (
         SELECT
+            actor,
             actor_id,
             current_year,
             CASE
@@ -87,6 +91,7 @@ WITH
     -- select * from changes
 
 SELECT
+    actor,
     actor_id,
     arr.quality_class,
     arr.is_active,

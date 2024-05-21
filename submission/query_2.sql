@@ -55,7 +55,7 @@ WITH
         FROM
             current_year_actor_films
             FULL OUTER JOIN prev_year_actors ON prev_year_actors.actor_id = current_year_actor_films.actor_id
-    ),
+    )
     -- avg_rating as (
     --     select
     --         actor,
