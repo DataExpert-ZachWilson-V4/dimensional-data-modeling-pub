@@ -5,7 +5,7 @@ WITH current_year_data AS (
         is_active,
         current_year
     FROM actors
-    WHERE current_year = {current_year} -- replace with the specific year for incremental update
+    WHERE current_year = 1984
 ),
 previous_scd_data AS (
     SELECT 
