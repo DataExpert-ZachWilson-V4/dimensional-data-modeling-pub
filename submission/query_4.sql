@@ -39,6 +39,6 @@ SELECT
   CAST(is_active as BOOLEAN) as is_active, 
   MIN(current_year) as start_date,
   MAX(current_year) as end_date,
-  current_year
+  2021 as current_year
 FROM streaked
-GROUP BY actor, actor_id, quality_class, is_active, current_year, streak_identifier
+GROUP BY actor, actor_id, quality_class, is_active, streak_identifier
