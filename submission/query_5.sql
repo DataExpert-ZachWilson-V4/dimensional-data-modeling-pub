@@ -58,7 +58,7 @@ FROM combined
 SELECT
     actor as actor,
     change_array.quality_class as quality_class,
-    change_array.is_active AS is_active,
+    CASE WHEN change_array.is_active THEN 1 ELSE 0 AS is_active,
     CAST(CAST(change_array.start_date AS VARCHAR) || '-01-01' AS DATE) AS start_date,
     CAST(CAST(change_array.end_date AS VARCHAR) || '-12-31' AS DATE) AS end_date,
     current_year as current_year
