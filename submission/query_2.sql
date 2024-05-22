@@ -1,4 +1,4 @@
-INSERT INTO actors
+INSERT INTO ttian45759.actors
 
 -- Grab previous year data
 WITH
