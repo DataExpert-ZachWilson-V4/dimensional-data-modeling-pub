@@ -27,11 +27,10 @@ BACKFILL_QUERY AS (
 SELECT actor, 
        streak_identifier,
        quality_class,
-       MAX(is_active) AS is_active, 
+       is_active, 
 --Resolving this previous issue here: Unexpected parameters (integer) for function concat. Expected: concat(E, array(E)) E, concat(array(E)) E, concat(array(E), E) E, concat(char(x), char(y)), concat(varbinary), concat(varchar)
  DATE(CONCAT(CAST(MIN(current_year) AS VARCHAR), '-01-01')) AS start_date,
  DATE(CONCAT(CAST(MAX(current_year) AS VARCHAR), '-12-31')) AS end_date, 
- 
 --MAX(CURRENT_YEAR) gave 2021 output
  2021 AS Current_year
 FROM STREAKED
@@ -42,7 +41,7 @@ ORDER BY actor, start_date
 
 SELECT actor,
        quality_class,
-    CASE WHEN is_active = 1 THEN 'true' ELSE 'false' end as is_active,
+       is_active,
 -- specified in the prompt (table should be appropriately modeled as a Type 2 Slowly Changing Dimension Table (start_date and end_date))
        start_date,
        end_date,
