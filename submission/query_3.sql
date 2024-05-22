@@ -1,3 +1,4 @@
+-- Third Query
 CREATE TABLE 
     actors_history_scd(
     actor_id VARCHAR,

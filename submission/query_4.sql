@@ -1,3 +1,4 @@
+-- Fourth Query
 INSERT INTO actors_history_scd (actor, actor_id, quality_class, is_active, current_year, start_date, end_date)
 
 WITH lagged AS (
