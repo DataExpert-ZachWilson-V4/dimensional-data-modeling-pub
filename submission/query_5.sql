@@ -38,7 +38,7 @@ changes AS (
         actor,
         current_year,
   CASE
-    WHEN did_change = 0 THEN ARRAY[CAST(ROW(COALESCE(is_active_previous_year, is_active_current_year),COALESCE(quality_class_previous_year, quality_class_current_year),start_date,current_year) 
+    WHEN did_change = 0 THEN ARRAY[CAST(ROW(COALESCE(CASE WHEN is_active_previous_year = 1 THEN 'true' ELSE 'false' END AS is_active_previous_year , is_active_current_year),COALESCE(quality_class_previous_year, quality_class_current_year),start_date,current_year) 
     AS ROW(is_active BOOLEAN,quality_class VARCHAR,start_date INTEGER,end_date INTEGER))]
     
     WHEN did_change = 1 AND is_active_previous_year IS NULL THEN ARRAY[CAST(ROW(is_active_current_year, quality_class_current_year,current_year,current_year) 
