@@ -5,7 +5,7 @@ CREATE or REPLACE TABLE saidaggupati.actors (
     actor VARCHAR, 
      
 --actor_id: Actor's ID
-    actor_id INTEGER,
+    actor_id VARCHAR,
     
 --films: An array of struct with the following fields:
 --film: The name of the film.
