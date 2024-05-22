@@ -63,7 +63,8 @@ changes AS (
       ELSE ARRAY[
         ROW(quality_class, is_active, start_date, NULL)
       ]
-    END AS change_array
+    END AS change_array,
+    COALESCE(current_year, previous_year) AS current_year
   FROM combined
 )
 
@@ -73,7 +74,7 @@ SELECT
   actor,
   t.quality_class,
   t.is_active,
-  t.start_date AS current_year,
+  changes.current_year,
   t.start_date,
   t.end_date
 FROM changes
