@@ -56,3 +56,4 @@ FROM
     last_year ly
     FULL OUTER JOIN this_year_stage ty
     ON ly.actor_id = ty.actor_id
+-- Go go chatgpt feedback! :)
