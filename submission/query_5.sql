@@ -1,3 +1,5 @@
+
+
 WITH current_year_data AS (
     SELECT
         actor_id,
@@ -16,7 +18,7 @@ previous_scd_data AS (
         end_date
     FROM actors_history_scd
 )
-INSERT INTO actors_history_scd (actor_id, quality_class, is_active, start_date, end_date)
+
 SELECT 
     actor_id,
     quality_class,
