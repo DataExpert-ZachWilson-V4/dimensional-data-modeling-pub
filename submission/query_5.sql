@@ -12,7 +12,7 @@ WITH last_year_scd AS (
 
 --CTE for current year's extract 
 current_year_scd AS (
-    SELECT actor,quality_class,CASE WHEN is_active THEN 1 ELSE 0 END AS is_active,current_year 
+    SELECT actor,quality_class,is_active,current_year 
     FROM saidaggupati.actors WHERE current_year = 1915
 ),
 --last year+current year data load
@@ -58,7 +58,7 @@ FROM combined
 SELECT
     actor as actor,
     change_array.quality_class as quality_class,
-    CASE WHEN change_array.is_active THEN 1 ELSE 0 AS is_active,
+    change_array.is_active AS is_active,
     CAST(CAST(change_array.start_date AS VARCHAR) || '-01-01' AS DATE) AS start_date,
     CAST(CAST(change_array.end_date AS VARCHAR) || '-12-31' AS DATE) AS end_date,
     current_year as current_year
