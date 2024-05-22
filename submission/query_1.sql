@@ -28,7 +28,7 @@ CREATE or REPLACE TABLE saidaggupati.actors (
   
 --is_active: A BOOLEAN field that indicates whether an actor is currently active in the film industry (i.e., making films this year).
 
-  is_active BOOLEAN,
+  is_active INTEGER,
   
 --current_year: The year this row represents for the actor
 
