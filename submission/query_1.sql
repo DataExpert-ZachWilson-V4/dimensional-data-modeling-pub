@@ -14,7 +14,7 @@
 --is_active: A BOOLEAN field that indicates whether an actor is currently active in the film industry (i.e., making films this year).
 --current_year: The year this row represents for the actor
 
-CREATE TABLE groff.actors (
+CREATE TABLE actors (
     actor_id INT,
     actor VARCHAR,
      films ARRAY(
