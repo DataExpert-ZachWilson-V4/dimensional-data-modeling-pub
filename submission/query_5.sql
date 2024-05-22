@@ -9,7 +9,7 @@ WITH previous_year_scd AS (
     end_date,
     current_year
   FROM human.actors_history_scd
-  WHERE end_date IS NULL
+  WHERE current_year = 2021
 ),
 
 -- Extract current year's data from the actors table
