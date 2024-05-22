@@ -58,7 +58,7 @@ CASE
     WHEN cy.films IS NOT NULL and py.films IS NOT NULL THEN cy.films || py.films
 END AS films,
 COALESCE(py.quality_class,cy.quality_class) AS quality_class,
-(cy.year IS NOT NULL) AS is_active,
+(cy.actor_id IS NOT NULL) AS is_active,
 COALESCE(cy.year,py.current_year + 1) AS current_year
 FROM previous_year py
 FULL OUTER JOIN current_year cy
