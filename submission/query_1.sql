@@ -34,3 +34,4 @@ WITH (
     format = 'PARQUET',
     partitioning = ARRAY['current_year']
 )
+-- Go go chatgpt feedback! :)
