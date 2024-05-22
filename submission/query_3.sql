@@ -7,6 +7,6 @@ CREATE OR REPLACE TABLE ttian45759.actors_history_scd (
 )
 
 WITH (
-    FORMAT='parquet'
+    FORMAT='parquet',
     partitioning=ARRAY['current_year']
 )
