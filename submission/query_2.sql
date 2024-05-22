@@ -59,7 +59,7 @@ CASE
 END AS films,
 COALESCE(py.quality_class,cy.quality_class) AS quality_class,
 (cy.actor_id IS NOT NULL) AS is_active,
-COALESCE(cy.year,py.current_year + 1) AS current_year
+cy.year AS current_year
 FROM previous_year py
 FULL OUTER JOIN current_year cy
 ON py.actor = cy.actor
