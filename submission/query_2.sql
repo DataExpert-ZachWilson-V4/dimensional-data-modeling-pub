@@ -1,11 +1,11 @@
 -- Second SQL command
 INSERT INTO
-  human.actors
+  actors
 WITH last_year AS (
   SELECT 
     * 
   FROM 
-    human.actors
+    actors
   WHERE
     current_year = 1913
     ),

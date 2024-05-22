@@ -1,5 +1,5 @@
 CREATE TABLE 
-    human.actors_history_scd(
+    actors_history_scd(
     actor_id VARCHAR,
     actor VARCHAR,
     quality_class VARCHAR,

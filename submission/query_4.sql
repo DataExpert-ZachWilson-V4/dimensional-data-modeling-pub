@@ -1,11 +1,11 @@
-INSERT INTO human.actors_history_scd (actor, actor_id, quality_class, is_active, current_year, start_date, end_date)
+INSERT INTO actors_history_scd (actor, actor_id, quality_class, is_active, current_year, start_date, end_date)
 
 WITH lagged AS (
     -- Fetch actor-related data and compute lagged values for 'quality_class' and 'is_active' status
     SELECT *,
            LAG(quality_class, 1) OVER (PARTITION BY actor_id ORDER BY current_year) AS previous_quality_class,
            LAG(is_active, 1) OVER (PARTITION BY actor_id ORDER BY current_year) AS previous_is_active
-    FROM human.actors
+    FROM actors
 ),
 streaked AS (
     -- Calculate a 'streak_identifier' for each actor

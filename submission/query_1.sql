@@ -1,5 +1,5 @@
 -- First SQL command
-CREATE TABLE human.actors (
+CREATE TABLE actors (
     actor_id VARCHAR,
     actor VARCHAR,
     films ARRAY(ROW(
