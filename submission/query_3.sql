@@ -4,7 +4,7 @@
 CREATE or REPLACE TABLE saidaggupati.actors_history_scd(
        actor VARCHAR,
        quality_class VARCHAR,
-       is_active BOOLEAN,
+       is_active INTEGER,
 -- specified in the prompt (table should be appropriately modeled as a Type 2 Slowly Changing Dimension Table (start_date and end_date))
        start_date DATE,
        end_date DATE,
