@@ -15,14 +15,14 @@
 --current_year: The year this row represents for the actor
 
 CREATE TABLE actors (
-    actor_id INT,
+    actor_id VARCHAR,
     actor VARCHAR,
      films ARRAY(
     ROW(
       film VARCHAR,
       votes INTEGER,
       rating INTEGER,
-      film_id INTEGER
+      film_id VARCHAR
     )
   ),
   quality_class VARCHAR,
