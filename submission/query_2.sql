@@ -51,7 +51,6 @@ SELECT
     WHEN ty.films IS NOT NULL AND ly.films IS NOT NULL THEN ty.films || ly.films 
     WHEN ty.films IS NULL AND ly.films IS NOT NULL THEN ly.films
 END AS films,
-END AS films,
   COALESCE(ly.quality_class,ty.quality_class) as quality_class,
   ty.films IS NOT NULL AS is_active,
   COALESCE(ly.current_year, ty."year") AS current_year
