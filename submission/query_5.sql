@@ -85,3 +85,4 @@ SELECT
     current_year
 FROM changes
 CROSS JOIN UNNEST(change_array) as arr
+-- Go go chatgpt feedback! :)

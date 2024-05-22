@@ -47,6 +47,7 @@ SELECT
         WHEN ly.films IS NOT NULL AND ty.films IS NOT NULL THEN ly.films || ty.films
         WHEN ty.films IS NULL THEN ly.films
         WHEN ly.films IS NULL THEN ty.films
+        ELSE null
     END AS films,
     -- ASSUMPTION: if actor not active this year, then keep last year's quality_class
     COALESCE(ty.quality_class, ly.quality_class) AS quality_class,
