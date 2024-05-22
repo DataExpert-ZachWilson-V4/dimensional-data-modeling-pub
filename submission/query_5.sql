@@ -10,6 +10,7 @@ previous_scd_data AS (
     SELECT 
        *
     FROM actors_history_scd
+    where current_year = 1983
 )
 
 SELECT 
