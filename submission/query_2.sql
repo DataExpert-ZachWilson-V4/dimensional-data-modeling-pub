@@ -47,6 +47,7 @@ SELECT
   COALESCE(ly.actor, ty.actor) AS actor,
   COALESCE(ly.actor_id, ty.actor_id) AS actor_id,
   CASE 
+    WHEN ty.films IS NULL AND ly.films IS NULL THEN ARRAY[]
     WHEN ty.films IS NOT NULL AND ly.films IS NULL THEN ty.films
     WHEN ty.films IS NOT NULL AND ly.films IS NOT NULL THEN ty.films || ly.films 
     WHEN ty.films IS NULL AND ly.films IS NOT NULL THEN ly.films
@@ -57,4 +58,4 @@ END AS films,
 FROM
   last_year ly
 FULL OUTER JOIN 
-  this_year ty ON ly.actor = ty.actor
+  this_year ty ON ly.actor_id = ty.actor_id
