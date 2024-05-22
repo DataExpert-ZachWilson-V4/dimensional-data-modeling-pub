@@ -21,7 +21,7 @@ CREATE TABLE actors (
     ROW(
       film VARCHAR,
       votes INTEGER,
-      rating INTEGER,
+      rating DOUBLE,
       film_id VARCHAR
     )
   ),
