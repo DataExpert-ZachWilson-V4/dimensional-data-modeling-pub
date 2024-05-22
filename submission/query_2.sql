@@ -1,3 +1,6 @@
+INSERT INTO actors
+
+-- Grab previous year data
 WITH
   last_year AS (
     SELECT
@@ -8,6 +11,10 @@ WITH
       current_year = 2000
   ),
 
+-- Get the new year data
+-- We will need to group by because the actors have multiple rows per year
+-- As for the average rating, we want the avg rating in a given year. Since we are filtering by year
+-- We will have all the ratings for a given actor in a year.
   this_year AS (
     SELECT
       actor,
@@ -18,7 +25,8 @@ WITH
           film,
           votes,
           rating,
-          film_id
+          film_id,
+          year
         )
       ) AS films,
       CASE 
@@ -34,12 +42,15 @@ WITH
     GROUP BY 1,2,3
   )
 
+
 SELECT
   COALESCE(ly.actor, ty.actor) AS actor,
   COALESCE(ly.actor_id, ty.actor_id) AS actor_id,
   CASE 
     WHEN ty.films IS NOT NULL AND ly.films IS NULL THEN ty.films
     WHEN ty.films IS NOT NULL AND ly.films IS NOT NULL THEN ty.films || ly.films 
+    WHEN ty.films IS NULL AND ly.films IS NOT NULL THEN ly.films
+END AS films,
 END AS films,
   COALESCE(ly.quality_class,ty.quality_class) as quality_class,
   ty.films IS NOT NULL AS is_active,

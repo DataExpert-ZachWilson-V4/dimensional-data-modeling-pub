@@ -6,7 +6,8 @@ CREATE OR REPLACE TABLE ttian45759.actors (
       film VARCHAR,
       votes INTEGER,
       rating DOUBLE,
-      film_id VARCHAR
+      film_id VARCHAR,
+      year INTEGER
     )
   ),
   quality_class VARCHAR,
