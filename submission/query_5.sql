@@ -2,7 +2,7 @@
 
 WITH current_year_data AS (
     SELECT
-       *8
+       *
     FROM actors
     WHERE current_year = 1984
 ),
