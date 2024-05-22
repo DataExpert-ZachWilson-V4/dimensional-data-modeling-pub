@@ -56,4 +56,4 @@ FROM current_year_data
 JOIN previous_scd_data
 ON current_year_data.actor_id = previous_scd_data.actor_id
 AND current_year_data.quality_class != previous_scd_data.quality_class
-OR current_year_data.is_active != previous_scd_data.is_active;
+OR current_year_data.is_active != previous_scd_data.is_active
