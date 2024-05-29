@@ -1,3 +1,5 @@
+INSERT INTO ChrisTaulbee.actors_history_scd
+
 WITH previous_year_cte AS (
     SELECT
         *

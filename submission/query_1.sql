@@ -1,4 +1,4 @@
-CREATE TABLE ChrisTaulbee.actors (
+CREATE TABLE IF NOT EXISTS ChrisTaulbee.actors (
   actor VARCHAR,
   actor_id VARCHAR,
   films ARRAY(

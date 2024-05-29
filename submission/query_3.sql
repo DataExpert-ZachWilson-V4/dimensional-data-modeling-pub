@@ -1,4 +1,4 @@
-CREATE TABLE ChrisTaulbee.actors_history_scd (
+CREATE TABLE IF NOT EXISTS ChrisTaulbee.actors_history_scd (
   actor VARCHAR,
   actor_id VARCHAR,
   quality_class VARCHAR,
