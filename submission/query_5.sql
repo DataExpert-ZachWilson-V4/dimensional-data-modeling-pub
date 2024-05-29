@@ -72,4 +72,4 @@ SELECT
     latest_year
 FROM
     changes
-CROSS JOIN UNNEST(change_array) AS t(arr);
+CROSS JOIN UNNEST(change_array) AS t(arr)
