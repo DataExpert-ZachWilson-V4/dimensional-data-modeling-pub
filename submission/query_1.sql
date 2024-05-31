@@ -2,7 +2,7 @@ CREATE TABLE actors (
     -- 'actor': Stores the actor's name.
     actor VARCHAR,
     -- 'actor_id': A unique identifier for each actor.
-    actor_id VARCHAR
+    actor_id VARCHAR,
     -- 'films' : Array of structs containing rows which describe film data.
     films ARRAY(
         ROW(
