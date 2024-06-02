@@ -11,7 +11,7 @@ previous_scd_data AS (
        *
     FROM actors_history_scd
     where current_year = 1983
-)
+),
 
 SELECT 
     actor
@@ -41,7 +41,7 @@ WHERE actor NOT IN (
 )
 UNION ALL
 SELECT 
-    current_year_data.actor
+    current_year_data.actor,
     current_year_data.quality_class,
     current_year_data.is_active,
     previous_scd_data.start_date,
