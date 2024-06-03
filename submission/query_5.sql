@@ -75,7 +75,7 @@ SELECT
     actor_id,
     arr.quality_class,
     arr.is_active,
-    latest_year
+    latest_year,
     arr.start_date,
     arr.end_date
 FROM
