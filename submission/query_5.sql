@@ -1,4 +1,3 @@
---Test LLM comments marker
 INSERT INTO nattyd.actors_history_scd
 WITH last_year_scd AS (
     SELECT * FROM nattyd.actors_history_scd
