@@ -1,3 +1,4 @@
+--llm grade
 INSERT INTO nattyd.actors
 WITH last_year AS (
     SELECT * FROM nattyd.actors
