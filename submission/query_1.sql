@@ -1,3 +1,4 @@
+-- Test LLM comments
 CREATE TABLE nattyd.actors (
     actor VARCHAR,
     actorid VARCHAR,
