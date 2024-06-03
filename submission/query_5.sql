@@ -73,11 +73,11 @@ changes AS (
 SELECT
     actor,
     actor_id,
-    arr.is_active,
     arr.quality_class,
-    arr.start_date,
-    arr.end_date,
+    arr.is_active,
     latest_year
+    arr.start_date,
+    arr.end_date
 FROM
     changes
 CROSS JOIN UNNEST(change_array) AS arr
