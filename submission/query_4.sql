@@ -1,3 +1,4 @@
+--test llm
 INSERT INTO nattyd.actors_history_scd
 WITH lagger AS (
     SELECT
