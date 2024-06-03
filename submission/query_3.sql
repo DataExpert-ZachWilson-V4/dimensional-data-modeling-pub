@@ -1,4 +1,3 @@
--- Test LLM comments marker
 CREATE TABLE nattyd.actors_history_scd (
     actor VARCHAR,
     actorid VARCHAR,
