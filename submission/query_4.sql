@@ -41,7 +41,7 @@ ORDER BY actor, start_date
 
 SELECT actor,
        quality_class,
-       is_active,
+       CASE WHEN is_active = 1 THEN True ELSE False END as is_active,
 -- specified in the prompt (table should be appropriately modeled as a Type 2 Slowly Changing Dimension Table (start_date and end_date))
        start_date,
        end_date,
