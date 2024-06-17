@@ -1,12 +1,13 @@
 CREATE TABLE changtiange199881320.actors (
-    actor VARCHAR,
-    actor_id VARCHAR, 
+    actor_id VARCHAR,
+    actor VARCHAR, 
     films ARRAY(
         ROW(
+            film_id VARCHAR,
             film VARCHAR, 
             votes INT, 
             rating DOUBLE, 
-            film_id VARCHAR
+            year INT    
         )
     ), 
     quality_class VARCHAR, 
