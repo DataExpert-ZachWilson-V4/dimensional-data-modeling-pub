@@ -7,7 +7,7 @@ CREATE TABLE changtiange199881320.actors (
             film VARCHAR, 
             votes INT, 
             rating DOUBLE, 
-            year INT    
+            year INT
         )
     ), 
     quality_class VARCHAR, 
