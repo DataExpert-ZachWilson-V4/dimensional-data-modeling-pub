@@ -6,12 +6,12 @@ INSERT INTO changtiange199881320.actors
 WITH last_year AS (
     SELECT *
     FROM changtiange199881320.actors
-    WHERE current_year = 1913 --backfill from here to 2021
+    WHERE current_year = 1913 --backfill from here to 2020
 ), 
 this_year AS (
     SELECT *
     FROM bootcamp.actor_films
-    WHERE year = 1914 --backfill from here to 2022
+    WHERE year = 1914 --backfill from here to 2021
 ), 
 film_data AS (
     SELECT
