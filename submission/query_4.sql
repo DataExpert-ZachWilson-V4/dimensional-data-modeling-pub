@@ -1,3 +1,7 @@
+-- SHOW CREATE TABLE changtiange199881320.actors_history_scd
+
+INSERT INTO changtiange199881320.actors_history_scd
+
 WITH lagged AS (
     SELECT 
         actor, actor_id, 
