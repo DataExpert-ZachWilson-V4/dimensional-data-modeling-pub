@@ -1,17 +1,15 @@
 -- 1914 - 2021
--- 30
--- 31
 INSERT INTO changtiange199881320.actors
 
 WITH last_year AS (
     SELECT *
     FROM changtiange199881320.actors
-    WHERE current_year = 1913 --backfill from here to 2020
+    WHERE current_year = 1913 -- backfill from here to 2020
 ), 
 this_year AS (
     SELECT *
     FROM bootcamp.actor_films
-    WHERE year = 1914 --backfill from here to 2021
+    WHERE year = 1914 -- backfill from here to 2021
 ), 
 film_data AS (
     SELECT
@@ -58,8 +56,7 @@ distinct_films AS(
         unnested_film_data
 )
 SELECT
-    actor_id,
-    actor,
+    actor_id, actor,
     ARRAY_AGG(ROW(film_id, film, votes, rating, year)) AS films,
     CASE
         WHEN AVG(rating) > 8 THEN 'star'
@@ -72,4 +69,17 @@ SELECT
 FROM 
     distinct_films
 GROUP BY 
-    actor_id, actor, current_year
+    actor_id, 
+    actor, 
+    current_year
+
+'''
+SHOW STATS FOR (
+    SELECT
+        * 
+    FROM 
+        changtiange199881320.actors
+    WHERE 
+        current_year = 2021
+ )
+'''
