@@ -1,8 +1,8 @@
+-- SCD Batch Backfill, entire table in one query.
+
 -- SHOW CREATE TABLE changtiange199881320.actors_history_scd
 
 INSERT INTO changtiange199881320.actors_history_scd
-
--- SCD Batch Backfill, entire table in one query.
 
 WITH lagged AS (
     SELECT
