@@ -73,13 +73,12 @@ GROUP BY
     actor, 
     current_year
 
-'''
-SHOW STATS FOR (
-    SELECT
-        * 
-    FROM 
-        changtiange199881320.actors
-    WHERE 
-        current_year = 2021
- )
-'''
+
+-- SHOW STATS FOR (
+--     SELECT
+--          * 
+--      FROM 
+--          changtiange199881320.actors
+--      WHERE 
+--          current_year = 2021
+--   )

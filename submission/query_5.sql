@@ -1,4 +1,4 @@
-INSERT INTO changtiange199881320.actors_history_scd
+-- INSERT INTO changtiange199881320.actors_history_scd
 
 -- SCD Incremental Backfill, populate a single year's data by combining the previous
 -- year's SCD data with the new incoming data from the table for this year. 
