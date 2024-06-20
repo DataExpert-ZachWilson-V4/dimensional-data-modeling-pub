@@ -73,7 +73,6 @@ GROUP BY
     actor, 
     current_year
 
-
 -- SHOW STATS FOR (
 --     SELECT
 --          * 
